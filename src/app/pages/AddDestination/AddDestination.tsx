@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Tasklist from '../../components/Tasklist/Tasklist';
 
@@ -10,12 +11,14 @@ export default function AddDestination({}): JSX.Element {
     setStartTrip('');
     setEndTrip('');
     setActivities([]);
+    navigate('/DestinationDetailView');
   }
 
   const [location, setLocation] = useState('');
   const [startTrip, setStartTrip] = useState('');
   const [endTrip, setEndTrip] = useState('');
   const [activities, setActivities] = useState(['Climbing', 'Walking']);
+  const navigate = useNavigate();
 
   return (
     <Destination onSubmit={onSubmit}>
