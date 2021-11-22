@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 
-export default function Tasklist({}): JSX.Element {
+type TasklistProps = {
+  activities: string[];
+  setActivities: (activities: string[]) => void;
+};
+
+export default function Tasklist({
+  activities,
+  setActivities,
+}: TasklistProps): JSX.Element {
   const [newActivity, setNewActivity] = useState('');
-  const [activities, setActivities] = useState(['Climbing', 'Walking']);
+  //const [activities, setActivities] = useState(['Climbing', 'Walking']);
 
   function onClick(event: { preventDefault: () => void }) {
     event.preventDefault();

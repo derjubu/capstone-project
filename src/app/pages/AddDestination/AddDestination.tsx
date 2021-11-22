@@ -5,15 +5,17 @@ import Tasklist from '../../components/Tasklist/Tasklist';
 export default function AddDestination({}): JSX.Element {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(location, startTrip, endTrip);
+    console.log(location, startTrip, endTrip, activities);
     setLocation('');
     setStartTrip('');
     setEndTrip('');
+    setActivities([]);
   }
 
   const [location, setLocation] = useState('');
   const [startTrip, setStartTrip] = useState('');
   const [endTrip, setEndTrip] = useState('');
+  const [activities, setActivities] = useState(['Climbing', 'Walking']);
 
   return (
     <Destination onSubmit={onSubmit}>
@@ -48,7 +50,7 @@ export default function AddDestination({}): JSX.Element {
         />
       </label>
       <h2>What do you want to do here?</h2>
-      <Tasklist />
+      <Tasklist activities={activities} setActivities={setActivities} />
       <button>Add to trip</button>
     </Destination>
   );
