@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Tasklist from '../../components/Tasklist/Tasklist';
 
-export default function AddDestination({}): JSX.Element {
+export default function AddDestination(): JSX.Element {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log(location, startTrip, endTrip, activities);
