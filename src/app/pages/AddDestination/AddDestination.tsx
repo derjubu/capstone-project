@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Tasklist from '../../components/Tasklist/Tasklist';
 
 export default function AddDestination({}): JSX.Element {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log(location, startTrip, endTrip);
+    setLocation('');
+    setStartTrip('');
+    setEndTrip('');
   }
 
   const [location, setLocation] = useState('');
@@ -43,6 +47,8 @@ export default function AddDestination({}): JSX.Element {
           onChange={(event) => setEndTrip(event.target.value)}
         />
       </label>
+      <h2>What do you want to do here?</h2>
+      <Tasklist />
       <button>Add to trip</button>
     </Destination>
   );

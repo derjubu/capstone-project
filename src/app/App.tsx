@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AddDestination from './components/AddDestination/AddDestination';
+import AddDestination from './pages/AddDestination/AddDestination';
 
 function App(): JSX.Element {
   return (
