@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 //import { useNavigate } from 'react-router';
 import AddDestination from './pages/AddDestination/AddDestination';
 import DestinationDetailView from './pages/DestinationDetailView/DestinationDetailView';
@@ -9,7 +9,6 @@ function App(): JSX.Element {
   const [location, setLocation] = useState('');
   const [startTrip, setStartTrip] = useState('');
   const [endTrip, setEndTrip] = useState('');
-  //const navigate = useNavigate();
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,7 +17,6 @@ function App(): JSX.Element {
     setStartTrip('');
     setEndTrip('');
     setActivities([]);
-    //navigate('/DestinationDetailView');
   }
 
   return (

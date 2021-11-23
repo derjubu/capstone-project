@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 type TasklistProps = {
   activities: string[];
@@ -19,7 +20,7 @@ export default function Tasklist({
   }
 
   return (
-    <div>
+    <TaskList>
       <label htmlFor="NewActivity">
         <input
           type="text"
@@ -35,6 +36,11 @@ export default function Tasklist({
           <li key={item}>{item}</li>
         ))}
       </ul>
-    </div>
+    </TaskList>
   );
 }
+
+const TaskList = styled.ul`
+  list-style: none;
+  grid-column: 3/5;
+`;

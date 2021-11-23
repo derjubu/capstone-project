@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Tasklist from '../../components/Tasklist/Tasklist';
 
@@ -25,10 +26,16 @@ export default function AddDestination({
   setEndTrip,
   onSubmit,
 }: AddDestinationProps): JSX.Element {
+  const navigate = useNavigate();
+
+  function showDetailpage() {
+    navigate('/DestinationDetailView');
+  }
+
   return (
     <Destination onSubmit={onSubmit}>
-      <h1>Add a new destination</h1>
-      <label htmlFor="destination">
+      <TitleLocation>Add a new destination</TitleLocation>
+      <LocationTrip htmlFor="destination">
         Where do you want to go?
         <input
           id="destination"
@@ -38,8 +45,8 @@ export default function AddDestination({
           onChange={(event) => setLocation(event.target.value)}
           placeholder="Enter your destination"
         />
-      </label>
-      <label htmlFor="start-trip">
+      </LocationTrip>
+      <StartTrip htmlFor="start-trip">
         When do you arrive?
         <input
           type="date"
@@ -47,8 +54,8 @@ export default function AddDestination({
           value={startTrip}
           onChange={(event) => setStartTrip(event.target.value)}
         />
-      </label>
-      <label htmlFor="end-trip">
+      </StartTrip>
+      <EndTrip htmlFor="end-trip">
         When do you leave?
         <input
           type="date"
@@ -56,14 +63,56 @@ export default function AddDestination({
           value={endTrip}
           onChange={(event) => setEndTrip(event.target.value)}
         />
-      </label>
-      <h2>What do you want to do here?</h2>
+      </EndTrip>
+      <TitleActivities>What do you want to do here?</TitleActivities>
       <Tasklist activities={activities} setActivities={setActivities} />
-      <button>Add to trip</button>
+      <AddTask onClick={showDetailpage}>Add to trip</AddTask>
     </Destination>
   );
 }
 
 const Destination = styled.form`
   list-style: none;
+  max-width: 1400;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 5px;
+  border: black solid 1px;
+  border-radius: 5px;
+`;
+
+const TitleLocation = styled.h1`
+  text-align: center;
+  justify-self: center;
+  grid-column: 3/5;
+`;
+
+const LocationTrip = styled.label`
+  text-align: center;
+  justify-self: center;
+  grid-column: 3/5;
+`;
+
+const StartTrip = styled.label`
+  grid-column: 1 / span 2;
+  justify-self: end;
+  text-align: end;
+`;
+const EndTrip = styled.label`
+  grid-column: 5 / span 2;
+  justify-self: start;
+`;
+
+const TitleActivities = styled.h2`
+  text-align: center;
+  justify-self: center;
+  grid-column: 3/5;
+`;
+
+const AddTask = styled.button`
+  text-align: center;
+  justify-self: center;
+  grid-column: 3/5;
 `;

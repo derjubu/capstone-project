@@ -1,4 +1,5 @@
 import React from 'react';
+import DestinationCard from '../../components/DestinationCard/Destinationcard';
 
 type DestinationDetailViewProps = {
   activities: string[];
@@ -14,15 +15,11 @@ export default function DestinationDetailView({
   endTrip,
 }: DestinationDetailViewProps): JSX.Element {
   return (
-    <div>
-      <h1>{location}</h1>
-      <span>{startTrip}</span>
-      <span>{endTrip}</span>
-      <ul>
-        {activities.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    </div>
+    <DestinationCard
+      activities={activities}
+      location={location}
+      startTrip={startTrip}
+      endTrip={endTrip}
+    />
   );
 }
