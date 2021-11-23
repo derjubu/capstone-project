@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Tasklist from '../Tasklist/Tasklist';
 
 type DestinationCardProps = {
   activities: string[];
