@@ -1,5 +1,5 @@
 import React from 'react';
-import DestinationCard from '../../components/DestinationCard/Destinationcard';
+import DestinationCard from '../../components/DestinationCard/DestinationCard';
 
 type DestinationDetailViewProps = {
   activities: string[];
