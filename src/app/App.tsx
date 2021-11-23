@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 //import { useNavigate } from 'react-router';
 import AddDestination from './pages/AddDestination/AddDestination';
 import DestinationDetailView from './pages/DestinationDetailView/DestinationDetailView';

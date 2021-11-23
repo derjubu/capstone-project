@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Tasklist from '../Tasklist/Tasklist';
 
 type DestinationCardProps = {
   activities: string[];
@@ -10,6 +11,7 @@ type DestinationCardProps = {
 
 export default function DestinationCard({
   activities,
+
   location,
   startTrip,
   endTrip,
@@ -21,8 +23,8 @@ export default function DestinationCard({
       <TripEnd>{endTrip}</TripEnd>
       <TitleActivities>What I want to do</TitleActivities>
       <ActivitiesList>
-        {activities.map((activity) => (
-          <li key={activity}>{activity}</li>
+        {activities.map((item) => (
+          <li key={item}>{item}</li>
         ))}
       </ActivitiesList>
     </Card>
