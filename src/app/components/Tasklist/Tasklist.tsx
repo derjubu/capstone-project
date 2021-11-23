@@ -10,7 +10,6 @@ export default function Tasklist({
   setActivities,
 }: TasklistProps): JSX.Element {
   const [newActivity, setNewActivity] = useState('');
-  //const [activities, setActivities] = useState(['Climbing', 'Walking']);
 
   function onClick(event: { preventDefault: () => void }) {
     event.preventDefault();

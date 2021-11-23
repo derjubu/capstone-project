@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React from 'react';
 import styled from 'styled-components';
 import Tasklist from '../../components/Tasklist/Tasklist';
 
-export default function AddDestination(): JSX.Element {
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log(location, startTrip, endTrip, activities);
-    setLocation('');
-    setStartTrip('');
-    setEndTrip('');
-    setActivities([]);
-    navigate('/DestinationDetailView');
-  }
+type AddDestinationProps = {
+  activities: string[];
+  setActivities: (activities: string[]) => void;
+  location: string;
+  setLocation: (location: string) => void;
+  startTrip: string;
+  setStartTrip: (startTrip: string) => void;
+  endTrip: string;
+  setEndTrip: (endTrip: string) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+};
 
-  const [location, setLocation] = useState('');
-  const [startTrip, setStartTrip] = useState('');
-  const [endTrip, setEndTrip] = useState('');
-  const [activities, setActivities] = useState(['Climbing', 'Walking']);
-  const navigate = useNavigate();
-
+export default function AddDestination({
+  activities,
+  setActivities,
+  location,
+  setLocation,
+  startTrip,
+  setStartTrip,
+  endTrip,
+  setEndTrip,
+  onSubmit,
+}: AddDestinationProps): JSX.Element {
   return (
     <Destination onSubmit={onSubmit}>
       <h1>Add a new destination</h1>
