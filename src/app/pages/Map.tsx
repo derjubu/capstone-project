@@ -5,9 +5,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 
 export default function LocationMap(): JSX.Element {
-  mapboxgl.accessToken =
-    'pk.eyJ1IjoiZGVyanVidSIsImEiOiJja3dkY2hlcDMwdDVuMnBuMjkzdHk3anZpIn0.W6RooR3VQzSd39X1I4A3Lg';
-  const mapContainer = useRef<HTMLElement | string>('');
+  if (process.env.MAPBOX_ACCESS_KEY) {
+    mapboxgl.accessToken = process.env.MAPBOX_ACCESS_KEY;
+  }
+
+  const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
   const [lng, setLng] = useState<number>(10.0125);
   const [lat, setLat] = useState<number>(53.5469);
@@ -16,33 +18,35 @@ export default function LocationMap(): JSX.Element {
   useEffect(() => {
     if (map.current) return;
     map.current = new mapboxgl.Map({
-      container: mapContainer.current,
+      container: mapContainer.current as HTMLElement,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [lng, lat],
       zoom: zoom,
     });
-  });
+  }, []);
 
   useEffect(() => {
-    if (!map.current) return;
-    map.current.on('move', () => {
-      setLng(map.current.getCenter().lng.toFixed(4));
-      setLat(map.current.getCenter().lat.toFixed(4));
-      setZoom(map.current.getZoom().toFixed(2));
+    map.current?.on('move', () => {
+      if (map.current) {
+        setLng(map.current.getCenter().lng);
+        setLat(map.current.getCenter().lat);
+        setZoom(map.current.getZoom());
+      }
     });
-  });
+  }, []);
 
   return (
     <div>
       <MapLegend>
         Longitude: {lng} | Lattitude: {lat} | Zoom: {zoom}
       </MapLegend>
-      <MapContainer ref={mapContainer} />;
+      <MapContainer ref={mapContainer} />
     </div>
   );
 }
 const MapContainer = styled.div`
   height: 400px;
+  margin: 2px;
 `;
 
 const MapLegend = styled.div`
