@@ -81,6 +81,8 @@ const Destination = styled.form`
   column-gap: 5px;
   border: black solid 1px;
   border-radius: 5px;
+  justify-items: center;
+  text-align: center;
 `;
 
 const TitleLocation = styled.h1`
@@ -96,13 +98,10 @@ const LocationTrip = styled.label`
 `;
 
 const StartTrip = styled.label`
-  grid-column: 1 / span 2;
-  justify-self: end;
-  text-align: end;
+  grid-column: 1 / span 3;
 `;
 const EndTrip = styled.label`
-  grid-column: 5 / span 2;
-  justify-self: start;
+  grid-column: 4 / span 3;
 `;
 
 const TitleActivities = styled.h2`

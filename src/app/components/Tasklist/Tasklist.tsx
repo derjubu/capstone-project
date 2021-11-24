@@ -33,7 +33,7 @@ export default function Tasklist({
       </label>
       <ul>
         {activities.map((item) => (
-          <li key={item}>{item}</li>
+          <Item key={item}>{item}</Item>
         ))}
       </ul>
     </TaskList>
@@ -43,4 +43,9 @@ export default function Tasklist({
 const TaskList = styled.ul`
   list-style: none;
   grid-column: 3/5;
+  padding: 0;
+`;
+
+const Item = styled.li`
+  list-style: none;
 `;
