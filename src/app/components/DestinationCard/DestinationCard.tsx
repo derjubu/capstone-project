@@ -2,14 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 type DestinationCardProps = {
-  activities: string[];
   location: string;
   startTrip: string;
   endTrip: string;
 };
 
 export default function DestinationCard({
-  activities,
   location,
   startTrip,
   endTrip,
@@ -19,12 +17,6 @@ export default function DestinationCard({
       <TitleLocation>{location}</TitleLocation>
       <TripStart>{startTrip}</TripStart>
       <TripEnd>{endTrip}</TripEnd>
-      <TitleActivities>What I want to do</TitleActivities>
-      <ActivitiesList>
-        {activities.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ActivitiesList>
     </Card>
   );
 }
@@ -45,12 +37,6 @@ const TitleLocation = styled.h1`
   grid-column: 3/5;
 `;
 
-const TitleActivities = styled.h2`
-  text-align: center;
-  justify-self: center;
-  grid-column: 3/5;
-`;
-
 const TripStart = styled.span`
   grid-column: 1 / span 2;
   justify-self: end;
@@ -58,9 +44,4 @@ const TripStart = styled.span`
 const TripEnd = styled.span`
   grid-column: 5 / span 2;
   justify-self: start;
-`;
-
-const ActivitiesList = styled.ul`
-  list-style: none;
-  grid-column: 3/5;
 `;
