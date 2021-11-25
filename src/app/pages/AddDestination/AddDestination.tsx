@@ -7,8 +7,8 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 export default function AddDestination(): JSX.Element {
   const destination = {
     location: '',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: '',
+    endDate: '',
   };
   //const navigate = useNavigate();
   /* const [activities, setActivities] = useLocalStorage<{ activity: string }[]>(
@@ -19,11 +19,11 @@ export default function AddDestination(): JSX.Element {
     'location',
     destination.location
   );
-  const [startDate, setStartDate] = useLocalStorage<Date>(
+  const [startDate, setStartDate] = useLocalStorage<string>(
     'startDate',
     destination.startDate
   );
-  const [endDate, setEndDate] = useLocalStorage<Date>(
+  const [endDate, setEndDate] = useLocalStorage<string>(
     'endDate',
     destination.endDate
   );
@@ -31,6 +31,8 @@ export default function AddDestination(): JSX.Element {
   function showDetailpage(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     destination.location = newLocation;
+    destination.startDate = startDate;
+    destination.endDate = endDate;
     console.log(destination);
   }
 
