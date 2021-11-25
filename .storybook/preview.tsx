@@ -2,6 +2,8 @@ import React from 'react';
 import { addDecorator } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
+import GlobalStyle from '../src/app/GlobalStyles';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -12,4 +14,9 @@ export const parameters = {
   },
 };
 
-addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>);
+addDecorator((story) => (
+  <MemoryRouter>
+    <GlobalStyle />
+    {story()}
+  </MemoryRouter>
+));
