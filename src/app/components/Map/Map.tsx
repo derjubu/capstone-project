@@ -13,8 +13,8 @@ export default function LocationMap(): JSX.Element {
 
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
-  const [lng, setLng] = useState<number>(10.0125);
-  const [lat, setLat] = useState<number>(53.5469);
+  const [longitude, setLongitude] = useState<number>(10.0125);
+  const [latitude, setLatitude] = useState<number>(53.5469);
   const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function LocationMap(): JSX.Element {
     map.current = new mapboxgl.Map({
       container: mapContainer.current as HTMLElement,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [lng, lat],
+      center: [longitude, latitude],
       zoom: zoom,
     });
   }, []);
@@ -30,8 +30,8 @@ export default function LocationMap(): JSX.Element {
   useEffect(() => {
     map.current?.on('move', () => {
       if (map.current) {
-        setLng(map.current.getCenter().lng);
-        setLat(map.current.getCenter().lat);
+        setLongitude(map.current.getCenter().lng);
+        setLatitude(map.current.getCenter().lat);
         setZoom(map.current.getZoom());
       }
     });
@@ -40,7 +40,7 @@ export default function LocationMap(): JSX.Element {
   return (
     <div>
       <MapLegend>
-        Longitude: {lng} | Lattitude: {lat} | Zoom: {zoom}
+        Longitude: {longitude} | Lattitude: {latitude} | Zoom: {zoom}
       </MapLegend>
       <MapContainer ref={mapContainer} />
     </div>
