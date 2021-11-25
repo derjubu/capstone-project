@@ -5,8 +5,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 
 export default function LocationMap(): JSX.Element {
-  if (process.env.MAPBOX_ACCESS_KEY) {
-    mapboxgl.accessToken = process.env.MAPBOX_ACCESS_KEY;
+  if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
+  } else {
+    throw new Error('no KEY provided');
   }
 
   const mapContainer = useRef<HTMLDivElement | null>(null);
