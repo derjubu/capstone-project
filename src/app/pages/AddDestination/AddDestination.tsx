@@ -1,39 +1,41 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import Tasklist from '../../components/Tasklist/Tasklist';
+//import Tasklist from '../../components/Tasklist/Tasklist';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-type AddDestinationProps = {
-  activities: string[];
-  setActivities: (activities: string[]) => void;
-  location: string;
-  setLocation: (location: string) => void;
-  startTrip: string;
-  setStartTrip: (startTrip: string) => void;
-  endTrip: string;
-  setEndTrip: (endTrip: string) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-};
+export default function AddDestination({}): JSX.Element {
+  const destination = {
+    location: '',
+    startDate: new Date(),
+    endDate: new Date(),
+  };
+  //const navigate = useNavigate();
+  /* const [activities, setActivities] = useLocalStorage<{ activity: string }[]>(
+    'activities',
+    destination.activities
+  ); */
+  const [newLocation, setNewLocation] = useLocalStorage<string>(
+    'location',
+    destination.location
+  );
+  const [startDate, setStartDate] = useLocalStorage<Date>(
+    'startDate',
+    destination.startDate
+  );
+  const [endDate, setEndDate] = useLocalStorage<Date>(
+    'endDate',
+    destination.endDate
+  );
 
-export default function AddDestination({
-  activities,
-  setActivities,
-  location,
-  setLocation,
-  startTrip,
-  setStartTrip,
-  endTrip,
-  setEndTrip,
-  onSubmit,
-}: AddDestinationProps): JSX.Element {
-  const navigate = useNavigate();
-
-  function showDetailpage() {
-    navigate('/DestinationDetailView');
+  function showDetailpage(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    destination.location = newLocation;
+    console.log(destination);
   }
 
   return (
-    <Destination onSubmit={onSubmit}>
+    <Destination onSubmit={showDetailpage}>
       <TitleLocation>Add a new destination</TitleLocation>
       <LocationTrip htmlFor="destination">
         Where do you want to go?
@@ -41,8 +43,8 @@ export default function AddDestination({
           id="destination"
           type="text"
           required
-          value={location}
-          onChange={(event) => setLocation(event.target.value)}
+          value={newLocation}
+          onChange={(event) => setNewLocation(event.target.value)}
           placeholder="Enter your destination"
         />
       </LocationTrip>
@@ -51,8 +53,8 @@ export default function AddDestination({
         <input
           type="date"
           id="start-trip"
-          value={startTrip}
-          onChange={(event) => setStartTrip(event.target.value)}
+          value={startDate}
+          onChange={(event) => setStartDate(event.target.value)}
         />
       </StartTrip>
       <EndTrip htmlFor="end-trip">
@@ -60,13 +62,17 @@ export default function AddDestination({
         <input
           type="date"
           id="end-trip"
-          value={endTrip}
-          onChange={(event) => setEndTrip(event.target.value)}
+          value={endDate}
+          onChange={(event) => setEndDate(event.target.value)}
         />
       </EndTrip>
-      <TitleActivities>What do you want to do here?</TitleActivities>
-      <Tasklist activities={activities} setActivities={setActivities} />
-      <AddTask onClick={showDetailpage}>Add to trip</AddTask>
+      {/* <TitleActivities>What do you want to do here?</TitleActivities>
+      <Tasklist
+        activities={destination.activities}
+        setActivities={setActivities}
+      />
+      <AddTask>Add to trip</AddTask> */}
+      <button>Go!</button>
     </Destination>
   );
 }
@@ -104,14 +110,14 @@ const EndTrip = styled.label`
   grid-column: 4 / span 3;
 `;
 
-const TitleActivities = styled.h2`
+/* const TitleActivities = styled.h2`
   text-align: center;
   justify-self: center;
   grid-column: 3/5;
-`;
+`; */
 
-const AddTask = styled.button`
+/* const AddTask = styled.button`
   text-align: center;
   justify-self: center;
   grid-column: 3/5;
-`;
+`; */
