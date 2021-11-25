@@ -4,7 +4,7 @@ import styled from 'styled-components';
 //import Tasklist from '../../components/Tasklist/Tasklist';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
-export default function AddDestination({}): JSX.Element {
+export default function AddDestination(): JSX.Element {
   const destination = {
     location: '',
     startDate: new Date(),
