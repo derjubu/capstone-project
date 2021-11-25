@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-//import Tasklist from '../../components/Tasklist/Tasklist';
+import Tasklist from '../../components/Tasklist/Tasklist';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 export default function AddDestination(): JSX.Element {
@@ -9,12 +9,13 @@ export default function AddDestination(): JSX.Element {
     location: '',
     startDate: '',
     endDate: '',
+    activities: ['Climbing', 'Museum'],
   };
-  //const navigate = useNavigate();
-  /* const [activities, setActivities] = useLocalStorage<{ activity: string }[]>(
+  const navigate = useNavigate();
+  const [activities, setActivities] = useLocalStorage<string[]>(
     'activities',
     destination.activities
-  ); */
+  );
   const [newLocation, setNewLocation] = useLocalStorage<string>(
     'location',
     destination.location
@@ -33,7 +34,9 @@ export default function AddDestination(): JSX.Element {
     destination.location = newLocation;
     destination.startDate = startDate;
     destination.endDate = endDate;
+    destination.activities = activities;
     console.log(destination);
+    navigate('/DestinationDetailView');
   }
 
   return (
@@ -68,12 +71,12 @@ export default function AddDestination(): JSX.Element {
           onChange={(event) => setEndDate(event.target.value)}
         />
       </EndTrip>
-      {/* <TitleActivities>What do you want to do here?</TitleActivities>
+      <TitleActivities>What do you want to do here?</TitleActivities>
       <Tasklist
         activities={destination.activities}
         setActivities={setActivities}
       />
-      <AddTask>Add to trip</AddTask> */}
+      <AddTask>Add to trip</AddTask>
       <button>Go!</button>
     </Destination>
   );
@@ -112,14 +115,14 @@ const EndTrip = styled.label`
   grid-column: 4 / span 3;
 `;
 
-/* const TitleActivities = styled.h2`
+const TitleActivities = styled.h2`
   text-align: center;
   justify-self: center;
   grid-column: 3/5;
-`; */
+`;
 
-/* const AddTask = styled.button`
+const AddTask = styled.button`
   text-align: center;
   justify-self: center;
   grid-column: 3/5;
-`; */
+`;

@@ -10,7 +10,6 @@ type DestinationCardProps = {
 
 export default function DestinationCard({
   activities,
-
   location,
   startTrip,
   endTrip,
@@ -29,7 +28,6 @@ export default function DestinationCard({
     </Card>
   );
 }
-
 const Card = styled.article`
   max-width: 1400;
   margin-left: auto;
