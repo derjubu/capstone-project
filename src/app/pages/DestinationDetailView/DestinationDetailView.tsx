@@ -15,7 +15,7 @@ export default function DestinationDetailView(): JSX.Element {
 
   function goToItinerary() {
     const oldItinerary = JSON.parse(
-      window.localStorage.getItem('itinerary') || ''
+      window.localStorage.getItem('itinerary') || '[]'
     );
     const newItinerary = [...oldItinerary, currentDestination];
     localStorage.setItem('itinerary', JSON.stringify(newItinerary));

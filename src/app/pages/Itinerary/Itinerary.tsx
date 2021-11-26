@@ -5,7 +5,9 @@ import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 
 export default function Itinerary(): JSX.Element {
-  const Itinerary = JSON.parse(window.localStorage.getItem('itinerary') || '');
+  const Itinerary = JSON.parse(
+    window.localStorage.getItem('itinerary') || '[]'
+  );
 
   const navigate = useNavigate();
 
