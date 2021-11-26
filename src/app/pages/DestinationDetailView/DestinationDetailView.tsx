@@ -5,9 +5,9 @@ import type { DestinationType } from '../../utils/DestinationType';
 
 export default function DestinationDetailView(): JSX.Element {
   const currentDestination: DestinationType = {
-    location: window.localStorage.location,
-    startDate: window.localStorage.startDate,
-    endDate: window.localStorage.endDate,
+    location: window.localStorage.location.replace(/["]+/g, ''),
+    startDate: window.localStorage.startDate.replace(/["]+/g, ''),
+    endDate: window.localStorage.endDate.replace(/["]+/g, ''),
   };
 
   function addToDestinations() {
