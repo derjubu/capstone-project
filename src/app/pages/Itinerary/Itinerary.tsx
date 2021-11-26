@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import Button from '../../components/Button/Button';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
-import { DestinationType } from '../../utils/DestinationType';
+import type { DestinationType } from '../../utils/DestinationType';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(window.localStorage.getItem('itinerary') || '');
