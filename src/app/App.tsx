@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-//import { useNavigate } from 'react-router';
+import { DestinationType } from './utils/DestinationType';
 import AddDestination from './pages/AddDestination/AddDestination';
 import DestinationDetailView from './pages/DestinationDetailView/DestinationDetailView';
 import MapView from './pages/MapView/MapView';
 
-type Destination = {
-  location: string;
-  startDate: string;
-  endDate: string;
-};
-
 function App(): JSX.Element {
-  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [destinations, setDestinations] = useState<DestinationType[]>([]);
 
   return (
     <BrowserRouter>

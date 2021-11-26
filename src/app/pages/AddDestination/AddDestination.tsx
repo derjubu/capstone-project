@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 export default function AddDestination(): JSX.Element {
-  const destination = {
+  const newDestination = {
     location: '',
     startDate: '',
     endDate: '',
@@ -13,28 +13,28 @@ export default function AddDestination(): JSX.Element {
 
   const [newLocation, setNewLocation] = useLocalStorage<string>(
     'location',
-    destination.location
+    newDestination.location
   );
   const [startDate, setStartDate] = useLocalStorage<string>(
     'startDate',
-    destination.startDate
+    newDestination.startDate
   );
   const [endDate, setEndDate] = useLocalStorage<string>(
     'endDate',
-    destination.endDate
+    newDestination.endDate
   );
 
-  function showDetailpage(event: React.FormEvent<HTMLFormElement>) {
+  function goToDetailpage(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    destination.location = newLocation;
-    destination.startDate = startDate;
-    destination.endDate = endDate;
-    console.log(destination);
+    newDestination.location = newLocation;
+    newDestination.startDate = startDate;
+    newDestination.endDate = endDate;
+    console.log(newDestination);
     navigate('/DestinationDetailView');
   }
 
   return (
-    <Destination onSubmit={showDetailpage}>
+    <Destination onSubmit={goToDetailpage}>
       <TitleLocation>Add a new destination</TitleLocation>
       <LocationTrip htmlFor="destination">
         Where do you want to go?
