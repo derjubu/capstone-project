@@ -30,7 +30,6 @@ export default function AddDestination(): JSX.Element {
     newDestination.location = newLocation;
     newDestination.startDate = startDate;
     newDestination.endDate = endDate;
-    console.log(newDestination);
     navigate('/DestinationDetailView');
   }
 
