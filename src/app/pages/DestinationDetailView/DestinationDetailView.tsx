@@ -25,7 +25,13 @@ export default function DestinationDetailView(): JSX.Element {
 
   return (
     <>
-      <DestinationCard Destination={currentDestination} />
+      <DestinationCard
+        Destination={{
+          location: currentDestination.location.replaceAll('"', ''),
+          startDate: currentDestination.startDate?.replaceAll('"', ''),
+          endDate: currentDestination.endDate?.replaceAll('"', ''),
+        }}
+      />
       <Button onClick={goToItinerary}>Go on</Button>
     </>
   );

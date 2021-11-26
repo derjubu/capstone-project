@@ -18,8 +18,12 @@ export default function Itinerary(): JSX.Element {
       <span>Hello</span>
       {Itinerary.map((stop: DestinationType) => (
         <DestinationCard
-          Destination={stop}
           key={`${stop.location}-${Itinerary.indexOf(stop)}`}
+          Destination={{
+            location: stop.location.replaceAll('"', ''),
+            startDate: stop.startDate?.replaceAll('"', ''),
+            endDate: stop.endDate?.replaceAll('"', ''),
+          }}
         />
       ))}
       <Button onClick={addDestination}>Add Destination</Button>
