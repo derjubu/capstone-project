@@ -27,9 +27,6 @@ export default function AddDestination(): JSX.Element {
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    newDestination.location = newLocation;
-    newDestination.startDate = startDate;
-    newDestination.endDate = endDate;
     navigate('/DestinationDetailView');
   }
 
