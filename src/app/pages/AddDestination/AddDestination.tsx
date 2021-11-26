@@ -1,27 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import type { DestinationType } from '../../utils/DestinationType';
 
 export default function AddDestination(): JSX.Element {
-  const newDestination = {
+  const newDestination: DestinationType = {
     location: '',
     startDate: '',
     endDate: '',
   };
   const navigate = useNavigate();
 
-  const [newLocation, setNewLocation] = useLocalStorage<string>(
-    'location',
-    newDestination.location
-  );
-  const [startDate, setStartDate] = useLocalStorage<string>(
-    'startDate',
-    newDestination.startDate
-  );
-  const [endDate, setEndDate] = useLocalStorage<string>(
-    'endDate',
-    newDestination.endDate
+  const [newLocation, setNewLocation] = useState(newDestination.location);
+  const [startDate, setStartDate] = useState(newDestination.startDate);
+  const [endDate, setEndDate] = useState(newDestination.startDate);
+
+  const [, setDestination] = useLocalStorage<DestinationType>(
+    'newDestination',
+    newDestination
   );
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>) {
@@ -29,6 +26,7 @@ export default function AddDestination(): JSX.Element {
     newDestination.location = newLocation;
     newDestination.startDate = startDate;
     newDestination.endDate = endDate;
+    setDestination(newDestination);
     console.log(newDestination);
     navigate('/DestinationDetailView');
   }
