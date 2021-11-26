@@ -1,5 +1,5 @@
 import React from 'react';
-import { DestinationType } from '../../utils/DestinationType';
+import type { DestinationType } from '../../utils/DestinationType';
 import styled from 'styled-components';
 
 type DestinationCardProps = {

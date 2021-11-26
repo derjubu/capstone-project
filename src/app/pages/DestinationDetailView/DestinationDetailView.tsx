@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../components/Button/Button';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
-import { DestinationType } from '../../utils/DestinationType';
+import type { DestinationType } from '../../utils/DestinationType';
 
 export default function DestinationDetailView(): JSX.Element {
   const currentDestination: DestinationType = {
