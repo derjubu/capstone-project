@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import React from 'react';
+import Button from '../../components/Button/Button';
+import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import { DestinationType } from '../../utils/DestinationType';
 
-
 export default function DestinationDetailView(): JSX.Element {
-  const [currentDestination, setCurrentDestination] =
-    useState<DestinationType>({window.localStorage.location}, startDate: window.localStorage.startDate, endDate: window.localStorage.endDate});
+  const currentDestination: DestinationType = {
+    location: window.localStorage.location,
+    startDate: window.localStorage.startDate,
+    endDate: window.localStorage.endDate,
+  };
 
   function addToDestinations() {
     console.log(currentDestination);
@@ -12,11 +16,7 @@ export default function DestinationDetailView(): JSX.Element {
 
   return (
     <>
-      <DestinationCard
-        location={window.localStorage.location}
-        startTrip={window.localStorage.startDate}
-        endTrip={window.localStorage.endDate}
-      />
+      <DestinationCard Destination={currentDestination} />
       <Button onClick={addToDestinations}>Go on</Button>
     </>
   );
