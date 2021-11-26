@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { DestinationType } from './utils/DestinationType';
+import type { DestinationType } from './utils/DestinationType';
 import AddDestination from './pages/AddDestination/AddDestination';
 import DestinationDetailView from './pages/DestinationDetailView/DestinationDetailView';
 import MapView from './pages/MapView/MapView';
