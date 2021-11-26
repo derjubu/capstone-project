@@ -4,6 +4,7 @@ import type { DestinationType } from './utils/DestinationType';
 import AddDestination from './pages/AddDestination/AddDestination';
 import DestinationDetailView from './pages/DestinationDetailView/DestinationDetailView';
 import MapView from './pages/MapView/MapView';
+import Itinerary from './pages/Itinerary/Itinerary';
 
 function App(): JSX.Element {
   const [destinations, setDestinations] = useState<DestinationType[]>([]);
@@ -11,7 +12,8 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AddDestination />} />
+        <Route path="/" element={<Itinerary />} />
+        <Route path="/newDestination" element={<AddDestination />} />
         <Route
           path="/DestinationDetailView"
           element={<DestinationDetailView />}
