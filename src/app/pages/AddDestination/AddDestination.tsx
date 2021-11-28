@@ -2,39 +2,36 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import type { DestinationType } from '../../utils/DestinationType';
 
 export default function AddDestination(): JSX.Element {
-  const destination = {
+  const newDestination: DestinationType = {
     location: '',
     startDate: '',
     endDate: '',
   };
   const navigate = useNavigate();
 
-  const [newLocation, setNewLocation] = useLocalStorage<string>(
+  const [newLocation, setNewLocation] = useLocalStorage(
     'location',
-    destination.location
+    newDestination.location
   );
-  const [startDate, setStartDate] = useLocalStorage<string>(
+  const [startDate, setStartDate] = useLocalStorage(
     'startDate',
-    destination.startDate
+    newDestination.startDate
   );
-  const [endDate, setEndDate] = useLocalStorage<string>(
+  const [endDate, setEndDate] = useLocalStorage(
     'endDate',
-    destination.endDate
+    newDestination.endDate
   );
 
-  function showDetailpage(event: React.FormEvent<HTMLFormElement>) {
+  function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    destination.location = newLocation;
-    destination.startDate = startDate;
-    destination.endDate = endDate;
-    console.log(destination);
     navigate('/DestinationDetailView');
   }
 
   return (
-    <Destination onSubmit={showDetailpage}>
+    <Destination onSubmit={goToDetailpage}>
       <TitleLocation>Add a new destination</TitleLocation>
       <LocationTrip htmlFor="destination">
         Where do you want to go?

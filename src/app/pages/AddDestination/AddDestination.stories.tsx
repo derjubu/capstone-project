@@ -6,4 +6,6 @@ export default {
   component: AddDestination,
 };
 
-export const Destination = (): JSX.Element => <Destination></Destination>;
+export const NewDestination = (): JSX.Element => (
+  <AddDestination></AddDestination>
+);

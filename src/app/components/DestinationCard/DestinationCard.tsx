@@ -1,25 +1,23 @@
 import React from 'react';
+import type { DestinationType } from '../../utils/DestinationType';
 import styled from 'styled-components';
 
 type DestinationCardProps = {
-  location: string;
-  startTrip: string;
-  endTrip: string;
+  Destination: DestinationType;
 };
 
 export default function DestinationCard({
-  location,
-  startTrip,
-  endTrip,
+  Destination,
 }: DestinationCardProps): JSX.Element {
   return (
     <Card>
-      <TitleLocation>{location}</TitleLocation>
-      <TripStart>{startTrip}</TripStart>
-      <TripEnd>{endTrip}</TripEnd>
+      <TitleLocation>{Destination.location}</TitleLocation>
+      <TripStart>{Destination.startDate}</TripStart>
+      <TripEnd>{Destination.endDate}</TripEnd>
     </Card>
   );
 }
+
 const Card = styled.article`
   max-width: 1400;
   margin-left: auto;
