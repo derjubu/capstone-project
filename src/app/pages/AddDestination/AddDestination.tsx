@@ -22,7 +22,7 @@ export default function AddDestination(): JSX.Element {
   );
   const [endDate, setEndDate] = useLocalStorage(
     'endDate',
-    newDestination.startDate
+    newDestination.endDate
   );
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
