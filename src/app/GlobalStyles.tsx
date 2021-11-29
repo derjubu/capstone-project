@@ -5,6 +5,11 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
+:root {
+  --background1: #0000ffff;
+  --background2: green;
+}
+
 body {
   margin: 10px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

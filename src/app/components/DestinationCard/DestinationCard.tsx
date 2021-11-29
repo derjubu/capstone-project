@@ -1,6 +1,7 @@
 import React from 'react';
 import type { DestinationType } from '../../utils/DestinationType';
 import styled from 'styled-components';
+import CardTitle from '../CardTitle/CardTitle';
 
 type DestinationCardProps = {
   Destination: DestinationType;
@@ -11,7 +12,7 @@ export default function DestinationCard({
 }: DestinationCardProps): JSX.Element {
   return (
     <Card>
-      <TitleLocation>{Destination.location}</TitleLocation>
+      <CardTitle>{Destination.location}</CardTitle>
       <TripStart>{Destination.startDate}</TripStart>
       <TripEnd>{Destination.endDate}</TripEnd>
     </Card>
@@ -27,12 +28,6 @@ const Card = styled.article`
   column-gap: 5px;
   border: black solid 1px;
   border-radius: 5px;
-`;
-
-const TitleLocation = styled.h1`
-  text-align: center;
-  justify-self: center;
-  grid-column: 3/5;
 `;
 
 const TripStart = styled.span`
