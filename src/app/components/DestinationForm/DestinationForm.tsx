@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import DefaultButton from '../DefaultButton/DefaultButton';
 
 const DestinationForm = styled.form`
   background: var(--background-color-tertiary);
@@ -12,5 +13,10 @@ const DestinationForm = styled.form`
   border-radius: 5px;
   justify-items: center;
   text-align: center;
+
+  ${DefaultButton} {
+    margin: 10px;
+    grid-column: 3/5;
+  }
 `;
 export default DestinationForm;

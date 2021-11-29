@@ -1,19 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
-import Button from '../../components/Button/Button';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
+import DefaultButton from '../../components/DefaultButton/DefaultButton';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
     window.localStorage.getItem('itinerary') || '[]'
   );
-
-  const navigate = useNavigate();
-
-  function addDestination() {
-    navigate('/addDestination');
-  }
 
   return (
     <>
@@ -28,7 +21,7 @@ export default function Itinerary(): JSX.Element {
           }}
         />
       ))}
-      <Button onClick={addDestination}>Add Destination</Button>
+      <DefaultButton to="/addDestination">Add Destination</DefaultButton>
     </>
   );
 }
