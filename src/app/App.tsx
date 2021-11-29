@@ -7,19 +7,17 @@ import Itinerary from './pages/Itinerary/Itinerary';
 
 function App(): JSX.Element {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Itinerary />} />
-          <Route path="/addDestination" element={<AddDestination />} />
-          <Route
-            path="/DestinationDetailView"
-            element={<DestinationDetailView />}
-          />
-          <Route path="/map" element={<MapView />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Itinerary />} />
+        <Route path="/addDestination" element={<AddDestination />} />
+        <Route
+          path="/DestinationDetailView"
+          element={<DestinationDetailView />}
+        />
+        <Route path="/map" element={<MapView />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
