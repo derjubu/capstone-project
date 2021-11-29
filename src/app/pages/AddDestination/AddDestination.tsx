@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
