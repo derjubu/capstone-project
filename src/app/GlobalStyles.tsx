@@ -6,10 +6,10 @@ const GlobalStyle = createGlobalStyle`
 }
 
 :root {
-  --background-primary: #000fff;
-  --background-secondary: white;
-  --font-primary: white;
-  --font-secondary: #000fff;
+  --color-background-primary: #000fff;
+  --color-background-secondary: white;
+  --color-primary: white;
+  --color-secondary: #000fff;
 }
 
 body {
@@ -17,8 +17,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   }
   
   code {
