@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import Button from '../../components/SubmitButton/SubmitButton';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
