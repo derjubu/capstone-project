@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
+import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
@@ -34,9 +35,9 @@ export default function AddDestination(): JSX.Element {
   return (
     <DestinationForm onSubmit={goToDetailpage}>
       <CardTitle>Add a new destination</CardTitle>
-      <InputLabel inputGridColumn="3/5" htmlFor="destination">
+      <InputLabel inputGridColumn="2/6" htmlFor="destination">
         Where do you want to go?
-        <input
+        <InputField
           id="destination"
           type="text"
           required
@@ -45,18 +46,18 @@ export default function AddDestination(): JSX.Element {
           placeholder="Enter your destination"
         />
       </InputLabel>
-      <InputLabel inputGridColumn="1/4" htmlFor="start-trip">
+      <InputLabel inputGridColumn="2/6" htmlFor="start-trip">
         When do you arrive?
-        <input
+        <InputField
           type="date"
           id="start-trip"
           value={startDate}
           onChange={(event) => setStartDate(event.target.value)}
         />
       </InputLabel>
-      <InputLabel inputGridColumn="4/-1" htmlFor="end-trip">
+      <InputLabel inputGridColumn="2/6" htmlFor="end-trip">
         When do you leave?
-        <input
+        <InputField
           type="date"
           id="end-trip"
           value={endDate}
@@ -67,16 +68,3 @@ export default function AddDestination(): JSX.Element {
     </DestinationForm>
   );
 }
-
-const LocationTrip = styled.label`
-  text-align: center;
-  justify-self: center;
-  grid-column: 3/5;
-`;
-
-const StartTrip = styled.label`
-  grid-column: 1 / span 3;
-`;
-const EndTrip = styled.label`
-  grid-column: 4 / span 3;
-`;
