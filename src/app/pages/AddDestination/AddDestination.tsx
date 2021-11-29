@@ -78,6 +78,11 @@ const Destination = styled.form`
   border-radius: 5px;
   justify-items: center;
   text-align: center;
+
+  ${DefaultButton} {
+    margin: 10px;
+    grid-column: 3/5;
+  }
 `;
 
 const LocationTrip = styled.label`
