@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import CardTitle from '../../components/CardTitle/CardTitle';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
 
@@ -63,7 +64,7 @@ export default function AddDestination(): JSX.Element {
           onChange={(event) => setEndDate(event.target.value)}
         />
       </EndTrip>
-      <button>Go!</button>
+      <SubmitButton children="Go" />
     </Destination>
   );
 }

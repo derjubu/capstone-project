@@ -16,9 +16,9 @@ const Cardtitle = styled.h2`
   grid-column: 1/-1;
   width: 100%;
   margin: 0;
-  font-size: 1.5rem;
-  color: white;
-  background-color: var(--background-title);
+  font-size: 2rem;
+  color: var(--font-primary);
+  background-color: var(--background-primary);
   margin-bottom: 0.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;

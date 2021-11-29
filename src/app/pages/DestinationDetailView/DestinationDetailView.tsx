@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import Button from '../../components/Button/Button';
+import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 
@@ -32,7 +32,7 @@ export default function DestinationDetailView(): JSX.Element {
           endDate: currentDestination.endDate?.replaceAll('"', ''),
         }}
       />
-      <Button onClick={goToItinerary}>Go on</Button>
+      <NavigationButton onClick={goToItinerary}>Go on</NavigationButton>
     </>
   );
 }

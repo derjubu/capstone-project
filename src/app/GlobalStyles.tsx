@@ -6,16 +6,19 @@ const GlobalStyle = createGlobalStyle`
 }
 
 :root {
-  --background-title: #000fff;
+  --background-primary: #000fff;
+  --background-secondary: white;
+  --font-primary: white;
+  --font-secondary: #000fff;
 }
 
 body {
   margin: 10px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   }
   
   code {

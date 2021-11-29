@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import Button from '../../components/Button/Button';
+import Button from '../../components/SubmitButton/SubmitButton';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
+import NavigationButton from '../../components/NavigationButton/NavigationButton';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
@@ -28,7 +29,7 @@ export default function Itinerary(): JSX.Element {
           }}
         />
       ))}
-      <Button onClick={addDestination}>Add Destination</Button>
+      <NavigationButton onClick={addDestination} children="Add Destination" />
     </>
   );
 }
