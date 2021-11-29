@@ -1,7 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
+import DestinationForm from '../../components/DestinationForm/DestinationForm';
+import InputField from '../../components/InputField/InputField';
+import InputLabel from '../../components/InputLabel/InputLabel';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
 
@@ -30,11 +32,11 @@ export default function AddDestination(): JSX.Element {
   }
 
   return (
-    <Destination onSubmit={goToDetailpage}>
+    <DestinationForm onSubmit={goToDetailpage}>
       <CardTitle>Add a new destination</CardTitle>
-      <LocationTrip htmlFor="destination">
+      <InputLabel inputGridColumn="2/6" htmlFor="destination">
         Where do you want to go?
-        <input
+        <InputField
           id="destination"
           type="text"
           required
@@ -42,58 +44,26 @@ export default function AddDestination(): JSX.Element {
           onChange={(event) => setNewLocation(event.target.value)}
           placeholder="Enter your destination"
         />
-      </LocationTrip>
-      <StartTrip htmlFor="start-trip">
+      </InputLabel>
+      <InputLabel inputGridColumn="2/6" htmlFor="start-trip">
         When do you arrive?
-        <input
+        <InputField
           type="date"
           id="start-trip"
           value={startDate}
           onChange={(event) => setStartDate(event.target.value)}
         />
-      </StartTrip>
-      <EndTrip htmlFor="end-trip">
+      </InputLabel>
+      <InputLabel inputGridColumn="2/6" htmlFor="end-trip">
         When do you leave?
-        <input
+        <InputField
           type="date"
           id="end-trip"
           value={endDate}
           onChange={(event) => setEndDate(event.target.value)}
         />
-      </EndTrip>
+      </InputLabel>
       <DefaultButton to="/DestinationDetailView">Go</DefaultButton>
-    </Destination>
+    </DestinationForm>
   );
 }
-
-const Destination = styled.form`
-  list-style: none;
-  max-width: 1400;
-  margin-left: auto;
-  margin-right: auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 5px;
-  border: black solid 1px;
-  border-radius: 5px;
-  justify-items: center;
-  text-align: center;
-
-  ${DefaultButton} {
-    margin: 10px;
-    grid-column: 3/5;
-  }
-`;
-
-const LocationTrip = styled.label`
-  text-align: center;
-  justify-self: center;
-  grid-column: 3/5;
-`;
-
-const StartTrip = styled.label`
-  grid-column: 1 / span 3;
-`;
-const EndTrip = styled.label`
-  grid-column: 4 / span 3;
-`;
