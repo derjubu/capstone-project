@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
+import InputLabel from '../../components/InputLabel/InputLabel';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
 
@@ -33,7 +34,7 @@ export default function AddDestination(): JSX.Element {
   return (
     <DestinationForm onSubmit={goToDetailpage}>
       <CardTitle>Add a new destination</CardTitle>
-      <LocationTrip htmlFor="destination">
+      <InputLabel inputGridColumn="3/5" htmlFor="destination">
         Where do you want to go?
         <input
           id="destination"
@@ -43,8 +44,8 @@ export default function AddDestination(): JSX.Element {
           onChange={(event) => setNewLocation(event.target.value)}
           placeholder="Enter your destination"
         />
-      </LocationTrip>
-      <StartTrip htmlFor="start-trip">
+      </InputLabel>
+      <InputLabel inputGridColumn="1/4" htmlFor="start-trip">
         When do you arrive?
         <input
           type="date"
@@ -52,8 +53,8 @@ export default function AddDestination(): JSX.Element {
           value={startDate}
           onChange={(event) => setStartDate(event.target.value)}
         />
-      </StartTrip>
-      <EndTrip htmlFor="end-trip">
+      </InputLabel>
+      <InputLabel inputGridColumn="4/-1" htmlFor="end-trip">
         When do you leave?
         <input
           type="date"
@@ -61,7 +62,7 @@ export default function AddDestination(): JSX.Element {
           value={endDate}
           onChange={(event) => setEndDate(event.target.value)}
         />
-      </EndTrip>
+      </InputLabel>
       <DefaultButton to="/DestinationDetailView">Go</DefaultButton>
     </DestinationForm>
   );
