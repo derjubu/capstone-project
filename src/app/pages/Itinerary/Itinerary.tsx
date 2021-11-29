@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
@@ -8,12 +7,6 @@ export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
     window.localStorage.getItem('itinerary') || '[]'
   );
-
-  const navigate = useNavigate();
-
-  function addDestination() {
-    navigate('/addDestination');
-  }
 
   return (
     <>
@@ -28,7 +21,7 @@ export default function Itinerary(): JSX.Element {
           }}
         />
       ))}
-      <NavigationButton onClick={addDestination} children="Add Destination" />
+      <NavigationButton to="/addDestination">Add Destination</NavigationButton>
     </>
   );
 }
