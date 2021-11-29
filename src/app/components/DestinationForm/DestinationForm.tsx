@@ -8,7 +8,7 @@ const DestinationForm = styled.form`
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  column-gap: 5px;
+  gap: 10px;
   border: #fff solid 1px;
   border-radius: 5px;
   justify-items: center;
