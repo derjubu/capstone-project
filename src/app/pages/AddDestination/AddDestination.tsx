@@ -1,11 +1,12 @@
 import React from 'react';
 import CardTitle from '../../components/CardTitle/CardTitle';
-import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
+import { useNavigate } from 'react-router';
+import DefaultButton from '../../components/DefaultButton/DefaultButton';
 
 export default function AddDestination(): JSX.Element {
   const newDestination: DestinationType = {
@@ -27,8 +28,11 @@ export default function AddDestination(): JSX.Element {
     newDestination.endDate
   );
 
+  const navigate = useNavigate();
+
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
+    navigate('/DestinationDetailView');
   }
 
   return (
@@ -63,7 +67,7 @@ export default function AddDestination(): JSX.Element {
           onChange={(event) => setEndDate(event.target.value)}
         />
       </InputLabel>
-      <DefaultButton to="/DestinationDetailView">Go</DefaultButton>
+      <DefaultButton>Go</DefaultButton>
     </DestinationForm>
   );
 }
