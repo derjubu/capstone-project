@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationButton from '../../components/NavigationButton/NavigationButton';
+import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 
@@ -28,9 +28,9 @@ export default function DestinationDetailView(): JSX.Element {
           endDate: currentDestination.endDate?.replaceAll('"', ''),
         }}
       />
-      <NavigationButton to="/" onClick={goToItinerary}>
+      <DefaultButton to="/" onClick={goToItinerary}>
         Go on
-      </NavigationButton>
+      </DefaultButton>
     </>
   );
 }

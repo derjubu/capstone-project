@@ -1,8 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import CardTitle from '../../components/CardTitle/CardTitle';
-import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
 
@@ -12,7 +11,6 @@ export default function AddDestination(): JSX.Element {
     startDate: '',
     endDate: '',
   };
-  const navigate = useNavigate();
 
   const [newLocation, setNewLocation] = useLocalStorage(
     'location',
@@ -29,7 +27,6 @@ export default function AddDestination(): JSX.Element {
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    navigate('/DestinationDetailView');
   }
 
   return (
@@ -64,7 +61,7 @@ export default function AddDestination(): JSX.Element {
           onChange={(event) => setEndDate(event.target.value)}
         />
       </EndTrip>
-      <SubmitButton children="Go" />
+      <DefaultButton to="/DestinationDetailView">Go</DefaultButton>
     </Destination>
   );
 }
