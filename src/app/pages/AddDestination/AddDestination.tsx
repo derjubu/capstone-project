@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import CardTitle from '../../components/CardTitle/CardTitle';
+import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
 
@@ -32,7 +33,7 @@ export default function AddDestination(): JSX.Element {
   }
 
   return (
-    <Destination onSubmit={goToDetailpage}>
+    <DestinationForm onSubmit={goToDetailpage}>
       <CardTitle>Add a new destination</CardTitle>
       <LocationTrip htmlFor="destination">
         Where do you want to go?
@@ -64,23 +65,9 @@ export default function AddDestination(): JSX.Element {
         />
       </EndTrip>
       <button>Go!</button>
-    </Destination>
+    </DestinationForm>
   );
 }
-
-const Destination = styled.form`
-  list-style: none;
-  max-width: 1400;
-  margin-left: auto;
-  margin-right: auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 5px;
-  border: black solid 1px;
-  border-radius: 5px;
-  justify-items: center;
-  text-align: center;
-`;
 
 const LocationTrip = styled.label`
   text-align: center;

@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
 
 :root {
   --background-title: #000fff;
+  --background-color-secondary: #fff;
 }
 
 body {
