@@ -1,28 +1,11 @@
-import React from 'react';
-import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-type NavigationButtonProps = {
-  onClick?: () => void;
-  children: ReactNode;
-};
-
-export default function NavigationButton({
-  children,
-  onClick,
-}: NavigationButtonProps): JSX.Element {
-  return (
-    <div>
-      <Button onClick={onClick}>{children}</Button>
-    </div>
-  );
-}
-
-const Button = styled.span`
-  border: 2px #000fff solid;
+const NavigationButton = styled(Link)`
+  border: 2px var(--color-secondary) solid;
   border-radius: 5px;
-  background: var(--background-secondary);
-  color: var(--font-secondary);
+  background: var(--color-background-secondary);
+  color: var(--color-secondary);
   font-size: 1.5rem;
   font-weight: bold;
   margin-top: 1rem;
@@ -32,3 +15,5 @@ const Button = styled.span`
   display: block;
   width: fit-content;
 `;
+
+export default NavigationButton;
