@@ -3,6 +3,8 @@ import mapboxgl from 'mapbox-gl';
 import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 export default function MapWithMarker(): JSX.Element {
   if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
@@ -16,6 +18,19 @@ export default function MapWithMarker(): JSX.Element {
   const [longitude, setLongitude] = useState<number>(10.0125);
   const [latitude, setLatitude] = useState<number>(53.5469);
   const [zoom, setZoom] = useState(9);
+  const marker = new mapboxgl.Marker();
+
+  const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    marker: false,
+  });
+
+  geocoder.on('result', (result) => {
+    marker.remove;
+    map.current
+      ? marker.setLngLat(result.result.center).addTo(map.current)
+      : null;
+  });
 
   useEffect(() => {
     if (map.current) return;
@@ -25,6 +40,8 @@ export default function MapWithMarker(): JSX.Element {
       center: [longitude, latitude],
       zoom: zoom,
     });
+
+    geocoder.addTo(map.current);
   }, []);
 
   useEffect(() => {
@@ -33,16 +50,13 @@ export default function MapWithMarker(): JSX.Element {
         setLongitude(map.current.getCenter().lng);
         setLatitude(map.current.getCenter().lat);
         setZoom(map.current.getZoom());
-        marker;
       }
     });
   }, []);
 
   return (
     <div>
-      <MapLegend>
-        Longitude: {longitude} | Lattitude: {latitude} | Zoom: {zoom}
-      </MapLegend>
+      <MapLegend id="maplegend"></MapLegend>
       <MapContainer ref={mapContainer} />
     </div>
   );
