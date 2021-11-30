@@ -4,7 +4,7 @@ import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 
-export default function LocationMap(): JSX.Element {
+export default function MapWithMarker(): JSX.Element {
   if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
   } else {
@@ -33,6 +33,7 @@ export default function LocationMap(): JSX.Element {
         setLongitude(map.current.getCenter().lng);
         setLatitude(map.current.getCenter().lat);
         setZoom(map.current.getZoom());
+        marker;
       }
     });
   }, []);
@@ -52,7 +53,7 @@ const MapContainer = styled.div`
 `;
 
 const MapLegend = styled.div`
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   margin: 12px;
