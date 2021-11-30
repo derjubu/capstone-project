@@ -6,7 +6,13 @@ import styled from 'styled-components';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
-export default function MapWithMarker(): JSX.Element {
+type MapWithMarkerProps = {
+  displayArea: string;
+};
+
+export default function MapWithMarker({
+  displayArea,
+}: MapWithMarkerProps): JSX.Element {
   if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
   } else {
@@ -27,9 +33,9 @@ export default function MapWithMarker(): JSX.Element {
 
   geocoder.on('result', (result) => {
     marker.remove;
-    map.current
-      ? marker.setLngLat(result.result.center).addTo(map.current)
-      : null;
+    const markerPoint = result.result.center;
+    map.current ? marker.setLngLat(markerPoint).addTo(map.current) : null;
+    return markerPoint;
   });
 
   useEffect(() => {
@@ -41,7 +47,7 @@ export default function MapWithMarker(): JSX.Element {
       zoom: zoom,
     });
 
-    geocoder.addTo(map.current);
+    geocoder.addTo(displayArea);
   }, []);
 
   useEffect(() => {

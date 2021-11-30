@@ -7,6 +7,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import type { DestinationType } from '../../utils/DestinationType';
 import { useNavigate } from 'react-router';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
+import MapWithMarker from '../../components/LocationMap/MapwithMarker';
 
 export default function AddDestination(): JSX.Element {
   const newDestination: DestinationType = {
@@ -36,38 +37,42 @@ export default function AddDestination(): JSX.Element {
   }
 
   return (
-    <DestinationForm onSubmit={goToDetailpage}>
-      <CardTitle>Add a new destination</CardTitle>
-      <InputLabel inputGridColumn="2/6" htmlFor="destination">
-        Where do you want to go?
-        <InputField
-          id="destination"
-          type="text"
-          required
-          value={newLocation}
-          onChange={(event) => setNewLocation(event.target.value)}
-          placeholder="Enter your destination"
-        />
-      </InputLabel>
-      <InputLabel inputGridColumn="2/6" htmlFor="start-trip">
-        When do you arrive?
-        <InputField
-          type="date"
-          id="start-trip"
-          value={startDate}
-          onChange={(event) => setStartDate(event.target.value)}
-        />
-      </InputLabel>
-      <InputLabel inputGridColumn="2/6" htmlFor="end-trip">
-        When do you leave?
-        <InputField
-          type="date"
-          id="end-trip"
-          value={endDate}
-          onChange={(event) => setEndDate(event.target.value)}
-        />
-      </InputLabel>
-      <DefaultButton>Go</DefaultButton>
-    </DestinationForm>
+    <>
+      <DestinationForm onSubmit={goToDetailpage}>
+        <CardTitle>Add a new destination</CardTitle>
+        <InputLabel inputGridColumn="2/6" htmlFor="destination">
+          Where do you want to go?
+          <InputField
+            id="destination"
+            type="text"
+            required
+            value={newLocation}
+            onChange={(event) => setNewLocation(event.target.value)}
+            placeholder="Enter your destination"
+          />
+        </InputLabel>
+        <div id="MAP"></div>
+        <InputLabel inputGridColumn="2/6" htmlFor="start-trip">
+          When do you arrive?
+          <InputField
+            type="date"
+            id="start-trip"
+            value={startDate}
+            onChange={(event) => setStartDate(event.target.value)}
+          />
+        </InputLabel>
+        <InputLabel inputGridColumn="2/6" htmlFor="end-trip">
+          When do you leave?
+          <InputField
+            type="date"
+            id="end-trip"
+            value={endDate}
+            onChange={(event) => setEndDate(event.target.value)}
+          />
+        </InputLabel>
+        <DefaultButton>Go</DefaultButton>
+      </DestinationForm>
+      <MapWithMarker displayArea={'#MAP'} />
+    </>
   );
 }
