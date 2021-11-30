@@ -1,7 +1,7 @@
 import React from 'react';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
-import DefaultButton from '../../components/DefaultButton/DefaultButton';
+import NavigationButton from '../../components/NavigationButton/NavigationButton';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
@@ -21,7 +21,7 @@ export default function Itinerary(): JSX.Element {
           }}
         />
       ))}
-      <DefaultButton to="/addDestination">Add Destination</DefaultButton>
+      <NavigationButton to="/addDestination">Add Destination</NavigationButton>
     </>
   );
 }

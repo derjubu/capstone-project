@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const DefaultButton = styled.button`
+const NavigationButton = styled(Link)`
   text-decoration: none;
   border: 2px var(--color-secondary) solid;
   border-radius: 5px;
@@ -13,4 +14,4 @@ const DefaultButton = styled.button`
   width: fit-content;
 `;
 
-export default DefaultButton;
+export default NavigationButton;
