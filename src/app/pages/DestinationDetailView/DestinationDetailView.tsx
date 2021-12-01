@@ -10,6 +10,15 @@ export default function DestinationDetailView(): JSX.Element {
 
   const currentLocation = JSON.stringify(
     currentDestination.location.properties.name
+  ).replaceAll('"', '');
+
+  const startDate = JSON.stringify(currentDestination.startDate).replaceAll(
+    '"',
+    ''
+  );
+  const endDate = JSON.stringify(currentDestination.endDate).replaceAll(
+    '"',
+    ''
   );
 
   function goToItinerary() {
@@ -23,7 +32,13 @@ export default function DestinationDetailView(): JSX.Element {
 
   return (
     <>
-      {<DestinationCard location={''} startDate={''} endDate={''} />}
+      {
+        <DestinationCard
+          location={currentLocation}
+          startDate={startDate}
+          endDate={endDate}
+        />
+      }
       <NavigationButton to="" onClick={goToItinerary}>
         Go on
       </NavigationButton>
