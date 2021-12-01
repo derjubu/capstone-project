@@ -4,31 +4,27 @@ import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 
 export default function DestinationDetailView(): JSX.Element {
-  const currentDestination: DestinationType = {
-    location: window.localStorage.location,
-    startDate: window.localStorage.startDate,
-    endDate: window.localStorage.endDate,
-  };
+  const currentDestination: DestinationType = JSON.parse(
+    window.localStorage.getItem('destination') || '[]'
+  );
+
+  const currentLocation = JSON.stringify(
+    currentDestination.location.properties.name
+  );
 
   function goToItinerary() {
-    const oldItinerary = JSON.parse(
+    /*  const oldItinerary = JSON.parse(
       window.localStorage.getItem('itinerary') || '[]'
     );
     const newItinerary = [...oldItinerary, currentDestination];
-    localStorage.setItem('itinerary', JSON.stringify(newItinerary));
-    console.log(window.localStorage.getItem('itinerary'));
+    localStorage.setItem('itinerary', JSON.stringify(newItinerary)); */
+    console.log(currentDestination);
   }
 
   return (
     <>
-      <DestinationCard
-        Destination={{
-          location: currentDestination.location,
-          startDate: currentDestination.startDate,
-          endDate: currentDestination.endDate,
-        }}
-      />
-      <NavigationButton to="/" onClick={goToItinerary}>
+      {<DestinationCard location={''} startDate={''} endDate={''} />}
+      <NavigationButton to="" onClick={goToItinerary}>
         Go on
       </NavigationButton>
     </>
