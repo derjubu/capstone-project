@@ -2,9 +2,7 @@ import React from 'react';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
-import MapWithMarker from '../../components/LocationMap/MapwithMarker';
 import LocationMap from '../../components/LocationMap/LocationMap';
-import { LngLatLike } from 'mapbox-gl';
 
 export default function DestinationDetailView(): JSX.Element {
   const currentDestination: DestinationType = JSON.parse(
@@ -28,12 +26,11 @@ export default function DestinationDetailView(): JSX.Element {
   const latitude = currentDestination.location.geometry.coordinates[1];
 
   function goToItinerary() {
-    /*  const oldItinerary = JSON.parse(
+    const oldItinerary = JSON.parse(
       window.localStorage.getItem('itinerary') || '[]'
     );
     const newItinerary = [...oldItinerary, currentDestination];
-    localStorage.setItem('itinerary', JSON.stringify(newItinerary)); */
-    console.log(longitude);
+    localStorage.setItem('itinerary', JSON.stringify(newItinerary));
   }
 
   return (
@@ -44,7 +41,7 @@ export default function DestinationDetailView(): JSX.Element {
         endDate={endDate}
       />
       <LocationMap longitude={longitude} latitude={latitude} />
-      <NavigationButton to="" onClick={goToItinerary}>
+      <NavigationButton to="/" onClick={goToItinerary}>
         Go on
       </NavigationButton>
     </>
