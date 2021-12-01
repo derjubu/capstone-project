@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { LngLatLike } from 'mapbox-gl';
 import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 type LocationMapProps = {
   longitude: number;
@@ -22,6 +23,7 @@ export default function LocationMap({
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
   const zoom = 9;
+  const marker = new mapboxgl.Marker();
 
   useEffect(() => {
     if (map.current) return;
@@ -31,6 +33,8 @@ export default function LocationMap({
       center: [longitude, latitude],
       zoom: zoom,
     });
+    const markedLocation = [longitude, latitude] as LngLatLike;
+    marker.setLngLat(markedLocation).addTo(map.current);
   }, []);
 
   return (

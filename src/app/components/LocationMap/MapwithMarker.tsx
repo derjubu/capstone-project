@@ -54,7 +54,7 @@ export default function MapWithMarker({
           type: 'Feature',
           geometry: {
             type: 'Point',
-            coordinates: markedLocation as LngLatLike,
+            coordinates: markedLocation,
           },
           properties: { name: result.result.place_name as string },
         };
