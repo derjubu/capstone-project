@@ -21,9 +21,9 @@ export default function MapWithMarker({
 
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
-  const [longitude, setLongitude] = useState<number>(10.0125);
-  const [latitude, setLatitude] = useState<number>(53.5469);
-  const [zoom, setZoom] = useState(9);
+  const [longitude] = useState<number>(10.0125);
+  const [latitude] = useState<number>(53.5469);
+  const [zoom] = useState(9);
   const marker = new mapboxgl.Marker();
 
   const geocoder = new MapboxGeocoder({
@@ -35,7 +35,7 @@ export default function MapWithMarker({
     marker.remove;
     const markerPoint = result.result.center;
     map.current ? marker.setLngLat(markerPoint).addTo(map.current) : null;
-    return markerPoint;
+    map.current?.flyTo({ center: markerPoint });
   });
 
   useEffect(() => {
@@ -50,16 +50,6 @@ export default function MapWithMarker({
     geocoder.addTo(displayArea);
   }, []);
 
-  useEffect(() => {
-    map.current?.on('move', () => {
-      if (map.current) {
-        setLongitude(map.current.getCenter().lng);
-        setLatitude(map.current.getCenter().lat);
-        setZoom(map.current.getZoom());
-      }
-    });
-  }, []);
-
   return (
     <div>
       <MapLegend id="maplegend"></MapLegend>
@@ -67,6 +57,7 @@ export default function MapWithMarker({
     </div>
   );
 }
+
 const MapContainer = styled.div`
   height: 400px;
   margin: 2px;
