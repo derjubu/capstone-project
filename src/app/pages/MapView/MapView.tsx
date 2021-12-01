@@ -1,6 +1,11 @@
 import React from 'react';
-import LocationMap from '../../components/LocationMap/LocationMap';
+import MapWithMarker from '../../components/LocationMap/MapwithMarker';
 
 export default function MapView(): JSX.Element {
-  return <LocationMap />;
+  return (
+    <>
+      <div id="geocoderArea"></div>
+      <MapWithMarker displayArea={'#geocoderArea'} />
+    </>
+  );
 }

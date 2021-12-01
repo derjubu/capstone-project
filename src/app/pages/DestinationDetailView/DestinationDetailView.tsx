@@ -23,9 +23,9 @@ export default function DestinationDetailView(): JSX.Element {
     <>
       <DestinationCard
         Destination={{
-          location: currentDestination.location.replaceAll('"', ''),
-          startDate: currentDestination.startDate?.replaceAll('"', ''),
-          endDate: currentDestination.endDate?.replaceAll('"', ''),
+          location: currentDestination.location,
+          startDate: currentDestination.startDate,
+          endDate: currentDestination.endDate,
         }}
       />
       <NavigationButton to="/" onClick={goToItinerary}>

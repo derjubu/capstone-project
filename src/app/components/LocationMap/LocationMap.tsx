@@ -52,7 +52,7 @@ const MapContainer = styled.div`
 `;
 
 const MapLegend = styled.div`
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   margin: 12px;

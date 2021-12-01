@@ -1,5 +1,7 @@
+import type { GeoJsonType } from './GeoJsonType';
+
 export type DestinationType = {
-  location: string;
+  location: GeoJsonType;
   startDate?: string;
   endDate?: string;
 };
