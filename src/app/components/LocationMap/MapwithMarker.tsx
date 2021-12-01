@@ -5,7 +5,7 @@ import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import type {} from '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { GeoJsonType } from '../../utils/GeoJsonType';
 
 type MapWithMarkerProps = {
