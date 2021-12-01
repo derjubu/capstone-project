@@ -1,5 +1,4 @@
 import React from 'react';
-import type { DestinationType } from '../../utils/DestinationType';
 import styled from 'styled-components';
 import CardTitle from '../CardTitle/CardTitle';
 

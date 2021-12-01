@@ -1,9 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl, { LngLatLike } from 'mapbox-gl';
-import type { Map } from 'mapbox-gl';
+import React, { useRef, useEffect } from 'react';
+import mapboxgl from 'mapbox-gl';
+import type { Map, LngLatLike } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 type LocationMapProps = {
   longitude: number;
