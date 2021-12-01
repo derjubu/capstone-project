@@ -7,34 +7,33 @@ import { useNavigate } from 'react-router';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import MapWithMarker from '../../components/LocationMap/MapwithMarker';
 import type { DestinationType } from '../../utils/DestinationType';
+import type { GeoJsonType } from '../../utils/GeoJsonType';
 
 export default function AddDestination(): JSX.Element {
-  const [newDestination, setNewDestination] = useState<DestinationType>({
-    location: {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [0, 52],
-      },
-      properties: {
-        name: '',
-      },
+  const [newStartDate, setNewStartDate] = useState('');
+  const [newEndDate, setNewEndDate] = useState('');
+  const [newLocation, setNewLocation] = useState<GeoJsonType>({
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0, 0],
     },
-    startDate: '',
-    endDate: '',
+    properties: {
+      name: '',
+    },
   });
-
-  const [startDate, setStartDate] = useState(newDestination.startDate);
-  const [endDate, setEndDate] = useState(newDestination.endDate);
-  const [newLocation, setNewLocation] = useState(newDestination.location);
 
   const navigate = useNavigate();
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
+    const newDestination: DestinationType = {
+      location: newLocation,
+      startDate: newStartDate,
+      endDate: newEndDate,
+    };
     window.localStorage.destination = JSON.stringify(newDestination);
-    console.log(newLocation);
-    //navigate('/DestinationDetailView');
+    navigate('/DestinationDetailView');
   }
 
   return (
@@ -51,8 +50,8 @@ export default function AddDestination(): JSX.Element {
           <InputField
             type="date"
             id="start-trip"
-            value={startDate}
-            onChange={(event) => setStartDate(event.target.value)}
+            value={newStartDate}
+            onChange={(event) => setNewStartDate(event.target.value)}
           />
         </InputLabel>
         <InputLabel inputGridColumn="2/6" htmlFor="end-trip">
@@ -60,8 +59,8 @@ export default function AddDestination(): JSX.Element {
           <InputField
             type="date"
             id="end-trip"
-            value={endDate}
-            onChange={(event) => setEndDate(event.target.value)}
+            value={newEndDate}
+            onChange={(event) => setNewEndDate(event.target.value)}
           />
         </InputLabel>
         <DefaultButton>Go</DefaultButton>
