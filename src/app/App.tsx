@@ -15,7 +15,6 @@ function App(): JSX.Element {
           path="/DestinationDetailView"
           element={<DestinationDetailView />}
         />
-        <Route path="/map" element={<MapView />} />
       </Routes>
     </BrowserRouter>
   );
