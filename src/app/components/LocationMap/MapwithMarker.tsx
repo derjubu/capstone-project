@@ -32,7 +32,6 @@ export default function MapWithMarker({
   });
 
   geocoder.on('result', (result) => {
-    marker.remove;
     const markerPoint = result.result.center;
     map.current ? marker.setLngLat(markerPoint).addTo(map.current) : null;
     map.current?.flyTo({ center: markerPoint });
