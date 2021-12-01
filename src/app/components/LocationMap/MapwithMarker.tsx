@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl, { LngLatLike } from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl';
+import type { LngLatLike } from 'mapbox-gl';
 import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
-import MapboxGeocoder, { GeocoderOptions } from '@mapbox/mapbox-gl-geocoder';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { GeoJsonType } from '../../utils/GeoJsonType';
 

@@ -6,7 +6,7 @@ import InputLabel from '../../components/InputLabel/InputLabel';
 import { useNavigate } from 'react-router';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import MapWithMarker from '../../components/LocationMap/MapwithMarker';
-import { DestinationType } from '../../utils/DestinationType';
+import type { DestinationType } from '../../utils/DestinationType';
 
 export default function AddDestination(): JSX.Element {
   const [newDestination, setNewDestination] = useState<DestinationType>({

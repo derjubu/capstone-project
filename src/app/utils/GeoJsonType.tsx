@@ -1,4 +1,4 @@
-import { LngLatLike } from 'mapbox-gl';
+import type { LngLatLike } from 'mapbox-gl';
 
 export type GeoJsonType = {
   type: 'Feature';
