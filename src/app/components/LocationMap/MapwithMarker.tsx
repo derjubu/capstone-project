@@ -1,13 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-import type { LngLatLike } from 'mapbox-gl';
+import mapboxgl, { LngLatLike } from 'mapbox-gl';
 import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
-
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import { GeoJsonType } from '../../utils/GeoJsonType';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import type { GeoJsonType } from '../../utils/GeoJsonType';
 
 type MapWithMarkerProps = {
   displayArea: string;
