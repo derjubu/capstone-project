@@ -31,11 +31,15 @@ export default function MapWithMarker({
     marker: false,
   });
 
-  geocoder.on('result', (result) => {
-    const markerPoint = result.result.center;
-    map.current ? marker.setLngLat(markerPoint).addTo(map.current) : null;
-    map.current?.flyTo({ center: markerPoint });
-  });
+  useEffect(() => {
+    geocoder.on('result', (result) => {
+      const markerPoint = result.result.center;
+      if (map.current) {
+        marker.setLngLat(markerPoint).addTo(map.current);
+        map.current.flyTo({ center: markerPoint });
+      } else return;
+    });
+  }, []);
 
   useEffect(() => {
     if (map.current) return;
