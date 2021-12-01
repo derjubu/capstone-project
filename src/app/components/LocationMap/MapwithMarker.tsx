@@ -1,30 +1,43 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { LngLatLike } from 'mapbox-gl';
 import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import MapboxGeocoder, { GeocoderOptions } from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import { GeoJsonType } from '../../utils/GeoJsonType';
 
 type MapWithMarkerProps = {
   displayArea: string;
+  onChange: (event: any) => void;
 };
+
+if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
+  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
+} else {
+  throw new Error('no KEY provided');
+}
 
 export default function MapWithMarker({
   displayArea,
+  onChange,
 }: MapWithMarkerProps): JSX.Element {
-  if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
-  } else {
-    throw new Error('no KEY provided');
-  }
-
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
   const [longitude] = useState<number>(10.0125);
   const [latitude] = useState<number>(53.5469);
   const [zoom] = useState(9);
   const marker = new mapboxgl.Marker();
+  const locationGeoJson: GeoJsonType = {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0, 0],
+    },
+    properties: {
+      name: '',
+    },
+  };
 
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
@@ -33,10 +46,23 @@ export default function MapWithMarker({
 
   useEffect(() => {
     geocoder.on('result', (result) => {
-      const markerPoint = result.result.center;
       if (map.current) {
-        marker.setLngLat(markerPoint).addTo(map.current);
-        map.current.flyTo({ center: markerPoint });
+        const markedLocation = result.result.center;
+        marker.setLngLat(markedLocation).addTo(map.current);
+        map.current.flyTo({ center: markedLocation });
+        const currentLocationGeoJson: GeoJsonType = {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: markedLocation as LngLatLike,
+          },
+          properties: { name: result.result.place_name as string },
+        };
+        locationGeoJson.properties.name =
+          currentLocationGeoJson.properties.name;
+        locationGeoJson.geometry.coordinates =
+          currentLocationGeoJson.geometry.coordinates;
+        onChange(locationGeoJson);
       } else return;
     });
   }, []);

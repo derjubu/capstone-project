@@ -1,39 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import type { DestinationType } from '../../utils/DestinationType';
 import { useNavigate } from 'react-router';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import MapWithMarker from '../../components/LocationMap/MapwithMarker';
+import { DestinationType } from '../../utils/DestinationType';
 
 export default function AddDestination(): JSX.Element {
-  const newDestination: DestinationType = {
-    location: '',
+  const [newDestination, setNewDestination] = useState<DestinationType>({
+    location: {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [0, 52],
+      },
+      properties: {
+        name: '',
+      },
+    },
     startDate: '',
     endDate: '',
-  };
+  });
 
-  const [newLocation, setNewLocation] = useLocalStorage(
-    'location',
-    newDestination.location
-  );
-  const [startDate, setStartDate] = useLocalStorage(
-    'startDate',
-    newDestination.startDate
-  );
-  const [endDate, setEndDate] = useLocalStorage(
-    'endDate',
-    newDestination.endDate
-  );
+  const [startDate, setStartDate] = useState(newDestination.startDate);
+  const [endDate, setEndDate] = useState(newDestination.endDate);
+  const [newLocation, setNewLocation] = useState(newDestination.location);
 
   const navigate = useNavigate();
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    navigate('/DestinationDetailView');
+    window.localStorage.destination = JSON.stringify(newDestination);
+    console.log(newLocation);
+    //navigate('/DestinationDetailView');
   }
 
   return (
@@ -42,16 +43,9 @@ export default function AddDestination(): JSX.Element {
         <CardTitle>Add a new destination</CardTitle>
         <InputLabel inputGridColumn="2/6" htmlFor="destination">
           Where do you want to go?
-          <InputField
-            id="destination"
-            type="text"
-            required
-            value={newLocation}
-            onChange={(event) => setNewLocation(event.target.value)}
-            placeholder="Enter your destination"
-          />
+          <div id="destination"></div>
         </InputLabel>
-        <div id="MAP"></div>
+
         <InputLabel inputGridColumn="2/6" htmlFor="start-trip">
           When do you arrive?
           <InputField
@@ -72,7 +66,10 @@ export default function AddDestination(): JSX.Element {
         </InputLabel>
         <DefaultButton>Go</DefaultButton>
       </DestinationForm>
-      <MapWithMarker displayArea={'#MAP'} />
+      <MapWithMarker
+        displayArea={'#destination'}
+        onChange={(event) => setNewLocation(event)}
+      />
     </>
   );
 }
