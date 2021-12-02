@@ -33,14 +33,12 @@ export default function LocationMap({
       center: [longitude, latitude],
       zoom: zoom,
     });
-    {
-      if (map.current)
-        locations.map((coordinates: LngLatLike) =>
-          new mapboxgl.Marker()
-            .setLngLat(coordinates)
-            .addTo(map.current as mapboxgl.Map)
-        );
-    }
+
+    locations.map((coordinates: LngLatLike) =>
+      new mapboxgl.Marker()
+        .setLngLat(coordinates)
+        .addTo(map.current as mapboxgl.Map)
+    );
   }, []);
 
   return (
