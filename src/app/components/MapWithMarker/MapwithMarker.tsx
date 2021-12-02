@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import type { Map, LngLatLike } from 'mapbox-gl';
+import type { Map } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
@@ -54,7 +54,7 @@ export default function MapWithMarker({
           type: 'Feature',
           geometry: {
             type: 'Point',
-            coordinates: markedLocation as LngLatLike,
+            coordinates: markedLocation,
           },
           properties: { name: result.result.place_name as string },
         };

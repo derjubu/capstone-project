@@ -2,13 +2,28 @@ import React from 'react';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
+import LocationMap from '../../components/LocationMap/LocationMap';
 
 export default function DestinationDetailView(): JSX.Element {
-  const currentDestination: DestinationType = {
-    location: window.localStorage.location,
-    startDate: window.localStorage.startDate,
-    endDate: window.localStorage.endDate,
-  };
+  const currentDestination: DestinationType = JSON.parse(
+    window.localStorage.getItem('destination') || '[]'
+  );
+
+  const currentLocation = JSON.stringify(
+    currentDestination.location.properties.name
+  ).replaceAll('"', '');
+
+  const startDate = JSON.stringify(currentDestination.startDate).replaceAll(
+    '"',
+    ''
+  );
+  const endDate = JSON.stringify(currentDestination.endDate).replaceAll(
+    '"',
+    ''
+  );
+
+  const longitude = currentDestination.location.geometry.coordinates[0];
+  const latitude = currentDestination.location.geometry.coordinates[1];
 
   function goToItinerary() {
     const oldItinerary = JSON.parse(
@@ -16,18 +31,16 @@ export default function DestinationDetailView(): JSX.Element {
     );
     const newItinerary = [...oldItinerary, currentDestination];
     localStorage.setItem('itinerary', JSON.stringify(newItinerary));
-    console.log(window.localStorage.getItem('itinerary'));
   }
 
   return (
     <>
       <DestinationCard
-        Destination={{
-          location: currentDestination.location,
-          startDate: currentDestination.startDate,
-          endDate: currentDestination.endDate,
-        }}
+        location={currentLocation}
+        startDate={startDate}
+        endDate={endDate}
       />
+      <LocationMap longitude={longitude} latitude={latitude} />
       <NavigationButton to="/" onClick={goToItinerary}>
         Go on
       </NavigationButton>
