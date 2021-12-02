@@ -19,8 +19,6 @@ export default function Itinerary(): JSX.Element {
     );
   }
 
-  console.log(locationsCoordinates);
-
   return (
     <>
       {Itinerary.map((stop: DestinationType) => (
