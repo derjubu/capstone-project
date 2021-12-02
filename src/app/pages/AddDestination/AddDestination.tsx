@@ -5,9 +5,9 @@ import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
 import { useNavigate } from 'react-router';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
-import MapWithMarker from '../../components/LocationMap/MapwithMarker';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
+import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 
 export default function AddDestination(): JSX.Element {
   const [newStartDate, setNewStartDate] = useState('');
