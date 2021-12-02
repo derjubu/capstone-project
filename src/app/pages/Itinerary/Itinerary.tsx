@@ -3,7 +3,7 @@ import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
-import { LngLatLike } from 'mapbox-gl';
+import type { LngLatLike } from 'mapbox-gl';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
