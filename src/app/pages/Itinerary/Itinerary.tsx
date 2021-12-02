@@ -3,12 +3,23 @@ import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
+import { LngLatLike } from 'mapbox-gl';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
     window.localStorage.getItem('itinerary') || '[]'
   );
-  console.log(Itinerary[0].location.geometry);
+  const locationsCoordinates: LngLatLike[] = [];
+
+  {
+    Itinerary.map((destination: DestinationType) =>
+      locationsCoordinates.push(
+        destination.location.geometry.coordinates as LngLatLike
+      )
+    );
+  }
+
+  console.log(locationsCoordinates);
 
   return (
     <>
@@ -24,17 +35,10 @@ export default function Itinerary(): JSX.Element {
         <ItineraryMap
           longitude={Itinerary[0].location.geometry.coordinates[0]}
           latitude={Itinerary[0].location.geometry.coordinates[1]}
+          locations={locationsCoordinates}
         />
       }
       <NavigationButton to="/addDestination">Add Destination</NavigationButton>
     </>
   );
 }
-
-/* {
-  const currentLocation = JSON.stringify(
-    stop.location.properties.name
-  ).replaceAll('"', '');
-  const startDate = JSON.stringify(stop.startDate).replaceAll('"', '');
-  const endDate = JSON.stringify(stop.endDate).replaceAll('"', '');
-  console.log(currentLocation); */

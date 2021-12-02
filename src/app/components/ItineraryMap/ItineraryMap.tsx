@@ -7,11 +7,13 @@ import styled from 'styled-components';
 type LocationMapProps = {
   longitude: number;
   latitude: number;
+  locations: LngLatLike[];
 };
 
 export default function LocationMap({
   longitude,
   latitude,
+  locations,
 }: LocationMapProps): JSX.Element {
   if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
@@ -22,11 +24,6 @@ export default function LocationMap({
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
   const zoom = 5;
-  const marker = new mapboxgl.Marker();
-  const Locations: LngLatLike[] = [
-    [7.43861, 46.95083],
-    [8.51667, 52.01667],
-  ];
 
   useEffect(() => {
     if (map.current) return;
@@ -36,20 +33,12 @@ export default function LocationMap({
       center: [longitude, latitude],
       zoom: zoom,
     });
-    new mapboxgl.Marker()
-      .setLngLat(Locations[0] as LngLatLike)
-      .addTo(map.current);
-    new mapboxgl.Marker()
-      .setLngLat(Locations[1] as LngLatLike)
-      .addTo(map.current);
-  }, []);
-
-  /* useEffect(() => {
-    if (map.current) {
-      marker.setLngLat(Locations[0]).addTo(map.current);
-      marker2.setLngLat(Locations[1]).addTo(map.current);
+    {
+      locations.map((coordinates: LngLatLike) =>
+        new mapboxgl.Marker().setLngLat(coordinates).addTo(map.current)
+      );
     }
-  }, []); */
+  }, []);
 
   return (
     <div>
