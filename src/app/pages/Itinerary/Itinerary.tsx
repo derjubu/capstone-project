@@ -7,21 +7,26 @@ export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
     window.localStorage.getItem('itinerary') || '[]'
   );
-
   return (
     <>
-      <span>Hello</span>
       {Itinerary.map((stop: DestinationType) => (
         <DestinationCard
-          key={`${stop.location}-${Itinerary.indexOf(stop)}`}
-          Destination={{
-            location: stop.location.replaceAll('"', ''),
-            startDate: stop.startDate?.replaceAll('"', ''),
-            endDate: stop.endDate?.replaceAll('"', ''),
-          }}
+          key={`${'Hello'}-${Itinerary.indexOf(stop)}`}
+          location={stop.location.properties.name}
+          startDate={stop.startDate as string}
+          endDate={stop.endDate as string}
         />
       ))}
+
       <NavigationButton to="/addDestination">Add Destination</NavigationButton>
     </>
   );
 }
+
+/* {
+  const currentLocation = JSON.stringify(
+    stop.location.properties.name
+  ).replaceAll('"', '');
+  const startDate = JSON.stringify(stop.startDate).replaceAll('"', '');
+  const endDate = JSON.stringify(stop.endDate).replaceAll('"', '');
+  console.log(currentLocation); */
