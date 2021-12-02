@@ -2,11 +2,14 @@ import React from 'react';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
+import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
     window.localStorage.getItem('itinerary') || '[]'
   );
+  console.log(Itinerary[0].location.geometry);
+
   return (
     <>
       {Itinerary.map((stop: DestinationType) => (
@@ -17,7 +20,12 @@ export default function Itinerary(): JSX.Element {
           endDate={stop.endDate as string}
         />
       ))}
-
+      {
+        <ItineraryMap
+          longitude={Itinerary[0].location.geometry.coordinates[0]}
+          latitude={Itinerary[0].location.geometry.coordinates[1]}
+        />
+      }
       <NavigationButton to="/addDestination">Add Destination</NavigationButton>
     </>
   );
