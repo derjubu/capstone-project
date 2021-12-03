@@ -25,12 +25,7 @@ export default function LocationMap({
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
 
-  const line = turf.lineString([
-    [7.43861, 46.95083],
-    [10, 53.55],
-    [-3.69194, 40.41889],
-    [13.38333, 52.51667],
-  ]);
+  const line = turf.lineString(locations as turf.helpers.Position[]);
   const bbox = turf.bbox(line) as LngLatBoundsLike;
 
   useEffect(() => {
@@ -42,7 +37,7 @@ export default function LocationMap({
       zoom: 6,
     });
 
-    console.log(bbox);
+    console.log(locations);
     map.current.fitBounds(bbox, { padding: 30 });
 
     locations.map((coordinates: LngLatLike) =>
