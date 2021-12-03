@@ -50,7 +50,7 @@ export default function Itinerary(): JSX.Element {
             longitude={Itinerary[0].location.geometry.coordinates[0]}
             latitude={Itinerary[0].location.geometry.coordinates[1]}
             locations={locationsCoordinates}
-          />}
+          />
         }{' '}
       </>
     );
