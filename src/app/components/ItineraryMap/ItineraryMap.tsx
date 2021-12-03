@@ -1,10 +1,13 @@
 import React, { useRef, useEffect } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { LngLatBoundsLike } from 'mapbox-gl';
 import type { Map, LngLatLike } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
+import * as turf from '@turf/turf';
 
 type LocationMapProps = {
+  longitude: number;
+  latitude: number;
   locations: LngLatLike[];
 };
 
@@ -16,8 +19,19 @@ if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
 
 export default function LocationMap({
   locations,
+  longitude,
+  latitude,
 }: LocationMapProps): JSX.Element {
-  const line = turf.lineString;
+  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const map = useRef<null | Map>(null);
+
+  const line = turf.lineString([
+    [7.43861, 46.95083],
+    [10, 53.55],
+    [-3.69194, 40.41889],
+    [13.38333, 52.51667],
+  ]);
+  const bbox = turf.bbox(line) as LngLatBoundsLike;
 
   useEffect(() => {
     if (map.current) return;
@@ -25,8 +39,11 @@ export default function LocationMap({
       container: mapContainer.current as HTMLElement,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [longitude, latitude],
-      zoom: zoom,
+      zoom: 6,
     });
+
+    console.log(bbox);
+    map.current.fitBounds(bbox, { padding: 30 });
 
     locations.map((coordinates: LngLatLike) =>
       new mapboxgl.Marker()

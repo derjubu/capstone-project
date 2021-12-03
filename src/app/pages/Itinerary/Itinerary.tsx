@@ -19,7 +19,6 @@ export default function Itinerary(): JSX.Element {
       )
     );
   }
-  console.log(Itinerary);
 
   if (Itinerary.length === 0) {
     return (
