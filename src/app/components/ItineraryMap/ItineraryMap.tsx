@@ -10,17 +10,17 @@ type LocationMapProps = {
   locations: LngLatLike[];
 };
 
+if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
+  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
+} else {
+  throw new Error('no KEY provided');
+}
+
 export default function LocationMap({
   longitude,
   latitude,
   locations,
 }: LocationMapProps): JSX.Element {
-  if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
-  } else {
-    throw new Error('no KEY provided');
-  }
-
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
   const zoom = 5;
