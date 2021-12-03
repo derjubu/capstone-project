@@ -5,8 +5,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 
 type LocationMapProps = {
-  longitude: number;
-  latitude: number;
   locations: LngLatLike[];
 };
 
@@ -17,13 +15,9 @@ if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
 }
 
 export default function LocationMap({
-  longitude,
-  latitude,
   locations,
 }: LocationMapProps): JSX.Element {
-  const mapContainer = useRef<HTMLDivElement | null>(null);
-  const map = useRef<null | Map>(null);
-  const zoom = 5;
+  const line = turf.lineString;
 
   useEffect(() => {
     if (map.current) return;
