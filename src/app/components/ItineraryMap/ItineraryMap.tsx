@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import mapboxgl, { LngLatBoundsLike } from 'mapbox-gl';
-import type { Map, LngLatLike } from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl';
+import type { Map, LngLatLike, LngLatBoundsLike } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 import * as turf from '@turf/turf';
