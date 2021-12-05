@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
-import type { Map, LngLatLike } from 'mapbox-gl';
+import type { Map, LngLatLike, LngLatBoundsLike } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
+import * as turf from '@turf/turf';
 
 type LocationMapProps = {
   longitude: number;
@@ -10,20 +11,22 @@ type LocationMapProps = {
   locations: LngLatLike[];
 };
 
+if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
+  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
+} else {
+  throw new Error('no KEY provided');
+}
+
 export default function LocationMap({
+  locations,
   longitude,
   latitude,
-  locations,
 }: LocationMapProps): JSX.Element {
-  if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_KEY;
-  } else {
-    throw new Error('no KEY provided');
-  }
-
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
-  const zoom = 5;
+
+  const line = turf.lineString(locations as turf.helpers.Position[]);
+  const bbox = turf.bbox(line) as LngLatBoundsLike;
 
   useEffect(() => {
     if (map.current) return;
@@ -31,8 +34,11 @@ export default function LocationMap({
       container: mapContainer.current as HTMLElement,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [longitude, latitude],
-      zoom: zoom,
+      zoom: 6,
     });
+
+    console.log(locations);
+    map.current.fitBounds(bbox, { padding: 30 });
 
     locations.map((coordinates: LngLatLike) =>
       new mapboxgl.Marker()
