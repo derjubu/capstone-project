@@ -17,7 +17,7 @@ if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
   throw new Error('no KEY provided');
 }
 
-export default function LocationMap({
+export default function ItineraryMap({
   locations,
   longitude,
   latitude,
