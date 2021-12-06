@@ -4,6 +4,7 @@ import type { DestinationType } from '../../utils/DestinationType';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
 import type { LngLatLike } from 'mapbox-gl';
+import LocationMap from '../../components/LocationMap/LocationMap';
 
 export default function Itinerary(): JSX.Element {
   const Itinerary = JSON.parse(
@@ -27,6 +28,27 @@ export default function Itinerary(): JSX.Element {
         <NavigationButton to="/addDestination">
           Add Destination
         </NavigationButton>
+      </>
+    );
+  } else if (Itinerary.length === 1) {
+    return (
+      <>
+        <p>Please enter a location</p>
+        <NavigationButton to="/addDestination">
+          Add Destination
+        </NavigationButton>{' '}
+        {Itinerary.map((stop: DestinationType) => (
+          <DestinationCard
+            key={`${'Hello'}-${Itinerary.indexOf(stop)}`}
+            location={stop.location.properties.name}
+            startDate={stop.startDate as string}
+            endDate={stop.endDate as string}
+          />
+        ))}
+        <LocationMap
+          longitude={Itinerary[0].location.geometry.coordinates[0]}
+          latitude={Itinerary[0].location.geometry.coordinates[1]}
+        />
       </>
     );
   } else {
