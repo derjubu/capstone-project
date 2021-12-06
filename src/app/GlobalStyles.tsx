@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   margin: 10px;
-  font-family: 'Roboto',
+  font-family: 'Roboto', 'Helvetica',
       sans-serif;
   }
   
