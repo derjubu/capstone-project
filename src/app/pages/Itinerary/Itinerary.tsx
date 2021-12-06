@@ -39,7 +39,7 @@ export default function Itinerary(): JSX.Element {
         </NavigationButton>{' '}
         {Itinerary.map((stop: DestinationType) => (
           <DestinationCard
-            key={`${'Hello'}-${Itinerary.indexOf(stop)}`}
+            key={`${stop.location.properties.name}-${Itinerary.indexOf(stop)}`}
             location={stop.location.properties.name}
             startDate={stop.startDate as string}
             endDate={stop.endDate as string}
@@ -60,7 +60,7 @@ export default function Itinerary(): JSX.Element {
         </NavigationButton>{' '}
         {Itinerary.map((stop: DestinationType) => (
           <DestinationCard
-            key={`${'Hello'}-${Itinerary.indexOf(stop)}`}
+            key={`${stop.location.properties.name}-${Itinerary.indexOf(stop)}`}
             location={stop.location.properties.name}
             startDate={stop.startDate as string}
             endDate={stop.endDate as string}
