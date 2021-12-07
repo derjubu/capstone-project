@@ -3,9 +3,14 @@ dotenv.config();
 
 import express from 'express';
 import { connectDatabase } from './app/utils/database';
+import { getItinerary } from './app/utils/database';
 
 const app = express();
 const port = process.env.PORT || 3001;
+
+if (!process.env.VITE_MONGODB_URI) {
+  throw new Error("Couldn't connect to the database");
+}
 
 app.use(express.json());
 
