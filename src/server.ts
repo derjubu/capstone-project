@@ -14,7 +14,20 @@ if (!process.env.VITE_MONGODB_URI) {
 
 app.use(express.json());
 
-app.get('/api/hello', (_request, response) => {
+app.post('/api/location/', async (req, res) => {
+  const newLocation = req.body;
+  const existingLocation = await getItinerary().findOne({
+    location: newLocation.locationName,
+  });
+  if (existingLocation) {
+    res.status(409).send(`${existingLocation} already exists!`);
+  } else {
+    await getItinerary().insertOne(newLocation);
+    res.send(`Location was created`);
+  }
+});
+
+app.get('/api', (_request, response) => {
   response.json({ message: 'Hello API!' });
 });
 
