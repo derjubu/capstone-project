@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import { connectDatabase, getItinerary } from './app/utils/database';
+import { connectDatabase } from './app/utils/database';
 
 import express from 'express';
 
