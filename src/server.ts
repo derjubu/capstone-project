@@ -14,21 +14,24 @@ if (!process.env.VITE_MONGODB_URI) {
 
 app.use(express.json());
 
-app.post('/api/location/', async (req, res) => {
-  const newLocation = req.body;
+app.post('/api/location/', async (request, response) => {
+  const newLocation = request.body;
   const existingLocation = await getItinerary().findOne({
     location: newLocation.locationName,
   });
   if (existingLocation) {
-    res.status(409).send(`${existingLocation} already exists!`);
+    response.status(409).send(`${existingLocation} already exists!`);
   } else {
     await getItinerary().insertOne(newLocation);
-    res.send(`Location was created`);
+    response.send(`Location was created`);
   }
+  response.end();
 });
 
-app.get('/api', (_request, response) => {
-  response.json({ message: 'Hello API!' });
+app.get('/api/locations/', async (_request, response) => {
+  const allLocations = await getItinerary().find({}).toArray();
+  console.log('serverTS');
+  response.status(200).send(allLocations);
 });
 
 app.use('/storybook', express.static('dist/storybook'));
