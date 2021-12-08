@@ -17,9 +17,31 @@ async function handleSubmit(locationName: string, locationCountry: string) {
   }
 }
 
+async function deleteEntry(locationName: string) {
+  console.log('click delete');
+  const response = await fetch('/api/delete/', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ locationName }),
+  });
+  console.log(response);
+  if (response.status === 200) {
+    console.log('Done!');
+  } else {
+    console.log('Fehler');
+  }
+}
+
 function onSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
   handleSubmit(locationName, locationCountry);
+  console.log('Submitted');
+}
+
+function onDelete(locationName: string) {
+  deleteEntry(locationName);
   console.log('Submitted');
 }
 
@@ -28,8 +50,6 @@ const locationCountry = 'Germany';
 
 export default function DbTest(): JSX.Element {
   const locations = useFetch<any[]>('/api/alllocations');
-  console.log(locations);
-  console.log(typeof locations);
 
   return (
     <>
@@ -38,7 +58,15 @@ export default function DbTest(): JSX.Element {
         {locationName}; {locationCountry}
         <button>Add Data</button>
       </form>
-      {locations && locations.map((location) => <p>{location.locationName}</p>)}
+      {locations &&
+        locations.map((location) => (
+          <p key={location + locations.indexOf(location)}>
+            {location.locationName}, {location.locationCountry}, {location._id}
+            <button onClick={() => onDelete(location.locationName)}>
+              Delete
+            </button>
+          </p>
+        ))}
     </>
   );
 }

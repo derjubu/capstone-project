@@ -34,6 +34,19 @@ app.get('/api/alllocations/', async (_request, response) => {
   response.status(200).send(allLocations);
 });
 
+app.delete('/api/delete/', async (request, response) => {
+  const toBeDeleted = request.body;
+  const findEntrytoDelete = await getItinerary().deleteOne({
+    locationName: toBeDeleted.locationName,
+  });
+  console.log(findEntrytoDelete);
+  if (findEntrytoDelete.deletedCount !== 0) {
+    response.status(200).send('Successfully deleted');
+  } else {
+    response.send('Unable to delete');
+  }
+});
+
 app.use('/storybook', express.static('dist/storybook'));
 
 app.use(express.static('dist/app'));
