@@ -92,3 +92,9 @@ connectDatabase(process.env.VITE_MONGODB_URI || '').then(() => {
     console.log(`Server listening on port ${port}!`);
   });
 });
+
+connectDatabase(process.env.VITE_MONGODB_URI).then(() =>
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  })
+);
