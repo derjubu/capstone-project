@@ -66,7 +66,7 @@ const locationCountry = 'Germany';
 
 export default function DbTest(): JSX.Element {
   const locations = useFetch<any[]>('/api/alllocations');
-  const bielefeld: string = 'Bielefeld';
+  const bielefeld = 'Bielefeld';
 
   return (
     <>
