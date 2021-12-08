@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -14,6 +15,7 @@ if (!process.env.VITE_MONGODB_URI) {
 
 app.use(express.json());
 
+//Post new entry
 app.post('/api/location/', async (request, response) => {
   const newLocation = request.body;
   const existingLocation = await getItinerary().findOne({
@@ -28,12 +30,13 @@ app.post('/api/location/', async (request, response) => {
   response.end();
 });
 
+//Get all entries
 app.get('/api/alllocations/', async (_request, response) => {
   const allLocations = await getItinerary().find({}).toArray();
-  console.log('serverTS');
   response.status(200).send(allLocations);
 });
 
+//Delete one entry
 app.delete('/api/delete/', async (request, response) => {
   const toBeDeleted = request.body;
   const findEntrytoDelete = await getItinerary().deleteOne({
@@ -46,6 +49,35 @@ app.delete('/api/delete/', async (request, response) => {
     response.send('Unable to delete');
   }
 });
+
+//Update one entry
+app.patch('/api/locationUpdate/:id', async (request, response) => {
+  console.log('Update incoming');
+  const { id } = request.params;
+  const { newLocationName } = request.body;
+  const existingLocation = await getItinerary().updateOne(
+    { _id: new ObjectId(id) },
+    { $set: { locationName: newLocationName } }
+  );
+  console.log(existingLocation);
+  if (existingLocation) {
+    response.status(200).send(`${existingLocation} updated!`);
+  } else {
+    response.status(409).send(`Location was not found`);
+  }
+  response.end();
+});
+
+//Get one enry
+/* app.get('/api/me', (request, response) => {
+  const username = request.locationName;
+  const foundUser = users.find((user) => user.name === username);
+  if (foundUser) {
+    response.send(foundUser);
+  } else {
+    response.status(404).send('User not found');
+  }
+}); */
 
 app.use('/storybook', express.static('dist/storybook'));
 
