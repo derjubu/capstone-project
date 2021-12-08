@@ -45,11 +45,28 @@ function onDelete(locationName: string) {
   console.log('Submitted');
 }
 
+async function onUpdate(locationId: any, newLocationName: string) {
+  console.log('click');
+  const response = await fetch(`/api/locationUpdate/${locationId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ newLocationName }),
+  });
+  if (response.status === 200) {
+    console.log('Done!');
+  } else {
+    console.log('Fehler');
+  }
+}
+
 const locationName = 'Berlin';
 const locationCountry = 'Germany';
 
 export default function DbTest(): JSX.Element {
   const locations = useFetch<any[]>('/api/alllocations');
+  const bielefeld = 'Bielefeld';
 
   return (
     <>
@@ -64,6 +81,9 @@ export default function DbTest(): JSX.Element {
             {location.locationName}, {location.locationCountry}, {location._id}
             <button onClick={() => onDelete(location.locationName)}>
               Delete
+            </button>
+            <button onClick={() => onUpdate(location._id, bielefeld)}>
+              Update
             </button>
           </p>
         ))}
