@@ -27,7 +27,7 @@ const locationName = 'Berlin';
 const locationCountry = 'Germany';
 
 export default function DbTest(): JSX.Element {
-  const locations = useFetch('/api/locations');
+  const locations = useFetch<any[]>('/api/alllocations');
   console.log(locations);
   console.log(typeof locations);
 
@@ -38,6 +38,7 @@ export default function DbTest(): JSX.Element {
         {locationName}; {locationCountry}
         <button>Add Data</button>
       </form>
+      {locations && locations.map((location) => <p>{location.locationName}</p>)}
     </>
   );
 }
