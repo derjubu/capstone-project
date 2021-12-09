@@ -9,6 +9,21 @@ export default function DestinationDetailView(): JSX.Element {
     window.localStorage.getItem('destination') || '[]'
   );
 
+  async function saveDestination(newDestination: DestinationType) {
+    const response = await fetch('/api/location/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ newDestination }),
+    });
+    if (response.status === 200) {
+      console.log('Destination added to DB!');
+    } else {
+      console.log('An error occured =(');
+    }
+  }
+
   const currentLocation = JSON.stringify(
     currentDestination.location.properties.name
   ).replaceAll('"', '');
@@ -30,6 +45,7 @@ export default function DestinationDetailView(): JSX.Element {
       window.localStorage.getItem('itinerary') || '[]'
     );
     const newItinerary = [...oldItinerary, currentDestination];
+    saveDestination(currentDestination);
     localStorage.setItem('itinerary', JSON.stringify(newItinerary));
   }
 
