@@ -37,10 +37,10 @@ app.get('/api/alllocations/', async (_request, response) => {
 });
 
 //Delete one entry
-app.delete('/api/delete/', async (request, response) => {
-  const toBeDeleted = request.body;
+app.delete('/api/location/:id', async (request, response) => {
+  const { id } = request.params;
   const findEntrytoDelete = await getItinerary().deleteOne({
-    locationName: toBeDeleted.locationName,
+    _id: new ObjectId(id),
   });
   console.log(findEntrytoDelete);
   if (findEntrytoDelete.deletedCount !== 0) {
@@ -51,7 +51,7 @@ app.delete('/api/delete/', async (request, response) => {
 });
 
 //Update one entry
-app.patch('/api/locationUpdate/:id', async (request, response) => {
+app.patch('/api/location/:id', async (request, response) => {
   console.log('Update incoming');
   const { id } = request.params;
   const { newLocationName } = request.body;

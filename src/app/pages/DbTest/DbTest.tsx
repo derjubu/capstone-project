@@ -17,14 +17,13 @@ async function handleSubmit(locationName: string, locationCountry: string) {
   }
 }
 
-async function deleteEntry(locationName: string) {
+async function deleteEntry(locationId: any) {
   console.log('click delete');
-  const response = await fetch('/api/delete/', {
+  const response = await fetch(`/api/location/${locationId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ locationName }),
   });
   console.log(response);
   if (response.status === 200) {
@@ -40,14 +39,14 @@ function onSubmit(event: React.FormEvent<HTMLFormElement>) {
   console.log('Submitted');
 }
 
-function onDelete(locationName: string) {
-  deleteEntry(locationName);
+function onDelete(locationId: any) {
+  deleteEntry(locationId);
   console.log('Submitted');
 }
 
 async function onUpdate(locationId: any, newLocationName: string) {
   console.log('click');
-  const response = await fetch(`/api/locationUpdate/${locationId}`, {
+  const response = await fetch(`/api/location/${locationId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -79,9 +78,7 @@ export default function DbTest(): JSX.Element {
         locations.map((location) => (
           <p key={location + locations.indexOf(location)}>
             {location.locationName}, {location.locationCountry}, {location._id}
-            <button onClick={() => onDelete(location.locationName)}>
-              Delete
-            </button>
+            <button onClick={() => onDelete(location._id)}>Delete</button>
             <button onClick={() => onUpdate(location._id, bielefeld)}>
               Update
             </button>
