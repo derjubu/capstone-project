@@ -23,7 +23,7 @@ app.post('/api/location/', async (request, response) => {
   response.end();
 });
 
-app.get('/api/locations/', async (_request, response) => {
+app.get('/api/location/', async (_request, response) => {
   const allLocations = await getItinerary().find({}).toArray();
   response.status(200).send(allLocations);
 });
