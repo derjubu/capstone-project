@@ -9,10 +9,6 @@ import useFetch from '../../hooks/useFetch';
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/location/');
 
-  const Itinerary = JSON.parse(
-    window.localStorage.getItem('itinerary') || '[]'
-  );
-
   const locationsCoordinates: LngLatLike[] = [];
 
   {
@@ -51,7 +47,7 @@ export default function Itinerary(): JSX.Element {
           <DestinationCard
             key={`${
               stop.newDestination.location.properties.name
-            }-${Itinerary.indexOf(stop)}`}
+            }-${locations.indexOf(stop)}`}
             location={stop.newDestination.location.properties.name}
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
@@ -79,7 +75,7 @@ export default function Itinerary(): JSX.Element {
           <DestinationCard
             key={`${
               stop.newDestination.location.properties.name
-            }-${Itinerary.indexOf(stop)}`}
+            }-${locations.indexOf(stop)}`}
             location={stop.newDestination.location.properties.name}
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
