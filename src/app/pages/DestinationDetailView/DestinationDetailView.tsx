@@ -10,7 +10,6 @@ export default function DestinationDetailView(): JSX.Element {
   );
 
   async function saveDestination(newDestination: DestinationType) {
-    console.log('click');
     const response = await fetch('/api/location/', {
       method: 'POST',
       headers: {
@@ -19,9 +18,9 @@ export default function DestinationDetailView(): JSX.Element {
       body: JSON.stringify({ newDestination }),
     });
     if (response.status === 200) {
-      console.log('Done!');
+      console.log('Destination added to DB!');
     } else {
-      console.log('Fehler');
+      console.log('An error occured =(');
     }
   }
 
