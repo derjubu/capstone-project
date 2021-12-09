@@ -63,7 +63,14 @@ export default function Itinerary(): JSX.Element {
         />
       </>
     );
+  } else if (locations === null) {
+    return (
+      <p>
+        Ooops, something went wrong. Apparently the database did not respond
+      </p>
+    );
   }
+
   {
     return (
       <>
