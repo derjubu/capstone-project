@@ -10,9 +10,9 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Itinerary />} />
-        <Route path="/addDestination" element={<AddDestination />} />
+        <Route path="/adddestination" element={<AddDestination />} />
         <Route
-          path="/DestinationDetailView"
+          path="/destinationdetailview"
           element={<DestinationDetailView />}
         />
         <Route path="/test" element={<DbTest />} />
