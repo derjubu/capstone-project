@@ -3,7 +3,7 @@ dotenv.config();
 
 import express from 'express';
 
-import { connectDatabase } from './app/utils/database';
+import { connectDatabase, getItinerary } from './app/utils/database';
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -13,6 +13,15 @@ if (!process.env.VITE_MONGODB_URI) {
 }
 
 app.use(express.json());
+
+app.post('/api/location/', async (request, response) => {
+  const newLocation = request.body;
+  {
+    await getItinerary().insertOne(newLocation);
+    response.send(`Location was created`);
+  }
+  response.end();
+});
 
 app.get('/api/hello', (_request, response) => {
   response.json({ message: 'Hello API!' });
