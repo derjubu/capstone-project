@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import type { ObjectId } from 'mongodb';
 import React from 'react';
 import styled from 'styled-components';
 import CardTitle from '../CardTitle/CardTitle';
