@@ -21,7 +21,6 @@ export default function Itinerary(): JSX.Element {
   }
 
   async function deleteDestination(id: ObjectId) {
-    console.log(id);
     const response = await fetch(`api/location/${id}`, {
       method: 'DELETE',
       headers: {
@@ -29,9 +28,9 @@ export default function Itinerary(): JSX.Element {
       },
     });
     if (response.status === 200) {
-      console.log('Done');
+      console.log('Destination added to DB!');
     } else {
-      console.log('Error');
+      console.log('An error occured =(');
     }
   }
 
