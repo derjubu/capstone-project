@@ -20,8 +20,19 @@ export default function Itinerary(): JSX.Element {
     );
   }
 
-  function deleteDestination(id: ObjectId) {
+  async function deleteDestination(id: ObjectId) {
     console.log(id);
+    const response = await fetch(`api/location/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 200) {
+      console.log('Done');
+    } else {
+      console.log('Error');
+    }
   }
 
   if (locations === undefined) {
