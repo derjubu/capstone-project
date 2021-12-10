@@ -1,11 +1,11 @@
 import React from 'react';
-import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
 import type { LngLatLike } from 'mapbox-gl';
 import LocationMap from '../../components/LocationMap/LocationMap';
 import useFetch from '../../hooks/useFetch';
 import OverviewCard from '../../components/OverviewCard/OverviewCard';
+import { ObjectId } from 'bson';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/location/');
@@ -20,8 +20,8 @@ export default function Itinerary(): JSX.Element {
     );
   }
 
-  function deleteDestination() {
-    console.log('Click');
+  function deleteDestination(id: ObjectId) {
+    console.log(id);
   }
 
   if (locations === undefined) {
@@ -57,6 +57,7 @@ export default function Itinerary(): JSX.Element {
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
             mongoID={stop._id}
+            buttonFunction={deleteDestination}
           />
         ))}
         <LocationMap
@@ -93,6 +94,7 @@ export default function Itinerary(): JSX.Element {
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
             mongoID={stop._id}
+            buttonFunction={() => deleteDestination(stop._id)}
           />
         ))}
         {

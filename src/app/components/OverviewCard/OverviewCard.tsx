@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import React from 'react';
 import styled from 'styled-components';
 import CardTitle from '../CardTitle/CardTitle';
@@ -6,7 +7,8 @@ type DestinationCardProps = {
   location: string;
   startDate: string;
   endDate: string;
-  mongoID: string;
+  mongoID: ObjectId;
+  buttonFunction: (mongoID: ObjectId) => void;
 };
 
 export default function OverviewCard({
@@ -14,12 +16,14 @@ export default function OverviewCard({
   startDate,
   endDate,
   mongoID,
+  buttonFunction,
 }: DestinationCardProps): JSX.Element {
   return (
     <Card data-mongoid={mongoID}>
       <CardTitle>{location}</CardTitle>
       <TripStart>{startDate}</TripStart>
       <TripEnd>{endDate}</TripEnd>
+      <button onClick={() => buttonFunction(mongoID)}>Delete</button>
     </Card>
   );
 }
