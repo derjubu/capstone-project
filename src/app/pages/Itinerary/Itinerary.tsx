@@ -32,6 +32,7 @@ export default function Itinerary(): JSX.Element {
     } else {
       console.log('An error occured =(');
     }
+    window.location.reload();
   }
 
   if (locations === undefined) {
