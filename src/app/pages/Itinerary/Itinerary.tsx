@@ -5,7 +5,7 @@ import type { LngLatLike } from 'mapbox-gl';
 import LocationMap from '../../components/LocationMap/LocationMap';
 import useFetch from '../../hooks/useFetch';
 import OverviewCard from '../../components/OverviewCard/OverviewCard';
-import { ObjectId } from 'bson';
+import type { ObjectId } from 'bson';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/location/');
