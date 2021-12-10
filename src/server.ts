@@ -23,6 +23,11 @@ app.post('/api/location/', async (request, response) => {
   response.end();
 });
 
+app.get('/api/location/', async (_request, response) => {
+  const allLocations = await getItinerary().find({}).toArray();
+  response.status(200).send(allLocations);
+});
+
 app.get('/api/hello', (_request, response) => {
   response.json({ message: 'Hello API!' });
 });

@@ -1,27 +1,33 @@
 import React from 'react';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
-import type { DestinationType } from '../../utils/DestinationType';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
 import type { LngLatLike } from 'mapbox-gl';
 import LocationMap from '../../components/LocationMap/LocationMap';
+import useFetch from '../../hooks/useFetch';
 
 export default function Itinerary(): JSX.Element {
-  const Itinerary = JSON.parse(
-    window.localStorage.getItem('itinerary') || '[]'
-  );
+  const locations = useFetch<any[]>('/api/location/');
 
   const locationsCoordinates: LngLatLike[] = [];
 
   {
-    Itinerary.map((destination: DestinationType) =>
+    locations?.map((city: any) =>
       locationsCoordinates.push(
-        destination.location.geometry.coordinates as LngLatLike
+        city.newDestination.location.geometry.coordinates as LngLatLike
       )
     );
   }
 
-  if (Itinerary.length === 0) {
+  if (locations === undefined) {
+    return (
+      <>
+        <p>Please wait a second</p>
+      </>
+    );
+  }
+
+  if (locations?.length === 0) {
     return (
       <>
         <p>Please enter a location</p>
@@ -30,46 +36,66 @@ export default function Itinerary(): JSX.Element {
         </NavigationButton>
       </>
     );
-  } else if (Itinerary.length === 1) {
+  } else if (locations?.length === 1) {
     return (
       <>
         <p>Please enter a location</p>
         <NavigationButton to="/addDestination">
           Add Destination
         </NavigationButton>{' '}
-        {Itinerary.map((stop: DestinationType) => (
+        {locations.map((stop: any) => (
           <DestinationCard
-            key={`${stop.location.properties.name}-${Itinerary.indexOf(stop)}`}
-            location={stop.location.properties.name}
-            startDate={stop.startDate as string}
-            endDate={stop.endDate as string}
+            key={`${
+              stop.newDestination.location.properties.name
+            }-${locations.indexOf(stop)}`}
+            location={stop.newDestination.location.properties.name}
+            startDate={stop.newDestination.startDate as string}
+            endDate={stop.newDestination.endDate as string}
           />
         ))}
         <LocationMap
-          longitude={Itinerary[0].location.geometry.coordinates[0]}
-          latitude={Itinerary[0].location.geometry.coordinates[1]}
+          longitude={
+            locations[0].newDestination.location.geometry.coordinates[0]
+          }
+          latitude={
+            locations[0].newDestination.location.geometry.coordinates[1]
+          }
         />
       </>
     );
-  } else {
+  } else if (locations === null) {
+    return (
+      <p>
+        Ooops, something went wrong. Apparently the database did not respond
+      </p>
+    );
+  }
+
+  {
     return (
       <>
         <p>Please enter a location</p>
         <NavigationButton to="/addDestination">
           Add Destination
         </NavigationButton>{' '}
-        {Itinerary.map((stop: DestinationType) => (
+        {locations?.map((stop: any) => (
           <DestinationCard
-            key={`${stop.location.properties.name}-${Itinerary.indexOf(stop)}`}
-            location={stop.location.properties.name}
-            startDate={stop.startDate as string}
-            endDate={stop.endDate as string}
+            key={`${
+              stop.newDestination.location.properties.name
+            }-${locations.indexOf(stop)}`}
+            location={stop.newDestination.location.properties.name}
+            startDate={stop.newDestination.startDate as string}
+            endDate={stop.newDestination.endDate as string}
           />
         ))}
         {
           <ItineraryMap
-            longitude={Itinerary[0].location.geometry.coordinates[0]}
-            latitude={Itinerary[0].location.geometry.coordinates[1]}
+            longitude={
+              locations[0].newDestination.location.geometry.coordinates[0]
+            }
+            latitude={
+              locations[0].newDestination.location.geometry.coordinates[1]
+            }
             locations={locationsCoordinates}
           />
         }{' '}

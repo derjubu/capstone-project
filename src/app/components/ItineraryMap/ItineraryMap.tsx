@@ -37,7 +37,6 @@ export default function ItineraryMap({
       zoom: 6,
     });
 
-    console.log(locations);
     map.current.fitBounds(bbox, { padding: 30 });
 
     locations.map((coordinates: LngLatLike) =>
