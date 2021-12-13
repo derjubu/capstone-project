@@ -42,6 +42,22 @@ app.delete('/api/location/:id', async (request, response) => {
   }
 });
 
+app.patch('/api/location/:id', async (request, response) => {
+  console.log('Update incoming');
+  const { id } = request.params;
+  const { newLocation } = request.body;
+  const existingLocation = await getItinerary().updateOne(
+    { _id: new ObjectId(id) },
+    { $set: { location: newLocation } }
+  );
+  if (existingLocation) {
+    response.status(200).send(`${existingLocation} updated!`);
+  } else {
+    response.status(409).send(`Location was not found`);
+  }
+  response.end();
+});
+
 app.get('/api/hello', (_request, response) => {
   response.json({ message: 'Hello API!' });
 });
