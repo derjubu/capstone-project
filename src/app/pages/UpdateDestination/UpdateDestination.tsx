@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
@@ -7,24 +7,16 @@ import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
-import useFetch from '../../hooks/useFetch';
+import { useNavigate } from 'react-router';
 
 export default function UpdateDestination(): JSX.Element {
   const currentId = window.localStorage
     .getItem('UpdateId')
     ?.replaceAll('"', '');
 
-  const [currentDestination, setCurrentDestination]: any = useState(
-    JSON.parse(window.localStorage.getItem('destination') as string)
+  const currentDestination: any[] = JSON.parse(
+    window.localStorage.getItem('destination') as string
   );
-
-  console.log(`/api/location/${currentId}`);
-  console.log(currentDestination);
-  console.log(typeof currentDestination);
-  console.log(
-    currentDestination[0].newDestination.location.geometry.coordinates
-  );
-
   const [newStartDate, setNewStartDate] = useState(
     currentDestination[0].newDestination.startDate
   );
@@ -43,7 +35,22 @@ export default function UpdateDestination(): JSX.Element {
     },
   });
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  async function onUpdate(locationId: any, updateDestination: DestinationType) {
+    const response = await fetch(`/api/location/${locationId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ updateDestination }),
+    });
+    if (response.status === 200) {
+      console.log('Done!');
+    } else {
+      console.log('Fehler');
+    }
+  }
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -52,10 +59,11 @@ export default function UpdateDestination(): JSX.Element {
       startDate: newStartDate,
       endDate: newEndDate,
     };
+    onUpdate(currentId, newDestination);
     window.localStorage.destination = JSON.stringify(newDestination);
     console.log('Update');
     console.log(newDestination);
-    //navigate('/DestinationDetailView');
+    navigate('/');
   }
 
   return (
@@ -85,7 +93,7 @@ export default function UpdateDestination(): JSX.Element {
             onChange={(event) => setNewEndDate(event.target.value)}
           />
         </InputLabel>
-        <DefaultButton>Go</DefaultButton>
+        <DefaultButton>Update Destination</DefaultButton>
       </DestinationForm>
       <MapWithMarker
         defaultCoordinates={

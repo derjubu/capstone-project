@@ -61,10 +61,10 @@ app.delete('/api/location/:id', async (request, response) => {
 app.patch('/api/location/:id', async (request, response) => {
   console.log('Update incoming');
   const { id } = request.params;
-  const { newLocation } = request.body;
+  const { updateDestination } = request.body;
   const existingLocation = await getItinerary().updateOne(
     { _id: new ObjectId(id) },
-    { $set: { location: newLocation } }
+    { $set: { newDestination: updateDestination } }
   );
   if (existingLocation) {
     response.status(200).send(`${existingLocation} updated!`);
