@@ -1,10 +1,11 @@
 import React from 'react';
-import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
 import type { LngLatLike } from 'mapbox-gl';
 import LocationMap from '../../components/LocationMap/LocationMap';
 import useFetch from '../../hooks/useFetch';
+import OverviewCard from '../../components/OverviewCard/OverviewCard';
+import type { ObjectId } from 'bson';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/location/');
@@ -17,6 +18,21 @@ export default function Itinerary(): JSX.Element {
         city.newDestination.location.geometry.coordinates as LngLatLike
       )
     );
+  }
+
+  async function deleteDestination(id: ObjectId) {
+    const response = await fetch(`api/location/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 200) {
+      console.log('Destination added to DB!');
+    } else {
+      console.log('An error occured =(');
+    }
+    window.location.reload();
   }
 
   if (locations === undefined) {
@@ -44,13 +60,15 @@ export default function Itinerary(): JSX.Element {
           Add Destination
         </NavigationButton>{' '}
         {locations.map((stop: any) => (
-          <DestinationCard
+          <OverviewCard
             key={`${
               stop.newDestination.location.properties.name
             }-${locations.indexOf(stop)}`}
             location={stop.newDestination.location.properties.name}
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
+            mongoID={stop._id}
+            buttonFunction={deleteDestination}
           />
         ))}
         <LocationMap
@@ -79,13 +97,15 @@ export default function Itinerary(): JSX.Element {
           Add Destination
         </NavigationButton>{' '}
         {locations?.map((stop: any) => (
-          <DestinationCard
+          <OverviewCard
             key={`${
               stop.newDestination.location.properties.name
             }-${locations.indexOf(stop)}`}
             location={stop.newDestination.location.properties.name}
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
+            mongoID={stop._id}
+            buttonFunction={() => deleteDestination(stop._id)}
           />
         ))}
         {

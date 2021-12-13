@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import { ObjectId } from 'mongodb';
 
 import { connectDatabase, getItinerary } from './app/utils/database';
 
@@ -26,6 +27,19 @@ app.post('/api/location/', async (request, response) => {
 app.get('/api/location/', async (_request, response) => {
   const allLocations = await getItinerary().find({}).toArray();
   response.status(200).send(allLocations);
+});
+
+app.delete('/api/location/:id', async (request, response) => {
+  const { id } = request.params;
+  const findEntrytoDelete = await getItinerary().deleteOne({
+    _id: new ObjectId(id),
+  });
+  console.log(findEntrytoDelete);
+  if (findEntrytoDelete.deletedCount !== 0) {
+    response.status(200).send('Successfully deleted');
+  } else {
+    response.send('Unable to delete');
+  }
 });
 
 app.get('/api/hello', (_request, response) => {
