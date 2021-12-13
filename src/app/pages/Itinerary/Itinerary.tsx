@@ -6,12 +6,12 @@ import LocationMap from '../../components/LocationMap/LocationMap';
 import useFetch from '../../hooks/useFetch';
 import OverviewCard from '../../components/OverviewCard/OverviewCard';
 import type { ObjectId } from 'bson';
-import UpdateDestination from '../UpdateDestination/UpdateDestination';
+import { useNavigate } from 'react-router';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/location/');
-
   const locationsCoordinates: LngLatLike[] = [];
+  const navigate = useNavigate();
 
   {
     locations?.map((city: any) =>
@@ -37,7 +37,8 @@ export default function Itinerary(): JSX.Element {
   }
 
   function updateDestination(id: ObjectId) {
-    console.log(id);
+    window.localStorage.setItem('UpdateId', JSON.stringify(id));
+    navigate('/updateDestination');
   }
 
   if (locations === undefined) {

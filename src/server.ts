@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import { request } from 'http';
 import { ObjectId } from 'mongodb';
 
 import { connectDatabase, getItinerary } from './app/utils/database';
@@ -26,6 +27,12 @@ app.post('/api/location/', async (request, response) => {
 
 app.get('/api/location/', async (_request, response) => {
   const allLocations = await getItinerary().find({}).toArray();
+  response.status(200).send(allLocations);
+});
+
+app.get('/api/location/:id', async (request, response) => {
+  const { id } = request.params;
+  const allLocations = await getItinerary().findOne({ _id: new ObjectId(id) });
   response.status(200).send(allLocations);
 });
 
