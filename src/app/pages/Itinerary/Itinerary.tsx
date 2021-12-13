@@ -41,7 +41,7 @@ export default function Itinerary(): JSX.Element {
     const destinationData: any = [
       {
         newDestination: {
-          endDate: findDestination.newDestination.startDate as string,
+          endDate: findDestination.newDestination.endDate as string,
           startDate: findDestination.newDestination.startDate as string,
           location: {
             type: 'Feature',
