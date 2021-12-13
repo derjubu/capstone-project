@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
-//import { useNavigate } from 'react-router';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
@@ -14,29 +13,17 @@ export default function UpdateDestination(): JSX.Element {
   const currentId = window.localStorage
     .getItem('UpdateId')
     ?.replaceAll('"', '');
-  const mongoData = useFetch(`/api/location/${currentId}`);
-  const [currentDestination]: any = useState([
-    {
-      newDestination: {
-        endDate: '',
-        startDate: '',
-        location: {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [0, 0],
-          },
-          properties: {
-            name: 'Please Wait...',
-          },
-        },
-      },
-    },
-  ]);
+
+  const [currentDestination, setCurrentDestination]: any = useState(
+    JSON.parse(window.localStorage.getItem('destination') as string)
+  );
 
   console.log(`/api/location/${currentId}`);
   console.log(currentDestination);
-  console.log(mongoData);
+  console.log(typeof currentDestination);
+  console.log(
+    currentDestination[0].newDestination.location.geometry.coordinates
+  );
 
   const [newStartDate, setNewStartDate] = useState(
     currentDestination[0].newDestination.startDate

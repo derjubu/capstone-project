@@ -37,6 +37,27 @@ export default function Itinerary(): JSX.Element {
   }
 
   function updateDestination(id: ObjectId) {
+    const findDestination = locations?.find((element) => element._id === id);
+    const destinationData: any = [
+      {
+        newDestination: {
+          endDate: findDestination.newDestination.startDate as string,
+          startDate: findDestination.newDestination.startDate as string,
+          location: {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates:
+                findDestination.newDestination.location.geometry.coordinates,
+            },
+            properties: {
+              name: findDestination.newDestination.location.properties.name,
+            },
+          },
+        },
+      },
+    ];
+    window.localStorage.setItem('destination', JSON.stringify(destinationData));
     window.localStorage.setItem('UpdateId', JSON.stringify(id));
     navigate('/updateDestination');
   }
