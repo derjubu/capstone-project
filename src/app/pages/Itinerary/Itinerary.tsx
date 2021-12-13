@@ -6,6 +6,7 @@ import LocationMap from '../../components/LocationMap/LocationMap';
 import useFetch from '../../hooks/useFetch';
 import OverviewCard from '../../components/OverviewCard/OverviewCard';
 import type { ObjectId } from 'bson';
+import UpdateDestination from '../UpdateDestination/UpdateDestination';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/location/');
@@ -33,6 +34,10 @@ export default function Itinerary(): JSX.Element {
       console.log('An error occured =(');
     }
     window.location.reload();
+  }
+
+  function updateDestination(id: ObjectId) {
+    console.log(id);
   }
 
   if (locations === undefined) {
@@ -68,7 +73,8 @@ export default function Itinerary(): JSX.Element {
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
             mongoID={stop._id}
-            buttonFunction={deleteDestination}
+            buttonFunctionDelete={() => deleteDestination(stop._id)}
+            buttonFunctionUpdate={() => updateDestination(stop._id)}
           />
         ))}
         <LocationMap
@@ -105,7 +111,8 @@ export default function Itinerary(): JSX.Element {
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
             mongoID={stop._id}
-            buttonFunction={() => deleteDestination(stop._id)}
+            buttonFunctionDelete={() => deleteDestination(stop._id)}
+            buttonFunctionUpdate={() => updateDestination(stop._id)}
           />
         ))}
         {

@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import React from 'react';
 
 let client: MongoClient;
 export async function connectDatabase(url: string) {
