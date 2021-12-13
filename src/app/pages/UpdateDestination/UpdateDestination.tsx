@@ -40,6 +40,7 @@ export default function UpdateDestination(): JSX.Element {
     };
     window.localStorage.destination = JSON.stringify(newDestination);
     console.log('Update');
+    console.log(newDestination);
     //navigate('/DestinationDetailView');
   }
 
