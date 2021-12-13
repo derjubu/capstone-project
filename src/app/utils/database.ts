@@ -1,4 +1,4 @@
-import type { Collection} from 'mongodb';
+import type { Collection } from 'mongodb';
 import { MongoClient } from 'mongodb';
 
 let client: MongoClient;
