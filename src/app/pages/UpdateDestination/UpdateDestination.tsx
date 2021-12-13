@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
-import { useNavigate } from 'react-router';
+//import { useNavigate } from 'react-router';
 import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
@@ -15,7 +15,7 @@ export default function UpdateDestination(): JSX.Element {
     .getItem('UpdateId')
     ?.replaceAll('"', '');
   const mongoData = useFetch(`/api/location/${currentId}`);
-  const [currentDestination, setCurrentDestination]: any = useState([
+  const [currentDestination]: any = useState([
     {
       newDestination: {
         endDate: '',
@@ -56,7 +56,7 @@ export default function UpdateDestination(): JSX.Element {
     },
   });
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   function goToDetailpage(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
