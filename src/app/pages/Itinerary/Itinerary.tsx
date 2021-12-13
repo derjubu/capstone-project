@@ -9,7 +9,7 @@ import type { ObjectId } from 'bson';
 import { useNavigate } from 'react-router';
 
 export default function Itinerary(): JSX.Element {
-  const locations = useFetch<any[]>('/api/location/');
+  const locations = useFetch<any[]>('/api/locations/');
   const locationsCoordinates: LngLatLike[] = [];
   const navigate = useNavigate();
 

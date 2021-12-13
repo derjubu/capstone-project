@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
 import express from 'express';
-import { request } from 'http';
 import { ObjectId } from 'mongodb';
 
 import { connectDatabase, getItinerary } from './app/utils/database';
@@ -25,15 +23,26 @@ app.post('/api/location/', async (request, response) => {
   response.end();
 });
 
-app.get('/api/location/', async (_request, response) => {
+app.get('/api/locations/', async (_request, response) => {
   const allLocations = await getItinerary().find({}).toArray();
   response.status(200).send(allLocations);
 });
 
 app.get('/api/location/:id', async (request, response) => {
   const { id } = request.params;
-  const allLocations = await getItinerary().findOne({ _id: new ObjectId(id) });
-  response.status(200).send(allLocations);
+  const findLocation = await getItinerary()
+    .find({
+      _id: new ObjectId(id as string),
+    })
+    .toArray();
+  console.log(findLocation);
+  if (findLocation) {
+    console.log('Done');
+    response.status(200).send(findLocation);
+  } else {
+    console.log('Error');
+    response.send('Error');
+  }
 });
 
 app.delete('/api/location/:id', async (request, response) => {

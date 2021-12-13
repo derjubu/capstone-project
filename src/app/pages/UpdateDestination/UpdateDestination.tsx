@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardTitle from '../../components/CardTitle/CardTitle';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
@@ -8,24 +8,51 @@ import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
+import useFetch from '../../hooks/useFetch';
 
 export default function UpdateDestination(): JSX.Element {
-  const currentDestination: DestinationType = JSON.parse(
-    window.localStorage.getItem('destination') || '[]'
-  );
+  const currentId = window.localStorage
+    .getItem('UpdateId')
+    ?.replaceAll('"', '');
+  const mongoData = useFetch(`/api/location/${currentId}`);
+  const [currentDestination, setCurrentDestination]: any = useState([
+    {
+      newDestination: {
+        endDate: '',
+        startDate: '',
+        location: {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [0, 0],
+          },
+          properties: {
+            name: 'Please Wait...',
+          },
+        },
+      },
+    },
+  ]);
+
+  console.log(`/api/location/${currentId}`);
+  console.log(currentDestination);
+  console.log(mongoData);
 
   const [newStartDate, setNewStartDate] = useState(
-    currentDestination.startDate
+    currentDestination[0].newDestination.startDate
   );
-  const [newEndDate, setNewEndDate] = useState(currentDestination.endDate);
+  const [newEndDate, setNewEndDate] = useState(
+    currentDestination[0].newDestination.endDate
+  );
   const [newLocation, setNewLocation] = useState<GeoJsonType>({
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: currentDestination.location.geometry.coordinates,
+      coordinates:
+        currentDestination[0].newDestination.location.geometry.coordinates,
     },
     properties: {
-      name: currentDestination.location.properties.name,
+      name: currentDestination[0].newDestination.location.properties.name,
     },
   });
 
@@ -74,8 +101,12 @@ export default function UpdateDestination(): JSX.Element {
         <DefaultButton>Go</DefaultButton>
       </DestinationForm>
       <MapWithMarker
-        defaultCoordinates={currentDestination.location.geometry.coordinates}
-        defaultLocation={currentDestination.location.properties.name}
+        defaultCoordinates={
+          currentDestination[0].newDestination.location.geometry.coordinates
+        }
+        defaultLocation={
+          currentDestination[0].newDestination.location.properties.name
+        }
         displayArea={'#destination'}
         onChange={(event) => setNewLocation(event)}
       />
