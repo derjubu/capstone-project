@@ -74,6 +74,8 @@ export default function UpdateDestination(): JSX.Element {
         <DefaultButton>Go</DefaultButton>
       </DestinationForm>
       <MapWithMarker
+        defaultCoordinates={currentDestination.location.geometry.coordinates}
+        defaultLocation={currentDestination.location.properties.name}
         displayArea={'#destination'}
         onChange={(event) => setNewLocation(event)}
       />

@@ -9,6 +9,8 @@ import type { GeoJsonType } from '../../utils/GeoJsonType';
 
 type MapWithMarkerProps = {
   displayArea: string;
+  defaultLocation?: string;
+  defaultCoordinates?: number[];
   onChange: (event: any) => void;
 };
 
@@ -21,27 +23,35 @@ if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
 export default function MapWithMarker({
   displayArea,
   onChange,
+  defaultCoordinates,
+  defaultLocation,
 }: MapWithMarkerProps): JSX.Element {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<null | Map>(null);
-  const [longitude] = useState<number>(10.0125);
-  const [latitude] = useState<number>(53.5469);
+  const [longitude] = useState<number>(
+    defaultCoordinates ? defaultCoordinates[0] : 10.0125
+  );
+  const [latitude] = useState<number>(
+    defaultCoordinates ? defaultCoordinates[1] : 53.5469
+  );
+  const currentLocation = defaultLocation;
   const [zoom] = useState(9);
   const marker = new mapboxgl.Marker();
   const locationGeoJson: GeoJsonType = {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [0, 0],
+      coordinates: [longitude, latitude],
     },
     properties: {
-      name: '',
+      name: currentLocation as string,
     },
   };
 
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     marker: false,
+    placeholder: defaultLocation ? defaultLocation : 'Search',
   });
 
   useEffect(() => {
