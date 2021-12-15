@@ -1,4 +1,4 @@
-import { ObjectId } from 'bson';
+import type { ObjectId } from 'bson';
 import React from 'react';
 import OverviewCard from './OverviewCard';
 
