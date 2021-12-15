@@ -6,10 +6,10 @@ const GlobalStyle = createGlobalStyle`
 }
 
 :root {
-  --color-background-primary: #000fff;
+  --color-background-primary: #F9AA33;
   --color-background-secondary: white;
   --color-primary: white;
-  --color-secondary: #000fff;
+  --color-secondary: #F9AA33;
 }
 
 body {
