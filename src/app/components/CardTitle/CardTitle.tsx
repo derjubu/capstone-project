@@ -13,12 +13,9 @@ export default function CardTitle({ children }: CardTitleProps): JSX.Element {
 const Cardtitle = styled.h2`
   text-align: center;
   justify-self: center;
-  grid-column: 1/-1;
   width: 100%;
   margin: 0;
   font-size: 2rem;
-  color: var(--color-primary);
-  background-color: var(--color-background-primary);
   margin-bottom: 0.5rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
 `;

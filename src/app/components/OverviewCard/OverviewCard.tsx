@@ -24,8 +24,8 @@ export default function OverviewCard({
   return (
     <Card data-mongoid={mongoID}>
       <CardTitle>{location}</CardTitle>
-      <TripStart>{startDate}</TripStart>
-      <TripEnd>{endDate}</TripEnd>
+      <TripDate>You arrive on {startDate}</TripDate>
+      <TripDate>You depart on {endDate}</TripDate>
       <ButtonSimple onClick={() => buttonFunctionDelete(mongoID)}>
         Delete
       </ButtonSimple>
@@ -37,21 +37,17 @@ export default function OverviewCard({
 }
 
 const Card = styled.article`
-  max-width: 1400;
   margin-left: auto;
   margin-right: auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 5px;
-  border: black solid 1px;
   border-radius: 5px;
+  max-width: 640px;
+  box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.035),
+    4px 4px 8px rgba(0, 0, 0, 0.07);
 `;
 
-const TripStart = styled.span`
-  grid-column: 1 / span 2;
+const TripDate = styled.span`
+  display: block;
   justify-self: end;
-`;
-const TripEnd = styled.span`
-  grid-column: 5 / span 2;
-  justify-self: start;
+  text-align: center;
+  margin: 4px;
 `;
