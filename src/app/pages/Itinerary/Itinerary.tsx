@@ -6,11 +6,12 @@ import LocationMap from '../../components/LocationMap/LocationMap';
 import useFetch from '../../hooks/useFetch';
 import OverviewCard from '../../components/OverviewCard/OverviewCard';
 import type { ObjectId } from 'bson';
+import { useNavigate } from 'react-router';
 
 export default function Itinerary(): JSX.Element {
-  const locations = useFetch<any[]>('/api/location/');
-
+  const locations = useFetch<any[]>('/api/locations/');
   const locationsCoordinates: LngLatLike[] = [];
+  const navigate = useNavigate();
 
   {
     locations?.map((city: any) =>
@@ -33,6 +34,32 @@ export default function Itinerary(): JSX.Element {
       console.log('An error occured =(');
     }
     window.location.reload();
+  }
+
+  function updateDestination(id: ObjectId) {
+    const findDestination = locations?.find((element) => element._id === id);
+    const destinationData: any = [
+      {
+        newDestination: {
+          endDate: findDestination.newDestination.endDate as string,
+          startDate: findDestination.newDestination.startDate as string,
+          location: {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates:
+                findDestination.newDestination.location.geometry.coordinates,
+            },
+            properties: {
+              name: findDestination.newDestination.location.properties.name,
+            },
+          },
+        },
+      },
+    ];
+    window.localStorage.setItem('destination', JSON.stringify(destinationData));
+    window.localStorage.setItem('UpdateId', JSON.stringify(id));
+    navigate('/updateDestination');
   }
 
   if (locations === undefined) {
@@ -68,7 +95,8 @@ export default function Itinerary(): JSX.Element {
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
             mongoID={stop._id}
-            buttonFunction={deleteDestination}
+            buttonFunctionDelete={() => deleteDestination(stop._id)}
+            buttonFunctionUpdate={() => updateDestination(stop._id)}
           />
         ))}
         <LocationMap
@@ -105,7 +133,8 @@ export default function Itinerary(): JSX.Element {
             startDate={stop.newDestination.startDate as string}
             endDate={stop.newDestination.endDate as string}
             mongoID={stop._id}
-            buttonFunction={() => deleteDestination(stop._id)}
+            buttonFunctionDelete={() => deleteDestination(stop._id)}
+            buttonFunctionUpdate={() => updateDestination(stop._id)}
           />
         ))}
         {

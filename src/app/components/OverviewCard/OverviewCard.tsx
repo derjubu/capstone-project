@@ -2,13 +2,15 @@ import type { ObjectId } from 'mongodb';
 import React from 'react';
 import styled from 'styled-components';
 import CardTitle from '../CardTitle/CardTitle';
+import DefaultButton from '../DefaultButton/DefaultButton';
 
 type DestinationCardProps = {
   location: string;
   startDate: string;
   endDate: string;
   mongoID: ObjectId;
-  buttonFunction: (mongoID: ObjectId) => void;
+  buttonFunctionDelete: (mongoID: ObjectId) => void;
+  buttonFunctionUpdate: (mongoID: ObjectId) => void;
 };
 
 export default function OverviewCard({
@@ -16,14 +18,20 @@ export default function OverviewCard({
   startDate,
   endDate,
   mongoID,
-  buttonFunction,
+  buttonFunctionDelete,
+  buttonFunctionUpdate,
 }: DestinationCardProps): JSX.Element {
   return (
     <Card data-mongoid={mongoID}>
       <CardTitle>{location}</CardTitle>
       <TripStart>{startDate}</TripStart>
       <TripEnd>{endDate}</TripEnd>
-      <button onClick={() => buttonFunction(mongoID)}>Delete</button>
+      <DefaultButton onClick={() => buttonFunctionDelete(mongoID)}>
+        Delete
+      </DefaultButton>
+      <DefaultButton onClick={() => buttonFunctionUpdate(mongoID)}>
+        Update
+      </DefaultButton>
     </Card>
   );
 }
