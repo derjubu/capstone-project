@@ -35,6 +35,7 @@ export default function ItineraryMap({
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [longitude, latitude],
       zoom: 6,
+      interactive: false,
     });
 
     map.current.fitBounds(bbox, { padding: 30 });

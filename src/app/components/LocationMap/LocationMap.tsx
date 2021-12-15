@@ -31,6 +31,7 @@ export default function LocationMap({
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [longitude, latitude],
       zoom: zoom,
+      interactive: false,
     });
     const markedLocation = [longitude, latitude] as LngLatLike;
     marker.setLngLat(markedLocation).addTo(map.current);
