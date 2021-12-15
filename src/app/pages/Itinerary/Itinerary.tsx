@@ -1,5 +1,4 @@
 import React from 'react';
-import NavigationButton from '../../components/ButtonNavigate/ButtonNavigate';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
 import type { LngLatLike } from 'mapbox-gl';
 import LocationMap from '../../components/LocationMap/LocationMap';
