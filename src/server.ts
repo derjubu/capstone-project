@@ -3,7 +3,7 @@ dotenv.config();
 import express from 'express';
 import { ObjectId } from 'mongodb';
 
-import { connectDatabase, getItinerary } from './app/utils/database';
+import { connectDatabase, getItinerary } from './utils/database';
 
 const app = express();
 const port = process.env.PORT || 3001;
