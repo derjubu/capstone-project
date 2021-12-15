@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-const DefaultButton = styled.button`
+const ButtonSimple = styled.button`
   text-decoration: none;
-  border: 2px var(--color-secondary) solid;
-  border-radius: 5px;
+  border: 2px var(--color-primary) solid;
+  border-radius: 4px;
   background: var(--color-background-secondary);
   color: var(--color-secondary);
-  font-size: 1.5rem;
+  font-size: 1rem;
+  padding: 0 8px;
   font-weight: bold;
-  padding: 0 1rem;
-  display: block;
   width: fit-content;
+  min-height: 48px;
 `;
 
-export default DefaultButton;
+export default ButtonSimple;

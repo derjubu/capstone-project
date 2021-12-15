@@ -4,10 +4,10 @@ import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
 import { useNavigate } from 'react-router';
-import DefaultButton from '../../components/DefaultButton/DefaultButton';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
+import ButtonDefault from '../../components/ButtonDefault/ButtonDefault';
 
 export default function AddDestination(): JSX.Element {
   const [newStartDate, setNewStartDate] = useState('');
@@ -63,7 +63,7 @@ export default function AddDestination(): JSX.Element {
             onChange={(event) => setNewEndDate(event.target.value)}
           />
         </InputLabel>
-        <DefaultButton>Go</DefaultButton>
+        <ButtonDefault>Check</ButtonDefault>
       </DestinationForm>
       <MapWithMarker
         displayArea={'#destination'}

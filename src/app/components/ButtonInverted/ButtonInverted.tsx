@@ -1,17 +1,16 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const NavigationButton = styled(Link)`
+const ButtonInverted = styled.button`
   text-decoration: none;
   border: 2px var(--color-secondary) solid;
-  border-radius: 5px;
+  border-radius: 4px;
   background: var(--color-background-secondary);
   color: var(--color-secondary);
-  font-size: 1.5rem;
+  font-size: 1rem;
+  padding: 0 8px;
   font-weight: bold;
-  padding: 0 1rem;
-  display: block;
   width: fit-content;
+  min-height: 48px;
 `;
 
-export default NavigationButton;
+export default ButtonInverted;

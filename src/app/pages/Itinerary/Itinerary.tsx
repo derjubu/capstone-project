@@ -1,5 +1,4 @@
 import React from 'react';
-import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import ItineraryMap from '../../components/ItineraryMap/ItineraryMap';
 import type { LngLatLike } from 'mapbox-gl';
 import LocationMap from '../../components/LocationMap/LocationMap';
@@ -7,6 +6,7 @@ import useFetch from '../../hooks/useFetch';
 import OverviewCard from '../../components/OverviewCard/OverviewCard';
 import type { ObjectId } from 'bson';
 import { useNavigate } from 'react-router';
+import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/locations/');
@@ -74,18 +74,13 @@ export default function Itinerary(): JSX.Element {
     return (
       <>
         <p>Please enter a location</p>
-        <NavigationButton to="/addDestination">
-          Add Destination
-        </NavigationButton>
+        <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
   } else if (locations?.length === 1) {
     return (
       <>
         <p>Please enter a location</p>
-        <NavigationButton to="/addDestination">
-          Add Destination
-        </NavigationButton>{' '}
         {locations.map((stop: any) => (
           <OverviewCard
             key={`${
@@ -107,6 +102,7 @@ export default function Itinerary(): JSX.Element {
             locations[0].newDestination.location.geometry.coordinates[1]
           }
         />
+        <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
   } else if (locations === null) {
@@ -121,9 +117,6 @@ export default function Itinerary(): JSX.Element {
     return (
       <>
         <p>Please enter a location</p>
-        <NavigationButton to="/addDestination">
-          Add Destination
-        </NavigationButton>{' '}
         {locations?.map((stop: any) => (
           <OverviewCard
             key={`${
@@ -147,7 +140,8 @@ export default function Itinerary(): JSX.Element {
             }
             locations={locationsCoordinates}
           />
-        }{' '}
+        }
+        <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
   }

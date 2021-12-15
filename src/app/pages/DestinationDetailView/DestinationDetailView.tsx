@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationButton from '../../components/NavigationButton/NavigationButton';
+import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 import LocationMap from '../../components/LocationMap/LocationMap';
@@ -57,9 +57,9 @@ export default function DestinationDetailView(): JSX.Element {
         endDate={endDate}
       />
       <LocationMap longitude={longitude} latitude={latitude} />
-      <NavigationButton to="/" onClick={goToItinerary}>
+      <ButtonNavigate to="/" onClick={goToItinerary}>
         Go on
-      </NavigationButton>
+      </ButtonNavigate>
     </>
   );
 }
