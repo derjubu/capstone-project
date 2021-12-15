@@ -3,7 +3,7 @@ import CardTitle from '../../components/CardTitle/CardTitle';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
-import DefaultButton from '../../components/DefaultButton/DefaultButton';
+import DefaultButton from '../../components/ButtonDefault/ButtonDefault';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
