@@ -8,7 +8,7 @@ import { connectDatabase, getItinerary } from './utils/database';
 const app = express();
 const port = process.env.PORT || 3001;
 
-if (!process.env.VITE_MONGODB_URI) {
+if (!process.env.MONGODB_URI) {
   throw new Error("Couldn't connect to the database");
 }
 
@@ -86,7 +86,7 @@ app.get('*', (_request, response) => {
   response.sendFile('index.html', { root: 'dist/app' });
 });
 
-connectDatabase(process.env.VITE_MONGODB_URI || '').then(() => {
+connectDatabase(process.env.MONGODB_URI || '').then(() => {
   app.listen(port, () => {
     console.log(`Server listening on port ${port}!`);
   });
