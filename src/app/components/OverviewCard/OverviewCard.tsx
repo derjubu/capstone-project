@@ -26,12 +26,14 @@ export default function OverviewCard({
       <CardTitle>{location}</CardTitle>
       <TripDate>You arrive on {startDate}</TripDate>
       <TripDate>You depart on {endDate}</TripDate>
-      <ButtonSimple onClick={() => buttonFunctionDelete(mongoID)}>
-        Delete
-      </ButtonSimple>
-      <ButtonSimple onClick={() => buttonFunctionUpdate(mongoID)}>
-        Update
-      </ButtonSimple>
+      <FlexArea>
+        <ButtonSimple onClick={() => buttonFunctionDelete(mongoID)}>
+          Delete
+        </ButtonSimple>
+        <ButtonSimple onClick={() => buttonFunctionUpdate(mongoID)}>
+          Update
+        </ButtonSimple>
+      </FlexArea>
     </Card>
   );
 }
@@ -49,4 +51,9 @@ const TripDate = styled.span`
   justify-self: end;
   text-align: center;
   margin: 4px;
+`;
+
+const FlexArea = styled.div`
+  display: flex;
+  gap: 4px;
 `;
