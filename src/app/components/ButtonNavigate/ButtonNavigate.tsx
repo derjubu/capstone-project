@@ -6,15 +6,19 @@ import ButtonDefault from '../ButtonDefault/ButtonDefault';
 type ButtonNavigateProps = {
   children: ReactNode;
   link: string;
+  onClick?: () => void;
 };
 
 export default function ButtonNavigate({
   children,
   link,
+  onClick,
 }: ButtonNavigateProps): JSX.Element {
   return (
     <ButtonDefault>
-      <ButtonText to={link}>{children}</ButtonText>
+      <ButtonText to={link} onClick={onClick}>
+        {children}
+      </ButtonText>
     </ButtonDefault>
   );
 }

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import AppTitle from '../../components/AppTitle/AppTitle';
 import AppSubTitle from '../../components/AppSubTitle/AppSubTitle';
+import ContentArea from '../../components/ContentArea/ContentArea';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/locations/');
@@ -85,7 +86,9 @@ export default function Itinerary(): JSX.Element {
     return (
       <>
         <AppTitle>Travelbuddy</AppTitle>
+
         <AppSubTitle>Your Itinerary</AppSubTitle>
+
         <LocationMap
           longitude={
             locations[0].newDestination.location.geometry.coordinates[0]
@@ -94,21 +97,25 @@ export default function Itinerary(): JSX.Element {
             locations[0].newDestination.location.geometry.coordinates[1]
           }
         />
-        {locations.map((stop: any) => (
-          <OverviewCard
-            key={`${
-              stop.newDestination.location.properties.name
-            }-${locations.indexOf(stop)}`}
-            location={stop.newDestination.location.properties.name}
-            startDate={stop.newDestination.startDate as string}
-            endDate={stop.newDestination.endDate as string}
-            mongoID={stop._id}
-            buttonFunctionDelete={() => deleteDestination(stop._id)}
-            buttonFunctionUpdate={() => updateDestination(stop._id)}
-          />
-        ))}
+        <ContentArea>
+          {locations.map((stop: any) => (
+            <OverviewCard
+              key={`${
+                stop.newDestination.location.properties.name
+              }-${locations.indexOf(stop)}`}
+              location={stop.newDestination.location.properties.name}
+              startDate={stop.newDestination.startDate as string}
+              endDate={stop.newDestination.endDate as string}
+              mongoID={stop._id}
+              buttonFunctionDelete={() => deleteDestination(stop._id)}
+              buttonFunctionUpdate={() => updateDestination(stop._id)}
+            />
+          ))}
 
-        <ButtonNavigate link="/addDestination">Add Destination</ButtonNavigate>
+          <ButtonNavigate link="/addDestination">
+            Add Destination
+          </ButtonNavigate>
+        </ContentArea>
       </>
     );
   } else if (locations === null) {
@@ -138,21 +145,25 @@ export default function Itinerary(): JSX.Element {
             locations={locationsCoordinates}
           />
         }
-        {locations?.map((stop: any) => (
-          <OverviewCard
-            key={`${
-              stop.newDestination.location.properties.name
-            }-${locations.indexOf(stop)}`}
-            location={stop.newDestination.location.properties.name}
-            startDate={stop.newDestination.startDate as string}
-            endDate={stop.newDestination.endDate as string}
-            mongoID={stop._id}
-            buttonFunctionDelete={() => deleteDestination(stop._id)}
-            buttonFunctionUpdate={() => updateDestination(stop._id)}
-          />
-        ))}
+        <ContentArea>
+          {locations?.map((stop: any) => (
+            <OverviewCard
+              key={`${
+                stop.newDestination.location.properties.name
+              }-${locations.indexOf(stop)}`}
+              location={stop.newDestination.location.properties.name}
+              startDate={stop.newDestination.startDate as string}
+              endDate={stop.newDestination.endDate as string}
+              mongoID={stop._id}
+              buttonFunctionDelete={() => deleteDestination(stop._id)}
+              buttonFunctionUpdate={() => updateDestination(stop._id)}
+            />
+          ))}
 
-        <ButtonNavigate link="/addDestination">Add Destination</ButtonNavigate>
+          <ButtonNavigate link="/addDestination">
+            Add Destination
+          </ButtonNavigate>
+        </ContentArea>
       </>
     );
   }

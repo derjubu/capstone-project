@@ -37,9 +37,8 @@ export default function OverviewCard({
 }
 
 const Card = styled.article`
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 5px;
+  width: calc(100vw - 8px);
   max-width: 640px;
   box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.035),
     4px 4px 8px rgba(0, 0, 0, 0.07);

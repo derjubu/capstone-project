@@ -57,7 +57,7 @@ export default function DestinationDetailView(): JSX.Element {
         endDate={endDate}
       />
       <LocationMap longitude={longitude} latitude={latitude} />
-      <ButtonNavigate to="/" onClick={goToItinerary}>
+      <ButtonNavigate link="/" onClick={goToItinerary}>
         Go on
       </ButtonNavigate>
     </>
