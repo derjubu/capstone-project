@@ -65,6 +65,7 @@ export default function Itinerary(): JSX.Element {
   if (locations === undefined) {
     return (
       <>
+        <h1>Travelbuddy</h1>
         <p>Please wait a second</p>
       </>
     );
