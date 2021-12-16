@@ -7,6 +7,7 @@ import OverviewCard from '../../components/OverviewCard/OverviewCard';
 import type { ObjectId } from 'bson';
 import { useNavigate } from 'react-router';
 import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
+import AppTitle from '../../components/AppTitle/AppTitle';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/locations/');
@@ -65,7 +66,7 @@ export default function Itinerary(): JSX.Element {
   if (locations === undefined) {
     return (
       <>
-        <h1>Travelbuddy</h1>
+        <AppTitle>Travelbuddy</AppTitle>
         <p>Please wait a second</p>
       </>
     );
@@ -74,6 +75,7 @@ export default function Itinerary(): JSX.Element {
   if (locations?.length === 0) {
     return (
       <>
+        <AppTitle>Travelbuddy</AppTitle>
         <p>Please enter a location</p>
         <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
       </>
@@ -81,6 +83,7 @@ export default function Itinerary(): JSX.Element {
   } else if (locations?.length === 1) {
     return (
       <>
+        <AppTitle>Travelbuddy</AppTitle>
         <p>Please enter a location</p>
         {locations.map((stop: any) => (
           <OverviewCard
@@ -108,15 +111,19 @@ export default function Itinerary(): JSX.Element {
     );
   } else if (locations === null) {
     return (
-      <p>
-        Ooops, something went wrong. Apparently the database did not respond
-      </p>
+      <>
+        <AppTitle>Travelbuddy</AppTitle>
+        <p>
+          Ooops, something went wrong. Apparently the database did not respond
+        </p>
+      </>
     );
   }
 
   {
     return (
       <>
+        <AppTitle>Travelbuddy</AppTitle>
         <p>Please enter a location</p>
         {locations?.map((stop: any) => (
           <OverviewCard
