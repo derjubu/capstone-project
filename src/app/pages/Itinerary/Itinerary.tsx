@@ -85,6 +85,14 @@ export default function Itinerary(): JSX.Element {
       <>
         <AppTitle>Travelbuddy</AppTitle>
         <p>Please enter a location</p>
+        <LocationMap
+          longitude={
+            locations[0].newDestination.location.geometry.coordinates[0]
+          }
+          latitude={
+            locations[0].newDestination.location.geometry.coordinates[1]
+          }
+        />
         {locations.map((stop: any) => (
           <OverviewCard
             key={`${
@@ -98,14 +106,7 @@ export default function Itinerary(): JSX.Element {
             buttonFunctionUpdate={() => updateDestination(stop._id)}
           />
         ))}
-        <LocationMap
-          longitude={
-            locations[0].newDestination.location.geometry.coordinates[0]
-          }
-          latitude={
-            locations[0].newDestination.location.geometry.coordinates[1]
-          }
-        />
+
         <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
@@ -125,6 +126,17 @@ export default function Itinerary(): JSX.Element {
       <>
         <AppTitle>Travelbuddy</AppTitle>
         <p>Please enter a location</p>
+        {
+          <ItineraryMap
+            longitude={
+              locations[0].newDestination.location.geometry.coordinates[0]
+            }
+            latitude={
+              locations[0].newDestination.location.geometry.coordinates[1]
+            }
+            locations={locationsCoordinates}
+          />
+        }
         {locations?.map((stop: any) => (
           <OverviewCard
             key={`${
@@ -138,17 +150,7 @@ export default function Itinerary(): JSX.Element {
             buttonFunctionUpdate={() => updateDestination(stop._id)}
           />
         ))}
-        {
-          <ItineraryMap
-            longitude={
-              locations[0].newDestination.location.geometry.coordinates[0]
-            }
-            latitude={
-              locations[0].newDestination.location.geometry.coordinates[1]
-            }
-            locations={locationsCoordinates}
-          />
-        }
+
         <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
