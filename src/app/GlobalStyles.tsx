@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  margin: 10px;
+  margin: 0;
   font-family: 'Roboto', 'Helvetica',
       sans-serif;
   }
