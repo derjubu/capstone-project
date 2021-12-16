@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
   --color-background-secondary: white;
   --color-primary: white;
   --color-secondary: #F9AA33;
+
 }
 
 body {

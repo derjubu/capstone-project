@@ -8,6 +8,7 @@ import type { ObjectId } from 'bson';
 import { useNavigate } from 'react-router';
 import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import AppTitle from '../../components/AppTitle/AppTitle';
+import AppSubTitle from '../../components/AppSubTitle/AppSubTitle';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/locations/');
@@ -76,7 +77,7 @@ export default function Itinerary(): JSX.Element {
     return (
       <>
         <AppTitle>Travelbuddy</AppTitle>
-        <p>Please enter a location</p>
+        <AppSubTitle>Your Itinerary</AppSubTitle>
         <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
@@ -84,7 +85,7 @@ export default function Itinerary(): JSX.Element {
     return (
       <>
         <AppTitle>Travelbuddy</AppTitle>
-        <p>Please enter a location</p>
+        <AppSubTitle>Your Itinerary</AppSubTitle>
         <LocationMap
           longitude={
             locations[0].newDestination.location.geometry.coordinates[0]
@@ -125,7 +126,7 @@ export default function Itinerary(): JSX.Element {
     return (
       <>
         <AppTitle>Travelbuddy</AppTitle>
-        <p>Please enter a location</p>
+        <AppSubTitle>Your Itinerary</AppSubTitle>
         {
           <ItineraryMap
             longitude={
