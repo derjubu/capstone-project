@@ -78,7 +78,7 @@ export default function Itinerary(): JSX.Element {
       <>
         <AppTitle>Travelbuddy</AppTitle>
         <AppSubTitle>Your Itinerary</AppSubTitle>
-        <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
+        <ButtonNavigate link="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
   } else if (locations?.length === 1) {
@@ -108,7 +108,7 @@ export default function Itinerary(): JSX.Element {
           />
         ))}
 
-        <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
+        <ButtonNavigate link="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
   } else if (locations === null) {
@@ -152,7 +152,7 @@ export default function Itinerary(): JSX.Element {
           />
         ))}
 
-        <ButtonNavigate to="/addDestination">Add Destination</ButtonNavigate>
+        <ButtonNavigate link="/addDestination">Add Destination</ButtonNavigate>
       </>
     );
   }

@@ -13,6 +13,18 @@ const GlobalStyle = createGlobalStyle`
 
 }
 
+:-webkit-any-link {
+  text-decoration: none
+}
+
+:-moz-any-link {
+  text-decoration: none
+}
+
+:any-link {
+  text-decoration: none
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', 'Helvetica',
