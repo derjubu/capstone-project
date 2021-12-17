@@ -6,8 +6,8 @@ const DestinationForm = styled.form`
   padding-bottom: 5px;
   list-style: none;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   border: #fff solid 1px;
   border-radius: 5px;

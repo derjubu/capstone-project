@@ -40,12 +40,12 @@ export default function AddDestination(): JSX.Element {
     <>
       <DestinationForm onSubmit={goToDetailpage}>
         <CardTitle>Add a new destination</CardTitle>
-        <InputLabel inputGridColumn="2/6" htmlFor="destination">
+        <InputLabel htmlFor="destination">
           Where do you want to go?
           <div id="destination"></div>
         </InputLabel>
 
-        <InputLabel inputGridColumn="2/6" htmlFor="start-trip">
+        <InputLabel htmlFor="start-trip">
           When do you arrive?
           <InputField
             type="date"
@@ -54,7 +54,7 @@ export default function AddDestination(): JSX.Element {
             onChange={(event) => setNewStartDate(event.target.value)}
           />
         </InputLabel>
-        <InputLabel inputGridColumn="2/6" htmlFor="end-trip">
+        <InputLabel htmlFor="end-trip">
           When do you leave?
           <InputField
             type="date"
