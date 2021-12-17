@@ -10,10 +10,23 @@ const GlobalStyle = createGlobalStyle`
   --color-background-secondary: white;
   --color-primary: white;
   --color-secondary: #F9AA33;
+
+}
+
+:-webkit-any-link {
+  text-decoration: none
+}
+
+:-moz-any-link {
+  text-decoration: none
+}
+
+:any-link {
+  text-decoration: none
 }
 
 body {
-  margin: 10px;
+  margin: 0;
   font-family: 'Roboto', 'Helvetica',
       sans-serif;
   }

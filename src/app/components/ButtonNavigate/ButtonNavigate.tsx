@@ -1,17 +1,32 @@
+import React from 'react';
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import ButtonDefault from '../ButtonDefault/ButtonDefault';
 
-const ButtonNavigate = styled(Link)`
-  text-decoration: none;
-  border: 2px var(--color-secondary) solid;
-  border-radius: 4px;
-  background: var(--color-background-primary);
-  color: var(--color-primary);
-  font-size: 1rem;
-  padding: 0 8px;
-  font-weight: bold;
-  width: fit-content;
-  min-height: 48px;
+type ButtonNavigateProps = {
+  children: ReactNode;
+  link: string;
+  onClick?: () => void;
+};
+
+export default function ButtonNavigate({
+  children,
+  link,
+  onClick,
+}: ButtonNavigateProps): JSX.Element {
+  return (
+    <ButtonDefault>
+      <ButtonText to={link} onClick={onClick}>
+        {children}
+      </ButtonText>
+    </ButtonDefault>
+  );
+}
+
+const ButtonText = styled(Link)`
+  &:visited {
+    text-decoration: none;
+    color: var(--color-primary);
+  }
 `;
-
-export default ButtonNavigate;
