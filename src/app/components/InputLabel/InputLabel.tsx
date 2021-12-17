@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const InputLabel = styled('label')`
-  color: var(--color-secondary);
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export default InputLabel;

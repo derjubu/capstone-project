@@ -8,11 +8,10 @@ const DestinationForm = styled.form`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 12px;
   border: #fff solid 1px;
   border-radius: 5px;
-  justify-items: center;
-  text-align: center;
 
   ${DefaultButton} {
     margin: 10px;
