@@ -51,6 +51,7 @@ export default function AddDestination(): JSX.Element {
         <InputLabel htmlFor="start-trip">
           When do you arrive?
           <InputField
+            required
             type="date"
             id="start-trip"
             value={newStartDate}
@@ -60,6 +61,7 @@ export default function AddDestination(): JSX.Element {
         <InputLabel htmlFor="end-trip">
           When do you leave?
           <InputField
+            required
             type="date"
             id="end-trip"
             value={newEndDate}
