@@ -11,6 +11,7 @@ const ButtonDefault = styled.button`
   font-weight: bold;
   width: fit-content;
   min-height: 48px;
+  min-width: 156px;
 `;
 
 export default ButtonDefault;

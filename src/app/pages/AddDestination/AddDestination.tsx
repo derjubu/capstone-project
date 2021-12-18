@@ -63,12 +63,12 @@ export default function AddDestination(): JSX.Element {
             onChange={(event) => setNewEndDate(event.target.value)}
           />
         </InputLabel>
+        <MapWithMarker
+          displayArea={'#destination'}
+          onChange={(event) => setNewLocation(event)}
+        />
         <ButtonDefault>Check</ButtonDefault>
       </DestinationForm>
-      <MapWithMarker
-        displayArea={'#destination'}
-        onChange={(event) => setNewLocation(event)}
-      />
     </>
   );
 }

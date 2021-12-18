@@ -9,7 +9,7 @@ const DestinationForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 12px;
+  gap: 16px;
   border: #fff solid 1px;
   border-radius: 5px;
 
