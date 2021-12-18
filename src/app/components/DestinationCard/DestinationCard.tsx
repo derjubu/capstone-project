@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import CardTitle from '../CardTitle/CardTitle';
 
 type DestinationCardProps = {
   location: string;
