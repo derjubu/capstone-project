@@ -5,7 +5,7 @@ const InputField = styled('input')`
   border: 3px solid var(--color-background-primary);
   border-radius: 5px;
   min-height: 48px;
-  min-width: 328px;
+  width: calc(100% - 24px);
   font-size: 1rem;
   font-weight: bold;
 `;
