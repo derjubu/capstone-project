@@ -101,8 +101,6 @@ const MapContainer = styled.div`
   height: 250px;
   border: 1px solid var(--color-background-primary);
   border-radius: 4px;
-
-  & 
 `;
 
 const MapLegend = styled.div`
