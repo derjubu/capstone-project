@@ -15,7 +15,6 @@ const DestinationForm = styled.form`
 
   ${DefaultButton} {
     margin: 10px;
-    grid-column: 3/5;
   }
 `;
 export default DestinationForm;

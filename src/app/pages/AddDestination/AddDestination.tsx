@@ -8,6 +8,8 @@ import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import ButtonDefault from '../../components/ButtonDefault/ButtonDefault';
+import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
+import ButtonArea from '../../components/ButtonArea/ButtonArea';
 
 export default function AddDestination(): JSX.Element {
   const [newStartDate, setNewStartDate] = useState('');
@@ -67,7 +69,10 @@ export default function AddDestination(): JSX.Element {
           displayArea={'#destination'}
           onChange={(event) => setNewLocation(event)}
         />
-        <ButtonDefault>Check</ButtonDefault>
+        <ButtonArea>
+          <ButtonNavigate link="/">Back</ButtonNavigate>
+          <ButtonDefault>Check</ButtonDefault>
+        </ButtonArea>
       </DestinationForm>
     </>
   );
