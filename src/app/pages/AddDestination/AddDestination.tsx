@@ -10,7 +10,6 @@ import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import ButtonDefault from '../../components/ButtonDefault/ButtonDefault';
 import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
-import styled from 'styled-components';
 import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 
 export default function AddDestination(): JSX.Element {
