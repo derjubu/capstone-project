@@ -10,6 +10,8 @@ import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import ButtonDefault from '../../components/ButtonDefault/ButtonDefault';
 import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
+import styled from 'styled-components';
+import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 
 export default function AddDestination(): JSX.Element {
   const [newStartDate, setNewStartDate] = useState('');
@@ -44,7 +46,7 @@ export default function AddDestination(): JSX.Element {
         <CardTitle>Add a new destination</CardTitle>
         <InputLabel htmlFor="destination">
           Where do you want to go?
-          <div id="destination"></div>
+          <GeocoderArea id="destination"></GeocoderArea>
         </InputLabel>
 
         <InputLabel htmlFor="start-trip">

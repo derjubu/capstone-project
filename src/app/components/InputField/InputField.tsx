@@ -9,6 +9,7 @@ const InputField = styled('input')`
   width: calc(100% - 24px);
   font-size: 1rem;
   font-weight: bold;
+  padding: 0 8px;
 `;
 
 export default InputField;
