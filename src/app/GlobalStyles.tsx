@@ -26,14 +26,16 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  margin: 0;
+  margin: 0 auto 0 auto;
   font-family: 'Roboto', 'Helvetica',
       sans-serif;
+  max-width: 640px;
   }
   
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
-  }`;
+  };
+`;
 
 export default GlobalStyle;

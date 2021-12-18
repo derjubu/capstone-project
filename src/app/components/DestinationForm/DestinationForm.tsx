@@ -6,17 +6,15 @@ const DestinationForm = styled.form`
   padding-bottom: 5px;
   list-style: none;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 16px;
   border: #fff solid 1px;
   border-radius: 5px;
-  justify-items: center;
-  text-align: center;
 
   ${DefaultButton} {
     margin: 10px;
-    grid-column: 3/5;
   }
 `;
 export default DestinationForm;

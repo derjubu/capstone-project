@@ -8,6 +8,9 @@ import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import ButtonDefault from '../../components/ButtonDefault/ButtonDefault';
+import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
+import ButtonArea from '../../components/ButtonArea/ButtonArea';
+import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 
 export default function AddDestination(): JSX.Element {
   const [newStartDate, setNewStartDate] = useState('');
@@ -40,35 +43,40 @@ export default function AddDestination(): JSX.Element {
     <>
       <DestinationForm onSubmit={goToDetailpage}>
         <CardTitle>Add a new destination</CardTitle>
-        <InputLabel inputGridColumn="2/6" htmlFor="destination">
+        <InputLabel htmlFor="destination">
           Where do you want to go?
-          <div id="destination"></div>
+          <GeocoderArea id="destination"></GeocoderArea>
         </InputLabel>
 
-        <InputLabel inputGridColumn="2/6" htmlFor="start-trip">
+        <InputLabel htmlFor="start-trip">
           When do you arrive?
           <InputField
+            required
             type="date"
             id="start-trip"
             value={newStartDate}
             onChange={(event) => setNewStartDate(event.target.value)}
           />
         </InputLabel>
-        <InputLabel inputGridColumn="2/6" htmlFor="end-trip">
+        <InputLabel htmlFor="end-trip">
           When do you leave?
           <InputField
+            required
             type="date"
             id="end-trip"
             value={newEndDate}
             onChange={(event) => setNewEndDate(event.target.value)}
           />
         </InputLabel>
-        <ButtonDefault>Check</ButtonDefault>
+        <MapWithMarker
+          displayArea={'#destination'}
+          onChange={(event) => setNewLocation(event)}
+        />
+        <ButtonArea>
+          <ButtonNavigate link="/">Back</ButtonNavigate>
+          <ButtonDefault>Check</ButtonDefault>
+        </ButtonArea>
       </DestinationForm>
-      <MapWithMarker
-        displayArea={'#destination'}
-        onChange={(event) => setNewLocation(event)}
-      />
     </>
   );
 }
