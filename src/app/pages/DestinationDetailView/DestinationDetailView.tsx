@@ -5,6 +5,7 @@ import type { DestinationType } from '../../utils/DestinationType';
 import LocationMap from '../../components/LocationMap/LocationMap';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
 import CheckInputArea from '../../components/CheckInputArea/CheckInputArea';
+import CardTitle from '../../components/CardTitle/CardTitle';
 
 export default function DestinationDetailView(): JSX.Element {
   const currentDestination: DestinationType = JSON.parse(
@@ -53,6 +54,7 @@ export default function DestinationDetailView(): JSX.Element {
 
   return (
     <CheckInputArea>
+      <CardTitle>Add a new destination</CardTitle>
       <DestinationCard
         location={currentLocation}
         startDate={startDate}

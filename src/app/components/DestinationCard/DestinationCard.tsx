@@ -15,25 +15,26 @@ export default function DestinationCard({
 }: DestinationCardProps): JSX.Element {
   return (
     <Card>
-      <CardTitle>{location}</CardTitle>
-      <TripStart>{startDate}</TripStart>
-      <TripEnd>{endDate}</TripEnd>
+      <span>Where do you want to go?</span>
+      <InputData>{location}</InputData>
+      <span>Where do you want to arrive?</span>
+      <InputData>{startDate}</InputData>
+      <span>Where do you want to leave?</span>
+      <InputData>{endDate}</InputData>
     </Card>
   );
 }
 
 const Card = styled.article`
-  display: grid;
-  column-gap: 5px;
-  border: black solid 1px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20%;
+  align-items: flex-start;
   border-radius: 5px;
 `;
-
-const TripStart = styled.span`
-  grid-column: 1 / span 2;
-  justify-self: end;
-`;
-const TripEnd = styled.span`
-  grid-column: 5 / span 2;
-  justify-self: start;
+const InputData = styled.span`
+  color: var(--color-secondary);
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
