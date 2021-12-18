@@ -14,7 +14,7 @@ const CheckInputArea = styled.form`
   border-radius: 5px;
   width: 100%;
   ${DefaultButton} {
-    margin: 10px;
+    margin: 10px 0;
   }
 `;
 export default CheckInputArea;

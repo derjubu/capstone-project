@@ -7,7 +7,7 @@ const ButtonDefault = styled.button`
   background: var(--color-background-primary);
   color: var(--color-primary);
   font-size: 1rem;
-  padding: 0 8px;
+  padding: 0 4px;
   font-weight: bold;
   width: fit-content;
   min-height: 48px;

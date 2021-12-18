@@ -23,11 +23,7 @@ export default function DestinationCard({
 }
 
 const Card = styled.article`
-  max-width: 1400;
-  margin-left: auto;
-  margin-right: auto;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
   column-gap: 5px;
   border: black solid 1px;
   border-radius: 5px;

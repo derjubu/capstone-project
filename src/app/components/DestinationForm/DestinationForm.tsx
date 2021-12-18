@@ -14,7 +14,7 @@ const DestinationForm = styled.form`
   border-radius: 5px;
 
   ${DefaultButton} {
-    margin: 10px;
+    margin: 10px 0;
   }
 `;
 export default DestinationForm;
