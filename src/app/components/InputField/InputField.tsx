@@ -10,6 +10,7 @@ const InputField = styled('input')`
   font-size: 1rem;
   font-weight: bold;
   padding: 0 8px;
+  background-color: var(--color-background-secondary);
 `;
 
 export default InputField;
