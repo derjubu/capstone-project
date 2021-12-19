@@ -45,7 +45,7 @@ export default function AddDestination(): JSX.Element {
       <DestinationForm onSubmit={goToDetailpage}>
         <InputLabel htmlFor="destination">
           Where do you want to go?
-          <GeocoderArea id="destination"></GeocoderArea>
+          <GeocoderArea id="destination" />
         </InputLabel>
 
         <InputLabel htmlFor="start-trip">

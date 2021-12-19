@@ -75,7 +75,7 @@ export default function UpdateDestination(): JSX.Element {
         <CardTitle>Add a new destination</CardTitle>
         <InputLabel htmlFor="destination">
           Where do you want to go?
-          <GeocoderArea id="destination"></GeocoderArea>
+          <GeocoderArea id="destination" />
         </InputLabel>
 
         <InputLabel htmlFor="start-trip">

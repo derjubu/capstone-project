@@ -7,8 +7,9 @@ const GlobalStyle = createGlobalStyle`
 
 :root {
   --color-background-primary: #2556FF;
-  --color-background-secondary: white;
-  --color-primary: white;
+  --color-background-secondary: #FFF;
+  --color-background-tertiary: #FBFBFB;
+  --color-primary: #FFF;
   --color-secondary: #2556FF;
 
 }
@@ -30,7 +31,7 @@ body {
   font-family: 'Roboto', 'Helvetica',
       sans-serif;
   max-width: 640px;
-  background-color: #FBFBFB;
+  background-color: var(--color-background-tertiary);
   }
   
   code {
