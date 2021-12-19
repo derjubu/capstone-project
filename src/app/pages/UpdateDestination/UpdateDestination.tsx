@@ -5,6 +5,7 @@ import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
 import DefaultButton, {
   ButtonNavigate,
+  ButtonNavigateSecondary,
 } from '../../components/ButtonDefault/ButtonDefault';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
@@ -108,7 +109,7 @@ export default function UpdateDestination(): JSX.Element {
           onChange={(event) => setNewLocation(event)}
         />
         <ButtonArea>
-          <ButtonNavigate link="/">Back</ButtonNavigate>
+          <ButtonNavigateSecondary link="/">Back</ButtonNavigateSecondary>
           <DefaultButton>Check</DefaultButton>
         </ButtonArea>
       </DestinationForm>

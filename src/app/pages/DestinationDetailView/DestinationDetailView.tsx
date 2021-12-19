@@ -5,7 +5,10 @@ import LocationMap from '../../components/LocationMap/LocationMap';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
 import CheckInputArea from '../../components/CheckInputArea/CheckInputArea';
 import CardTitle from '../../components/CardTitle/CardTitle';
-import { ButtonNavigate } from '../../components/ButtonDefault/ButtonDefault';
+import {
+  ButtonNavigate,
+  ButtonNavigateSecondary,
+} from '../../components/ButtonDefault/ButtonDefault';
 
 export default function DestinationDetailView(): JSX.Element {
   const currentDestination: DestinationType = JSON.parse(
@@ -63,7 +66,9 @@ export default function DestinationDetailView(): JSX.Element {
         />
         <LocationMap longitude={longitude} latitude={latitude} />
         <ButtonArea>
-          <ButtonNavigate link="/AddDestination">Back</ButtonNavigate>
+          <ButtonNavigateSecondary link="/AddDestination">
+            Back
+          </ButtonNavigateSecondary>
           <ButtonNavigate link="/" onClick={goToItinerary}>
             Go on
           </ButtonNavigate>

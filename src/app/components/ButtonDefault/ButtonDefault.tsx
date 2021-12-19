@@ -35,6 +35,13 @@ export const ButtonDefaultInverted = styled(ButtonDefault)`
 const ButtonText = styled(Link)`
   &:visited {
     text-decoration: none;
+    color: var(--color-primary);
+  }
+`;
+
+const ButtonTextSecondary = styled(Link)`
+  &:visited {
+    text-decoration: none;
     color: var(--color-secondary);
   }
 `;
@@ -51,10 +58,24 @@ export function ButtonNavigate({
   onClick,
 }: ButtonNavigateProps): JSX.Element {
   return (
-    <ButtonDefaultInverted>
+    <ButtonDefault>
       <ButtonText to={link} onClick={onClick}>
         {children}
       </ButtonText>
+    </ButtonDefault>
+  );
+}
+
+export function ButtonNavigateSecondary({
+  children,
+  link,
+  onClick,
+}: ButtonNavigateProps): JSX.Element {
+  return (
+    <ButtonDefaultInverted>
+      <ButtonTextSecondary to={link} onClick={onClick}>
+        {children}
+      </ButtonTextSecondary>
     </ButtonDefaultInverted>
   );
 }
