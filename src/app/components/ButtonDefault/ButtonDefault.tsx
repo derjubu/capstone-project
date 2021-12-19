@@ -15,3 +15,10 @@ const ButtonDefault = styled.button`
 `;
 
 export default ButtonDefault;
+
+export const ButtonDefaultSimple = styled(ButtonDefault)`
+  border: 2px var(--color-primary) solid;
+  background: var(--color-background-secondary);
+  color: var(--color-secondary);
+  min-width: unset;
+`;
