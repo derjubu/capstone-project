@@ -10,6 +10,7 @@ import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import AppTitle from '../../components/AppTitle/AppTitle';
 import AppSubTitle from '../../components/AppSubTitle/AppSubTitle';
 import ContentArea from '../../components/ContentArea/ContentArea';
+import ButtonArea from '../../components/ButtonArea/ButtonArea';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/locations/');
@@ -111,7 +112,6 @@ export default function Itinerary(): JSX.Element {
               buttonFunctionUpdate={() => updateDestination(stop._id)}
             />
           ))}
-
           <ButtonNavigate link="/addDestination">
             Add Destination
           </ButtonNavigate>

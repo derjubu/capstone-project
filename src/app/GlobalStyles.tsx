@@ -6,10 +6,10 @@ const GlobalStyle = createGlobalStyle`
 }
 
 :root {
-  --color-background-primary: #F9AA33;
+  --color-background-primary: #2556FF;
   --color-background-secondary: white;
   --color-primary: white;
-  --color-secondary: #F9AA33;
+  --color-secondary: #2556FF;
 
 }
 
@@ -30,6 +30,7 @@ body {
   font-family: 'Roboto', 'Helvetica',
       sans-serif;
   max-width: 640px;
+  background-color: #FBFBFB;
   }
   
   code {
