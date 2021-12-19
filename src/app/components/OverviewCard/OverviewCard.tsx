@@ -2,7 +2,6 @@ import type { ObjectId } from 'mongodb';
 import React from 'react';
 import styled from 'styled-components';
 import CardTitle from '../CardTitle/CardTitle';
-import ButtonSimple from '../ButtonSimple/ButtonSimple';
 import { ButtonDefaultSimple } from '../ButtonDefault/ButtonDefault';
 
 type DestinationCardProps = {
