@@ -1,11 +1,11 @@
 import React from 'react';
-import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import DestinationCard from '../../components/DestinationCard/DestinationCard';
 import type { DestinationType } from '../../utils/DestinationType';
 import LocationMap from '../../components/LocationMap/LocationMap';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
 import CheckInputArea from '../../components/CheckInputArea/CheckInputArea';
 import CardTitle from '../../components/CardTitle/CardTitle';
+import { ButtonNavigate } from '../../components/ButtonDefault/ButtonDefault';
 
 export default function DestinationDetailView(): JSX.Element {
   const currentDestination: DestinationType = JSON.parse(

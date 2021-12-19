@@ -1,3 +1,6 @@
+import React from 'react';
+import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ButtonDefault = styled.button`
@@ -22,3 +25,36 @@ export const ButtonDefaultSimple = styled(ButtonDefault)`
   color: var(--color-secondary);
   min-width: unset;
 `;
+
+export const ButtonDefaultInverted = styled(ButtonDefault)`
+  border: 2px var(--color-secondary) solid;
+  background: var(--color-background-secondary);
+  color: var(--color-secondary);
+`;
+
+const ButtonText = styled(Link)`
+  &:visited {
+    text-decoration: none;
+    color: var(--color-secondary);
+  }
+`;
+
+type ButtonNavigateProps = {
+  children: ReactNode;
+  link: string;
+  onClick?: () => void;
+};
+
+export function ButtonNavigate({
+  children,
+  link,
+  onClick,
+}: ButtonNavigateProps): JSX.Element {
+  return (
+    <ButtonDefaultInverted>
+      <ButtonText to={link} onClick={onClick}>
+        {children}
+      </ButtonText>
+    </ButtonDefaultInverted>
+  );
+}

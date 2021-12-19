@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
-import ButtonDefault from '../../components/ButtonDefault/ButtonDefault';
-import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
+import ButtonDefault, {
+  ButtonNavigate,
+} from '../../components/ButtonDefault/ButtonDefault';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
 import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 

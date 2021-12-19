@@ -6,10 +6,10 @@ import useFetch from '../../hooks/useFetch';
 import OverviewCard from '../../components/OverviewCard/OverviewCard';
 import type { ObjectId } from 'bson';
 import { useNavigate } from 'react-router';
-import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 import AppTitle from '../../components/AppTitle/AppTitle';
 import AppSubTitle from '../../components/AppSubTitle/AppSubTitle';
 import ContentArea from '../../components/ContentArea/ContentArea';
+import { ButtonNavigate } from '../../components/ButtonDefault/ButtonDefault';
 
 export default function Itinerary(): JSX.Element {
   const locations = useFetch<any[]>('/api/locations/');
