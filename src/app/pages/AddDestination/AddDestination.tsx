@@ -8,7 +8,6 @@ import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import ButtonDefault, {
-  ButtonNavigate,
   ButtonNavigateSecondary,
 } from '../../components/ButtonDefault/ButtonDefault';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';

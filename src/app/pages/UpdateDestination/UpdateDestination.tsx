@@ -4,7 +4,6 @@ import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
 import DefaultButton, {
-  ButtonNavigate,
   ButtonNavigateSecondary,
 } from '../../components/ButtonDefault/ButtonDefault';
 import type { DestinationType } from '../../utils/DestinationType';
