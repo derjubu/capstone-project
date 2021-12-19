@@ -111,7 +111,6 @@ export default function Itinerary(): JSX.Element {
               buttonFunctionUpdate={() => updateDestination(stop._id)}
             />
           ))}
-
           <ButtonNavigate link="/addDestination">
             Add Destination
           </ButtonNavigate>

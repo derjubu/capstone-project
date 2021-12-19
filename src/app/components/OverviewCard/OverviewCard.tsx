@@ -40,10 +40,11 @@ export default function OverviewCard({
 
 const Card = styled.article`
   border-radius: 5px;
-  width: calc(100vw - 8px);
+  width: 100%;
   max-width: 640px;
   box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.035),
     4px 4px 8px rgba(0, 0, 0, 0.07);
+  background-color: var(--color-background-secondary);
 `;
 
 const TripDate = styled.span`

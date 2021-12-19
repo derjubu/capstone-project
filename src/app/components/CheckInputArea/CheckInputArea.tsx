@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import DefaultButton from '../ButtonDefault/ButtonDefault';
 
 const CheckInputArea = styled.form`
-  background: var(--background-color-tertiary);
+  background: var(--background-color-secondary);
   padding-bottom: 5px;
   list-style: none;
   margin: 0 auto;

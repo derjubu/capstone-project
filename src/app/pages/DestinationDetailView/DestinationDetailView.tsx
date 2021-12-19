@@ -53,20 +53,22 @@ export default function DestinationDetailView(): JSX.Element {
   }
 
   return (
-    <CheckInputArea>
+    <>
       <CardTitle>Add a new destination</CardTitle>
-      <DestinationCard
-        location={currentLocation}
-        startDate={startDate}
-        endDate={endDate}
-      />
-      <LocationMap longitude={longitude} latitude={latitude} />
-      <ButtonArea>
-        <ButtonNavigate link="/AddDestination">Back</ButtonNavigate>
-        <ButtonNavigate link="/" onClick={goToItinerary}>
-          Go on
-        </ButtonNavigate>
-      </ButtonArea>
-    </CheckInputArea>
+      <CheckInputArea>
+        <DestinationCard
+          location={currentLocation}
+          startDate={startDate}
+          endDate={endDate}
+        />
+        <LocationMap longitude={longitude} latitude={latitude} />
+        <ButtonArea>
+          <ButtonNavigate link="/AddDestination">Back</ButtonNavigate>
+          <ButtonNavigate link="/" onClick={goToItinerary}>
+            Go on
+          </ButtonNavigate>
+        </ButtonArea>
+      </CheckInputArea>
+    </>
   );
 }
