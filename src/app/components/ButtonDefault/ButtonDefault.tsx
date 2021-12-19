@@ -33,6 +33,7 @@ export const ButtonDefaultInverted = styled(ButtonDefault)`
 `;
 
 const ButtonText = styled(Link)`
+  color: var(--color-primary);
   &:visited {
     text-decoration: none;
     color: var(--color-primary);
@@ -40,6 +41,7 @@ const ButtonText = styled(Link)`
 `;
 
 const ButtonTextSecondary = styled(Link)`
+  color: var(--color-secondary);
   &:visited {
     text-decoration: none;
     color: var(--color-secondary);
