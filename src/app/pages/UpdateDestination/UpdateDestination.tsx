@@ -8,6 +8,9 @@ import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import { useNavigate } from 'react-router';
+import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
+import ButtonArea from '../../components/ButtonArea/ButtonArea';
+import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 
 export default function UpdateDestination(): JSX.Element {
   const currentId = window.localStorage
@@ -72,7 +75,7 @@ export default function UpdateDestination(): JSX.Element {
         <CardTitle>Add a new destination</CardTitle>
         <InputLabel htmlFor="destination">
           Where do you want to go?
-          <div id="destination"></div>
+          <GeocoderArea id="destination"></GeocoderArea>
         </InputLabel>
 
         <InputLabel htmlFor="start-trip">
@@ -93,18 +96,21 @@ export default function UpdateDestination(): JSX.Element {
             onChange={(event) => setNewEndDate(event.target.value)}
           />
         </InputLabel>
-        <DefaultButton>Update Destination</DefaultButton>
+        <MapWithMarker
+          defaultCoordinates={
+            currentDestination[0].newDestination.location.geometry.coordinates
+          }
+          defaultLocation={
+            currentDestination[0].newDestination.location.properties.name
+          }
+          displayArea={'#destination'}
+          onChange={(event) => setNewLocation(event)}
+        />
+        <ButtonArea>
+          <ButtonNavigate link="/">Back</ButtonNavigate>
+          <DefaultButton>Check</DefaultButton>
+        </ButtonArea>
       </DestinationForm>
-      <MapWithMarker
-        defaultCoordinates={
-          currentDestination[0].newDestination.location.geometry.coordinates
-        }
-        defaultLocation={
-          currentDestination[0].newDestination.location.properties.name
-        }
-        displayArea={'#destination'}
-        onChange={(event) => setNewLocation(event)}
-      />
     </>
   );
 }
