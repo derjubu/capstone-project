@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DefaultButton, { ButtonNavigate } from '../ButtonDefault/ButtonDefault';
+import DefaultButton from '../ButtonDefault/ButtonDefault';
 
 const DestinationForm = styled.form`
   background: var(--color-background-secondary);
