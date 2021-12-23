@@ -3,14 +3,15 @@ import CardTitle from '../../components/CardTitle/CardTitle';
 import DestinationForm from '../../components/DestinationForm/DestinationForm';
 import InputField from '../../components/InputField/InputField';
 import InputLabel from '../../components/InputLabel/InputLabel';
-import DefaultButton from '../../components/ButtonDefault/ButtonDefault';
+import DefaultButton, {
+  ButtonNavigateSecondary,
+} from '../../components/ButtonDefault/ButtonDefault';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import { useNavigate } from 'react-router';
 import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
-import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
 
 export default function UpdateDestination(): JSX.Element {
   const currentId = window.localStorage
@@ -107,7 +108,7 @@ export default function UpdateDestination(): JSX.Element {
           onChange={(event) => setNewLocation(event)}
         />
         <ButtonArea>
-          <ButtonNavigate link="/">Back</ButtonNavigate>
+          <ButtonNavigateSecondary link="/">Back</ButtonNavigateSecondary>
           <DefaultButton>Check</DefaultButton>
         </ButtonArea>
       </DestinationForm>

@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router';
 import type { DestinationType } from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
-import ButtonDefault from '../../components/ButtonDefault/ButtonDefault';
-import ButtonNavigate from '../../components/ButtonNavigate/ButtonNavigate';
+import ButtonDefault, {
+  ButtonNavigateSecondary,
+} from '../../components/ButtonDefault/ButtonDefault';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
 import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 
@@ -73,7 +74,7 @@ export default function AddDestination(): JSX.Element {
           onChange={(event) => setNewLocation(event)}
         />
         <ButtonArea>
-          <ButtonNavigate link="/">Back</ButtonNavigate>
+          <ButtonNavigateSecondary link="/">Back</ButtonNavigateSecondary>
           <ButtonDefault>Check</ButtonDefault>
         </ButtonArea>
       </DestinationForm>

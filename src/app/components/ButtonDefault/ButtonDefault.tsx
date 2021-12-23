@@ -1,3 +1,6 @@
+import React from 'react';
+import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ButtonDefault = styled.button`
@@ -15,3 +18,66 @@ const ButtonDefault = styled.button`
 `;
 
 export default ButtonDefault;
+
+export const ButtonDefaultSimple = styled(ButtonDefault)`
+  border: 2px var(--color-primary) solid;
+  background: var(--color-background-secondary);
+  color: var(--color-secondary);
+  min-width: unset;
+`;
+
+export const ButtonDefaultInverted = styled(ButtonDefault)`
+  border: 2px var(--color-secondary) solid;
+  background: var(--color-background-secondary);
+  color: var(--color-secondary);
+`;
+
+const ButtonText = styled(Link)`
+  color: var(--color-primary);
+  &:visited {
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+`;
+
+const ButtonTextSecondary = styled(Link)`
+  color: var(--color-secondary);
+  &:visited {
+    text-decoration: none;
+    color: var(--color-secondary);
+  }
+`;
+
+type ButtonNavigateProps = {
+  children: ReactNode;
+  link: string;
+  onClick?: () => void;
+};
+
+export function ButtonNavigate({
+  children,
+  link,
+  onClick,
+}: ButtonNavigateProps): JSX.Element {
+  return (
+    <ButtonDefault>
+      <ButtonText to={link} onClick={onClick}>
+        {children}
+      </ButtonText>
+    </ButtonDefault>
+  );
+}
+
+export function ButtonNavigateSecondary({
+  children,
+  link,
+  onClick,
+}: ButtonNavigateProps): JSX.Element {
+  return (
+    <ButtonDefaultInverted>
+      <ButtonTextSecondary to={link} onClick={onClick}>
+        {children}
+      </ButtonTextSecondary>
+    </ButtonDefaultInverted>
+  );
+}

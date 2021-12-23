@@ -2,7 +2,7 @@ import type { ObjectId } from 'mongodb';
 import React from 'react';
 import styled from 'styled-components';
 import CardTitle from '../CardTitle/CardTitle';
-import ButtonSimple from '../ButtonSimple/ButtonSimple';
+import { ButtonDefaultSimple } from '../ButtonDefault/ButtonDefault';
 
 type DestinationCardProps = {
   location: string;
@@ -27,12 +27,12 @@ export default function OverviewCard({
       <TripDate>You arrive on {startDate}</TripDate>
       <TripDate>You depart on {endDate}</TripDate>
       <FlexArea>
-        <ButtonSimple onClick={() => buttonFunctionDelete(mongoID)}>
+        <ButtonDefaultSimple onClick={() => buttonFunctionDelete(mongoID)}>
           Delete
-        </ButtonSimple>
-        <ButtonSimple onClick={() => buttonFunctionUpdate(mongoID)}>
+        </ButtonDefaultSimple>
+        <ButtonDefaultSimple onClick={() => buttonFunctionUpdate(mongoID)}>
           Update
-        </ButtonSimple>
+        </ButtonDefaultSimple>
       </FlexArea>
     </Card>
   );
