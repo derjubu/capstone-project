@@ -6,7 +6,10 @@ import InputLabel from '../../components/InputLabel/InputLabel';
 import DefaultButton, {
   ButtonNavigateSecondary,
 } from '../../components/ButtonDefault/ButtonDefault';
-import type { DestinationType } from '../../utils/DestinationType';
+import type {
+  DestinationType,
+  UpdateDestinationType,
+} from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import { useNavigate } from 'react-router';
@@ -18,7 +21,7 @@ export default function UpdateDestination(): JSX.Element {
     .getItem('UpdateId')
     ?.replaceAll('"', '');
 
-  const currentDestination: any[] = JSON.parse(
+  const currentDestination: UpdateDestinationType[] = JSON.parse(
     window.localStorage.getItem('destination') as string
   );
   const [newStartDate, setNewStartDate] = useState(
