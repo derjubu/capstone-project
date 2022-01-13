@@ -43,7 +43,7 @@ export default function Itinerary(): JSX.Element {
 
   function updateDestination(id: ObjectId) {
     const findDestination = locations?.find((element) => element._id === id);
-    const destinationData: UpdateDestinationType = [
+    const destinationData: UpdateDestinationType[] = [
       {
         newDestination: {
           endDate: findDestination?.newDestination.endDate as string,
@@ -52,8 +52,8 @@ export default function Itinerary(): JSX.Element {
             type: 'Feature',
             geometry: {
               type: 'Point',
-              coordinates:
-                findDestination?.newDestination.location.geometry.coordinates,
+              coordinates: findDestination?.newDestination.location.geometry
+                .coordinates as number[],
             },
             properties: {
               name: findDestination?.newDestination.location.properties.name,
@@ -100,12 +100,12 @@ export default function Itinerary(): JSX.Element {
           }
         />
         <ContentArea>
-          {locations.map((stop: UpdateDestinationType) => (
+          {locations.map((stop: DbDestinationType) => (
             <OverviewCard
               key={`${
                 stop.newDestination.location.properties.name
               }-${locations.indexOf(stop)}`}
-              location={stop.newDestination.location.properties.name}
+              location={stop.newDestination.location.properties.name as string}
               startDate={stop.newDestination.startDate as string}
               endDate={stop.newDestination.endDate as string}
               mongoID={stop._id}
@@ -147,12 +147,12 @@ export default function Itinerary(): JSX.Element {
           />
         }
         <ContentArea>
-          {locations?.map((stop: UpdateDestinationType) => (
+          {locations?.map((stop: DbDestinationType) => (
             <OverviewCard
               key={`${
                 stop.newDestination.location.properties.name
               }-${locations.indexOf(stop)}`}
-              location={stop.newDestination.location.properties.name}
+              location={stop.newDestination.location.properties.name as string}
               startDate={stop.newDestination.startDate as string}
               endDate={stop.newDestination.endDate as string}
               mongoID={stop._id}
