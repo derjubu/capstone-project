@@ -10,14 +10,16 @@ import AppTitle from '../../components/AppTitle/AppTitle';
 import AppSubTitle from '../../components/AppSubTitle/AppSubTitle';
 import ContentArea from '../../components/ContentArea/ContentArea';
 import { ButtonNavigate } from '../../components/ButtonDefault/ButtonDefault';
+import type { DbDestinationType } from '../../utils/DbDestinationArray';
+import type { UpdateDestinationType } from '../../utils/DestinationType';
 
 export default function Itinerary(): JSX.Element {
-  const locations = useFetch<any[]>('/api/locations/');
+  const locations = useFetch<DbDestinationType[]>('/api/locations/');
   const locationsCoordinates: LngLatLike[] = [];
   const navigate = useNavigate();
 
   {
-    locations?.map((city: any) =>
+    locations?.map((city: UpdateDestinationType) =>
       locationsCoordinates.push(
         city.newDestination.location.geometry.coordinates as LngLatLike
       )
@@ -41,20 +43,20 @@ export default function Itinerary(): JSX.Element {
 
   function updateDestination(id: ObjectId) {
     const findDestination = locations?.find((element) => element._id === id);
-    const destinationData: any = [
+    const destinationData: UpdateDestinationType[] = [
       {
         newDestination: {
-          endDate: findDestination.newDestination.endDate as string,
-          startDate: findDestination.newDestination.startDate as string,
+          endDate: findDestination?.newDestination.endDate as string,
+          startDate: findDestination?.newDestination.startDate as string,
           location: {
             type: 'Feature',
             geometry: {
               type: 'Point',
-              coordinates:
-                findDestination.newDestination.location.geometry.coordinates,
+              coordinates: findDestination?.newDestination.location.geometry
+                .coordinates as number[],
             },
             properties: {
-              name: findDestination.newDestination.location.properties.name,
+              name: findDestination?.newDestination.location.properties.name,
             },
           },
         },
@@ -98,12 +100,12 @@ export default function Itinerary(): JSX.Element {
           }
         />
         <ContentArea>
-          {locations.map((stop: any) => (
+          {locations.map((stop: DbDestinationType) => (
             <OverviewCard
               key={`${
                 stop.newDestination.location.properties.name
               }-${locations.indexOf(stop)}`}
-              location={stop.newDestination.location.properties.name}
+              location={stop.newDestination.location.properties.name as string}
               startDate={stop.newDestination.startDate as string}
               endDate={stop.newDestination.endDate as string}
               mongoID={stop._id}
@@ -145,12 +147,12 @@ export default function Itinerary(): JSX.Element {
           />
         }
         <ContentArea>
-          {locations?.map((stop: any) => (
+          {locations?.map((stop: DbDestinationType) => (
             <OverviewCard
               key={`${
                 stop.newDestination.location.properties.name
               }-${locations.indexOf(stop)}`}
-              location={stop.newDestination.location.properties.name}
+              location={stop.newDestination.location.properties.name as string}
               startDate={stop.newDestination.startDate as string}
               endDate={stop.newDestination.endDate as string}
               mongoID={stop._id}

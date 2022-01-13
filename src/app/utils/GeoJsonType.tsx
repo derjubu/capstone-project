@@ -5,6 +5,6 @@ export type GeoJsonType = {
     coordinates: number[];
   };
   properties: {
-    name: string;
+    name: string | undefined;
   };
 };

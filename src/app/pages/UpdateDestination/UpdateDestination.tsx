@@ -6,7 +6,10 @@ import InputLabel from '../../components/InputLabel/InputLabel';
 import DefaultButton, {
   ButtonNavigateSecondary,
 } from '../../components/ButtonDefault/ButtonDefault';
-import type { DestinationType } from '../../utils/DestinationType';
+import type {
+  DestinationType,
+  UpdateDestinationType,
+} from '../../utils/DestinationType';
 import type { GeoJsonType } from '../../utils/GeoJsonType';
 import MapWithMarker from '../../components/MapWithMarker/MapwithMarker';
 import { useNavigate } from 'react-router';
@@ -14,11 +17,11 @@ import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
 
 export default function UpdateDestination(): JSX.Element {
-  const currentId = window.localStorage
+  const currentId: string | undefined = window.localStorage
     .getItem('UpdateId')
     ?.replaceAll('"', '');
 
-  const currentDestination: any[] = JSON.parse(
+  const currentDestination: UpdateDestinationType[] = JSON.parse(
     window.localStorage.getItem('destination') as string
   );
   const [newStartDate, setNewStartDate] = useState(
@@ -41,7 +44,10 @@ export default function UpdateDestination(): JSX.Element {
 
   const navigate = useNavigate();
 
-  async function onUpdate(locationId: any, updateDestination: DestinationType) {
+  async function onUpdate(
+    locationId: string | undefined,
+    updateDestination: DestinationType
+  ) {
     const response = await fetch(`/api/location/${locationId}`, {
       method: 'PATCH',
       headers: {

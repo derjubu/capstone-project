@@ -11,7 +11,7 @@ type MapWithMarkerProps = {
   displayArea: string;
   defaultLocation?: string;
   defaultCoordinates?: number[];
-  onChange: (event: any) => void;
+  onChange: (locationGeoJson: GeoJsonType) => void;
 };
 
 if (typeof import.meta.env.VITE_MAPBOX_ACCESS_KEY === 'string') {
