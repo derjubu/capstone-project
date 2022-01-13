@@ -17,7 +17,7 @@ import GeocoderArea from '../../components/GeocoderArea/GeocoderArea';
 import ButtonArea from '../../components/ButtonArea/ButtonArea';
 
 export default function UpdateDestination(): JSX.Element {
-  const currentId = window.localStorage
+  const currentId: string | undefined = window.localStorage
     .getItem('UpdateId')
     ?.replaceAll('"', '');
 
@@ -44,7 +44,10 @@ export default function UpdateDestination(): JSX.Element {
 
   const navigate = useNavigate();
 
-  async function onUpdate(locationId: any, updateDestination: DestinationType) {
+  async function onUpdate(
+    locationId: string | undefined,
+    updateDestination: DestinationType
+  ) {
     const response = await fetch(`/api/location/${locationId}`, {
       method: 'PATCH',
       headers: {
